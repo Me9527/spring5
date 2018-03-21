@@ -17,7 +17,7 @@ public class UserAction {
 
 		/*
 		 * model.addAttribute("username", username); System.out.println("page02");
-		 * bizTwo.addBiz01(username);
+		 * bizTwo.addBiz01(username); 
 		 * 
 		 * @SuppressWarnings("unused") List<Map<String, Object>> rs =
 		 * bizTwo.getBiz01(username);
