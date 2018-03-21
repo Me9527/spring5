@@ -27,7 +27,7 @@ Remote Fetch URL	https://github.com/Me9527/JChineseTerm.git
 
 
 SELECT ID, LOGINNAME, PASSWORD, ENABLED, LAST_UPDATE_DATE, LAST_UPDATED_BY, CREATION_DATE, CREATED_BY
-FROM users;
+FROM p_users;
 
 
 create table users(
