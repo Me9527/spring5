@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:beans="http://www.springframework.org/schema/beans"  
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:util="http://www.springframework.org/schema/util" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+            http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd  
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	
+
+	<global-method-security>
+		<protect-pointcut expression="execution(* org.example.module02.services.impl.BizTwoServiceImpl.*(..))" access="ROLE_USER"/>
+	</global-method-security>
+
+	<http pattern="/static/**" security="none"/>
+	<http pattern="/commons/**" security="none"/>
+	<http pattern="/ext4.1/**" security="none"/>
+
+	<http>
+		<form-login login-page="/modules/user/login.jsp" authentication-failure-url="/modules/user/login.jsp" login-processing-url="/modules/user/login"/>
+		<logout logout-url="/modules/user/logout" logout-success-url="/modules/user/logout.jsp" delete-cookies="JSESSIONID"/>
+		<!--
+			Allow all other requests. In a real application you should
+			adopt a whitelisting approach where access is not allowed by default
+		<intercept-url pattern="/**" access="permitAll" />			
+		-->
+		
+		<remember-me />
+		
+		<!-- Uncomment to limit the number of sessions a user can have -->
+		<session-management invalid-session-url="/modules/user/timeout.jsp">
+			<concurrency-control max-sessions="5" error-if-maximum-exceeded="true" />
+		</session-management>
+		
+		<port-mappings>
+			<port-mapping http="8000" https="443"/>
+		</port-mappings>
+		
+		
+		<intercept-url pattern="/modules/user/login.jsp" access="permitAll" />	
+		<intercept-url pattern="/modules/user/logout.jsp" access="permitAll" />			
+		<intercept-url pattern="*.do" requires-channel="any" access="hasAuthority('supervisor')"/>
+		<intercept-url pattern="/modules/**" access="hasAuthority('supervisor')" />	
+		<intercept-url pattern="/webservice/**" access="hasAuthority('supervisor')" />	
+		<intercept-url pattern="/secure/**" access="authenticated" />	
+			
+	</http>
+
+	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref='custUserDetailService'>
+			<password-encoder ref="encoder"/>
+		</authentication-provider>
+	</authentication-manager>
+<!--  
+			<user-service>
+				<user name="rod" password="$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8." authorities="supervisor, user" />
+				<user name="scott" password="$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8." authorities="user" />
+				<user name="admin" password="$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8." authorities="supervisor, user, teller"/>				
+			</user-service>
+-->
+
+		
+</beans:beans>

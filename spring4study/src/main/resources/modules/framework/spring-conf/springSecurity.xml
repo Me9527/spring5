@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+            http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd  
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="mySecurityFilterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<constructor-arg>
+			<list>
+			 	<ref bean="defaultSecurityFilterChain" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="defaultSecurityFilterChain" class="org.springframework.security.web.DefaultSecurityFilterChain">
+		<constructor-arg index="0">
+			<ref bean="antPathRequestMatcher" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<list>
+			
+				<ref bean="securityContextPersistenceFilter" />
+				<ref bean="concurrentSessionFilter" />
+				
+				<ref bean="headerWriterFilter" />				
+				<ref bean="csrfFilter" />
+				<ref bean="logoutFilter" />
+				<ref bean="usernamePasswordAuthenticationFilter" />
+				<ref bean="requestCacheAwareFilter" />
+				<ref bean="securityContextHolderAwareRequestFilter" />
+				<ref bean="rememberMeAuthenticationFilter" />				
+				<ref bean="anonymousAuthenticationFilter" />	
+				<ref bean="sessionManagementFilter" />				
+				<ref bean="exceptionTranslationFilter" />										
+				<ref bean="filterSecurityInterceptor" />													
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="antPathRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg index="0">
+			<value>/modules/**</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="channelProcessingFilter" class="org.springframework.security.web.access.channel.ChannelProcessingFilter">
+	
+	</bean>
+	<bean id="channelDecisionManager" class="org.springframework.security.web.access.channel.ChannelDecisionManagerImpl">
+		
+	</bean>
+		
+	<bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<constructor-arg index="0">
+			<ref bean="httpSessionSecurityContextRepository" />
+		</constructor-arg>
+	</bean>
+	<bean id="httpSessionSecurityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository">
+
+	</bean>	
+	
+	<bean id="concurrentSessionFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<constructor-arg index="0">
+			<ref bean="sessionRegistry" />
+		</constructor-arg>
+	</bean>
+	
+	
+	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl">
+		
+	</bean>	
+
+
+	 
+ <!-- 
+ 	<bean class="org.springframework.security.web.session.HttpSessionEventPublisher"/>
+	<bean id="sessionRegistry" class="org.springframework.session.security.SpringSessionBackedSessionRegistry">
+		<constructor-arg ref="httpSessionSecurityContextRepository"/>
+	</bean>
+	-->
+			
+	<bean id="headerWriterFilter" class="org.springframework.security.web.header.HeaderWriterFilter">
+		<constructor-arg index="0">
+			<ref bean="headerWriterFilterList" />
+		</constructor-arg>	
+	</bean>
+	<bean id="cacheControlHeadersWriter" class="org.springframework.security.web.header.writers.CacheControlHeadersWriter">
+	
+	</bean>	
+	<bean id="hstsHeaderWriter" class="org.springframework.security.web.header.writers.HstsHeaderWriter">
+		<constructor-arg index="0">
+			<value>31536000</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>true</value>
+		</constructor-arg>	
+	</bean>	
+	<bean id="xXssProtectionHeaderWriter" class="org.springframework.security.web.header.writers.XXssProtectionHeaderWriter">
+	
+	</bean>	
+	<bean id="xFrameOptionsHeaderWriter" class="org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter">
+	
+	</bean>	
+	<bean id="xContentTypeOptionsHeaderWriter" class="org.springframework.security.web.header.writers.XContentTypeOptionsHeaderWriter">
+	
+	</bean>	
+	<util:list id="headerWriterFilterList"  list-class="java.util.ArrayList">
+		<ref bean="cacheControlHeadersWriter" />
+		<ref bean="hstsHeaderWriter" />
+		<ref bean="xXssProtectionHeaderWriter" />
+		<ref bean="xFrameOptionsHeaderWriter" />
+		<ref bean="xContentTypeOptionsHeaderWriter" />		
+	</util:list>
+	
+							
+	<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<constructor-arg index="0">
+			<ref bean="tokenRepository" />
+		</constructor-arg>	
+	</bean>	
+	<bean id="tokenRepository" class="org.springframework.security.web.csrf.LazyCsrfTokenRepository">
+		<constructor-arg index="0">
+			<ref bean="delegateCsrfTokenRepository" />
+		</constructor-arg>		
+	</bean>
+	<bean id="delegateCsrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
+	
+	</bean>
+	
+	
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg index="0">
+			<ref bean="logoutSuccessHandler" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="compositeLogoutHandler" />
+		</constructor-arg>
+		<property name="logoutRequestMatcher" ref="logoutUrl"/>			
+	</bean>	
+	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
+	 		<property name="defaultTargetUrl" value="/modules/user/logout.jsp"/>
+	</bean>
+
+	<bean id="logoutUrl" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg index="0">
+			<value>/modules/user/logout</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>POST</value>
+		</constructor-arg>		
+	</bean>
+	<bean id="csrfLogoutHandler" class="org.springframework.security.web.csrf.CsrfLogoutHandler">
+		<constructor-arg index="0">
+			<ref bean="tokenRepository" />
+		</constructor-arg>	
+	</bean>	
+	<bean id="securityContextLogoutHandler" class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
+	
+	</bean>	
+
+	<bean id="cookieClearingLogoutHandler" class="org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler">
+		<constructor-arg index="0">
+			<value>JSESSIONID</value>
+		</constructor-arg>
+	</bean>
+	<util:list id="compositeLogoutHandlerList"  list-class="java.util.ArrayList">
+		<ref bean="csrfLogoutHandler" />
+		<ref bean="securityContextLogoutHandler" />
+		<ref bean="cookieClearingLogoutHandler" />
+	</util:list>	
+	<bean id="compositeLogoutHandler" class="org.springframework.security.web.authentication.logout.CompositeLogoutHandler">
+		<constructor-arg index="0">
+			<ref bean="compositeLogoutHandlerList" />
+		</constructor-arg>	
+	</bean>	
+
+	
+	
+	<bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+			<property name="authenticationManager" ref="authenticationManager"/>		
+			<property name="requiresAuthenticationRequestMatcher" ref="loginUrl"/>
+			<property name="authenticationFailureHandler" ref="failureHandler"/>
+			<property name="sessionAuthenticationStrategy" ref="sessionStrategy"/>
+	</bean>
+
+	<bean id="loginUrl" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg index="0">
+			<value>/modules/user/login</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>POST</value>
+		</constructor-arg>		
+	</bean>
+	<bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/modules/user/login.jsp"/>	
+	</bean>	
+
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="custUserDetailService"/>		
+		<property name="passwordEncoder" ref="encoder"/>				
+	</bean>
+	<util:list id="daoAuthenticationProviderList"  list-class="java.util.ArrayList">
+		<ref bean="daoAuthenticationProvider" />
+	</util:list>	
+	<bean id="daoAuthenticationProviderDelegate" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg index="0">
+			<ref bean="daoAuthenticationProviderList" />
+		</constructor-arg>		
+	</bean>
+	
+	
+	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<constructor-arg index="0">
+			<value>rememberMe</value>
+		</constructor-arg>	
+	</bean>	
+	<bean id="anonymousAuthenticationProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+		<constructor-arg index="0">
+			<value>anonymous</value>
+		</constructor-arg>		
+	</bean>	
+	
+	<util:list id="authenticationProviderList"  list-class="java.util.ArrayList">
+		<ref bean="rememberMeAuthenticationProvider" />
+		<ref bean="anonymousAuthenticationProvider" />
+	</util:list>
+	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg index="0">
+			<ref bean="authenticationProviderList" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="daoAuthenticationProviderDelegate" />
+		</constructor-arg>					
+	</bean>	
+	
+	
+				
+	<bean id="csrfAuthenticationStrategy" class="org.springframework.security.web.csrf.CsrfAuthenticationStrategy">
+		<constructor-arg index="0">
+			<ref bean="tokenRepository" />
+		</constructor-arg>
+	</bean>
+	<bean id="concurrentSessionControlAuthenticationStrategy" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+		<constructor-arg index="0">
+			<ref bean="sessionRegistry" />
+		</constructor-arg>
+	</bean>
+	<bean id="changeSessionIdAuthenticationStrategy" class="org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy">
+	
+	</bean>
+	<bean id="registerSessionAuthenticationStrategy" class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+		<constructor-arg index="0">
+			<ref bean="sessionRegistry" />
+		</constructor-arg>
+	</bean>
+	<util:list id="compositeSessionAuthenticationStrategy"  list-class="java.util.ArrayList">
+		<ref bean="csrfAuthenticationStrategy" />
+		<ref bean="concurrentSessionControlAuthenticationStrategy" />
+		<ref bean="changeSessionIdAuthenticationStrategy" />		
+		<ref bean="registerSessionAuthenticationStrategy" />
+	</util:list>	
+	<bean id="sessionStrategy" class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<constructor-arg index="0">
+			<ref bean="compositeSessionAuthenticationStrategy" />
+		</constructor-arg>
+	</bean>
+	
+
+
+	<bean id="requestCacheAwareFilter" class="org.springframework.security.web.savedrequest.RequestCacheAwareFilter">
+		<constructor-arg index="0">
+			<ref bean="httpSessionRequestCache" />
+		</constructor-arg>
+	</bean>	
+
+	<bean id="httpSessionRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache">
+		
+	</bean>			
+
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter">
+		
+	</bean>
+	
+
+	<bean id="anonymousAuthenticationFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter">
+		<constructor-arg index="0">
+			<value>springAnonymous</value>
+		</constructor-arg>	
+	</bean>		
+
+	<bean id="rememberMeAuthenticationFilter" class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<constructor-arg index="0">
+			<ref bean="authenticationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="tokenBasedRememberMeServices" />
+		</constructor-arg>
+	</bean>		
+	
+	<bean id="tokenBasedRememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+		<constructor-arg index="0">
+			<value>springRemember</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="custUserDetailService" />
+		</constructor-arg>	
+	</bean>		
+	
+	<bean id="sessionManagementFilter" class="org.springframework.security.web.session.SessionManagementFilter">
+		<constructor-arg index="0">
+			<ref bean="httpSessionSecurityContextRepository" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="sessionStrategy" />
+		</constructor-arg>
+		<property name="authenticationFailureHandler" ref="failureHandler"/>
+	</bean>	
+		
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="securityMetadataSource" ref="securityUrlMetadataSource"/>
+		<property name="accessDecisionManager" ref="affirmativeBased"/>		
+	</bean>	
+
+	
+	<bean id="methodSecurityInterceptor" class="org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="securityMetadataSource" ref="delegatingMethodSecurityMetadataSource"/>
+		<property name="accessDecisionManager" ref="affirmativeBased"/>		
+	</bean>	
+			
+	<aop:config proxy-target-class="false">
+		<aop:pointcut id="methodSecurity" expression="execution(* org.example.module02..*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="methodSecurityInterceptor" pointcut-ref="methodSecurity" />
+	</aop:config>
+		
+
+	<bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<property name="errorPage" value="/modules/user/accessDeniedHandler.jsp"/>
+	</bean>			
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<constructor-arg index="0">
+			<ref bean="loginUrlAuthenticationEntryPoint" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="httpSessionRequestCache" />
+		</constructor-arg>
+		<property name="accessDeniedHandler" ref="accessDeniedHandler"/>
+	</bean>
+	<bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg index="0">
+			<value>/modules/user/login.jsp</value>
+		</constructor-arg>	
+	</bean>
+	
+	<bean id="affirmativeBased" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg>
+			<list>
+			 	<ref bean="roleVoter" />   
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" >
+			<value>ROLE_</value>
+		</property>
+
+	</bean>		
+
+	<bean id="securityUrlMetadataSource" class="org.example.users.services.impl.CustomSecurityUrlMetadataSource">
+		
+	</bean>	
+
+	<bean id="securityMethodMetadataSource" class="org.example.users.services.impl.CustomSecurityMethodMetadataSource">
+		
+	</bean>	
+
+	<bean id="delegatingMethodSecurityMetadataSource" class="org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource">
+		<constructor-arg>
+			<list>
+			 	<ref bean="securityMethodMetadataSource" />   
+			</list>
+		</constructor-arg>
+	</bean>			
+		
+</beans>
