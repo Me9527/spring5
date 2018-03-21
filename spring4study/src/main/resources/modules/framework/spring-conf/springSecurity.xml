@@ -144,7 +144,7 @@
 		<property name="logoutRequestMatcher" ref="logoutUrl"/>			
 	</bean>	
 	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
-	 		<property name="defaultTargetUrl" value="/modules/user/logout.jsp"/>
+	 		<property name="defaultTargetUrl" value="/modules/user/login.jsp"/>
 	</bean>
 
 	<bean id="logoutUrl" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">

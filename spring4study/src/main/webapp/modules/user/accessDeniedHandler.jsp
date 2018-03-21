@@ -8,6 +8,10 @@
 <body>
 <div id="content">
 <h2>无权访问</h2>
+    <form class="form-inline" action="${ctx}/modules/user/logout" method="post">
+          <input type="submit" value="注销" />
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </div>
 </body>
 </html>

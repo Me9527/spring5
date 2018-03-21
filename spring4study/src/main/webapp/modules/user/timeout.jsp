@@ -7,5 +7,9 @@
 </head>
 <body>
 	<h1> 回话超时退出！</h1>
+	<form class="form-inline" action="${ctx}/modules/user/logout" method="post">
+          <input type="submit" value="注销" />
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </body>
 </html>
