@@ -8,16 +8,6 @@
 <html lang="en">
   <head>
     <title>Hello Security</title>
-    <c:url var="faviconUrl" value="/resources/img/favicon.ico"/>
-    <link rel="icon" type="image/x-icon" href="${faviconUrl}"/>
-    <c:url var="bootstrapUrl" value="/resources/css/bootstrap.css"/>
-    <link href="${bootstrapUrl}" rel="stylesheet"></link>
-    <c:url var="bootstrapResponsiveUrl" value="/resources/css/bootstrap-responsive.css"/>
-    <link href="${bootstrapResponsiveUrl}" rel="stylesheet"></link>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
 
   <body>
