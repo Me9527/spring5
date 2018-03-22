@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
-    xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
-
-  <jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
-  <jsp:output omit-xml-declaration="true" />
-  <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="org.springframework.security.core.userdetails.UserDetails"%>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<html>
   <head>
-    <title>Hello Security</title>
+    <title>欢迎浏览</title>
   </head>
 
   <body>
+  <!--  
+    <div sec:authorize="isAuthenticated()">
+        <p>已有用户登录</p>
+        <p>登录的用户为：<span sec:authentication="name"></span></p>
+        <p>用户角色为：<span sec:authentication="principal.authorities"></span></p>
+
+    </div>
+   --> 
     <div class="container">
-      <h1>This is secured!</h1>
+      <h1>欢迎浏览首页</h1>
       <p>
-        Hello <b><c:out value="${pageContext.request.remoteUser}"/></b>
+
       </p>
       <c:url var="logoutUrl" value="/modules/user/logout"/>
       <form class="form-inline" action="${logoutUrl}" method="post">
@@ -25,8 +29,7 @@
     
     <SCRIPT type="text/javascript">
     	//alert("${logoutUrl}");
-    	//alert("${_csrf.token}");
+    	alert("${_csrf.token}");
     </SCRIPT>    
   </body>
 </html>
-</jsp:root>

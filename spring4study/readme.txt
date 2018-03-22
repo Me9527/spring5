@@ -72,6 +72,6 @@ $ redis-cli keys '*' | xargs redis-cli del
 $ redis-cli del spring:session:sessions:7e8383a4-082c-4ffe-a4bc-c40fd3363c5e	
 	
 	
-	
+git clone https://github.com/webismymind/editablegrid.git	
 	
 	

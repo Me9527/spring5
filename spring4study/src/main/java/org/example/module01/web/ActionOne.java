@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.example.module01.services.IServiceOne;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +47,8 @@ public class ActionOne {
 		String insert = "insert into test_user (name) values (?)";
 		String args = "tanghulu";
 		jdbcTemplate.update(insert, args);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(userDetails.getName()+ "----------------------------------------" + userDetails.getUsername());
 		return "page01";
 	}
 
@@ -58,6 +62,13 @@ public class ActionOne {
 		return "page02";
 	}
 
+	@RequestMapping("/index.do")
+	public String index(Model model) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(userDetails.getName()+ "-" + userDetails.getUsername());
+		return "index";
+	}
+	
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}

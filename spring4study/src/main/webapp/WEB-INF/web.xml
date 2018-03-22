@@ -105,17 +105,17 @@
 
 	<!-- 欢迎页面 -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/modules/module01/ActionOne/index.do</welcome-file>
 	</welcome-file-list>
 	<!-- 错误页面 -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/common/404.jsp</location>
+		<location>/modules/common/404.jsp</location>
 	</error-page>
 
 	<error-page>
 		<error-code>500</error-code>
-		<location>/common/500.jsp</location>
+		<location>/modules/common/500.jsp</location>
 	</error-page>
 	<!-- session过期时间 -->
 	<session-config>
