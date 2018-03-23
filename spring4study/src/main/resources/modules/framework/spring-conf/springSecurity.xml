@@ -342,7 +342,7 @@
 	</aop:config>
 		
 
-	<bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+	<bean id="accessDeniedHandler" class="org.example.framework.spring.CustomerAccessDeniedHandlerImpl">
 		<property name="errorPage" value="/modules/user/accessDeniedHandler.jsp"/>
 	</bean>			
 	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">

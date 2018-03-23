@@ -14,13 +14,33 @@ $( document ).ready(function() {
     	$("#modalId").modal();
     }
     
-	var queryParam = {};
-	queryParam['username'] = $("#username").val();
-	queryParam['password'] = $("#password").val();	
-	var url = 'spring4study/modules/user/login';
-    // DO GET
+    // DO GET X-CSRF-TOKEN
     function ajaxGet(){
+    	var url = '/spring4study/modules/user/getCsrf.jsp';
     	$.ajax({
+    	    type: "GET",
+    	    timeout : 20000,
+            url : url,
+            success: function(data){
+            	//alert(data);
+            	ajaxPost(data);
+            },
+            error : function(e) {
+            	alert(e);
+            }
+        }); 
+    }
+    
+    function ajaxPost(data){
+    	var queryParam = {};
+    	//alert($("#username").val());
+    	queryParam['username'] = $("#username").val();
+    	queryParam['password'] = $("#password").val();	
+    	var url = '/spring4study/modules/user/login';
+    	$.ajax({
+    		headers : {
+    	              'X-CSRF-TOKEN': data
+    	    },
     	    type: "POST",
     	    timeout : 20000,
     	    data:queryParam,
