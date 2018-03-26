@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/modules/commons/common.jsp" %>
 <%@ page import="org.springframework.security.core.userdetails.UserDetails"%>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <html>
@@ -21,7 +22,7 @@
 
       </p>
       <c:url var="logoutUrl" value="/modules/user/logout"/>
-      <form class="form-inline" action="${logoutUrl}" method="post">
+      <form class="form-inline" action="${ctx}/modules/user/logout" method="post">
           <input type="submit" value="注销" />
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       </form>
@@ -29,7 +30,8 @@
     
     <SCRIPT type="text/javascript">
     	//alert("${logoutUrl}");
-    	alert("${_csrf.token}");
+    	//alert("${_csrf.token}");
     </SCRIPT>    
   </body>
 </html>
+
