@@ -3,6 +3,9 @@ http://localhost:8080/spring4study/modules/module01/registration.jsp
 http://localhost:8080/spring4study/modules/module02/registration.jsp
 http://localhost:8000/spring4study/log4j.do
 
+
+https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
+
 select * from test_user;
 
 truncate table test_user;

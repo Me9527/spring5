@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Bootstrap Layout - examples &amp; tutorial. Basic &amp; advanced usage - Material Design for Bootstrap</title>
+    <link rel="shortcut icon" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/favicon.ico" />
+    
+<!-- This site is optimized with the Yoast SEO plugin v7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Bootstrap layout includes responsive breakpoints in grid system for providing mobile-first experience and z-index - a third axis to arrange content."/>
+<link rel="canonical" href="https://mdbootstrap.com/layout/bootstrap-layout/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Bootstrap Layout - examples &amp; tutorial. Basic &amp; advanced usage" />
+<meta property="og:description" content="Bootstrap layout includes responsive breakpoints in grid system for providing mobile-first experience and z-index - a third axis to arrange content." />
+<meta property="og:url" content="https://mdbootstrap.com/layout/bootstrap-layout/" />
+<meta property="og:site_name" content="Material Design for Bootstrap" />
+<meta property="article:publisher" content="https://www.facebook.com/mdbootstrap" />
+<meta property="article:author" content="https://www.facebook.com/m.k.szymanski" />
+<meta property="article:section" content="Layout" />
+<meta property="og:image" content="https://mdbootstrap.com/wp-content/uploads/2017/06/bootstrap-layout-2.jpg" />
+<meta property="og:image:secure_url" content="https://mdbootstrap.com/wp-content/uploads/2017/06/bootstrap-layout-2.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Bootstrap layout includes responsive breakpoints in grid system for providing mobile-first experience and z-index - a third axis to arrange content." />
+<meta name="twitter:title" content="Bootstrap Layout - examples &amp; tutorial. Basic &amp; advanced usage" />
+<meta name="twitter:site" content="@MDBootstrap" />
+<meta name="twitter:image" content="https://mdbootstrap.com/wp-content/uploads/2017/06/bootstrap-layout-2.jpg" />
+<meta name="twitter:creator" content="@BFSzymanski" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//chimpstatic.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/mdbootstrap.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.4"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='brandflow-wp-css'  href='https://mdbootstrap.com/wp-content/plugins/brandflow-wp/public/css/brandflow-wp-public.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://mdbootstrap.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='dwqa-style-css'  href='https://mdbootstrap.com/wp-content/plugins/dw-question-answer-pro/templates/assets/css/style.css?ver=250420160307' type='text/css' media='all' />
+<link rel='stylesheet' id='dwqa-style-rtl-css'  href='https://mdbootstrap.com/wp-content/plugins/dw-question-answer-pro/templates/assets/css/rtl.css?ver=250420160307' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css'  href='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=3.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=3.3.4' type='text/css' media='only screen and (max-width: 768px)' />
+<link rel='stylesheet' id='woocommerce-general-css'  href='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=3.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='wsl-widget-css'  href='https://mdbootstrap.com/wp-content/plugins/wordpress-social-login/assets/css/style.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='compiled.css-css'  href='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.5.0' type='text/css' media='all' />
+<link rel='stylesheet' id='style.css-css'  href='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='dwqa_leaderboard-css'  href='https://mdbootstrap.com/wp-content/plugins/dw-question-answer-pro/templates/assets/css/leaderboard.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='sv-wc-payment-gateway-payment-form-css'  href='https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-paypal-powered-by-braintree/lib/skyverge/woocommerce/payment-gateway/assets/css/frontend/sv-wc-payment-gateway-payment-form.min.css?ver=4.6.0' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mailchimp_public_data = {"site_url":"https:\/\/mdbootstrap.com","ajax_url":"https:\/\/mdbootstrap.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mdw_search_object = {"ajaxurl":"https:\/\/mdbootstrap.com\/wp-admin\/admin-ajax.php","redirecturl":"https:\/\/mdbootstrap.com"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ajax_auth_object = {"ajaxurl":"https:\/\/mdbootstrap.com\/wp-admin\/admin-ajax.php","redirecturl":"https:\/\/mdbootstrap.com","loadingmessage":"Sending user info, please wait..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-admin/load-scripts.php?c=gzip&amp;load%5B%5D=jquery-core,jquery-migrate&amp;ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/brandflow-wp/public/js/brandflow-wp-public.js?ver=1.0.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/duracelltomi-google-tag-manager/js/gtm4wp-form-move-tracker.js?ver=1.7.2'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/mailchimp-for-woocommerce/public/js/mailchimp-woocommerce-public.min.js?ver=2.1.5'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/mdw-search.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/jquery.validate.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/ajax-auth-script.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/euvat-validation.js?ver=4.9.4'></script>
+<link rel='https://api.w.org/' href='https://mdbootstrap.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://mdbootstrap.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://mdbootstrap.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.9.4" />
+<meta name="generator" content="WooCommerce 3.3.4" />
+<link rel='shortlink' href='https://mdbootstrap.com/?p=22665' />
+<link rel="alternate" type="application/json+oembed" href="https://mdbootstrap.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://mdbootstrap.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F&#038;format=xml" />
+        <!-- Push Notifications user -->
+        <script>
+            var wp_ajaxurl = "https://mdbootstrap.com/wp-admin/admin-ajax.php";
+                var pnu = true;
+        </script>
+
+        <!--/.Push Notifications user -->
+
+<!-- Google Tag Manager for WordPress by DuracellTomi - http://duracelltomi.com -->
+<script data-cfasync="false" type="text/javascript">
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+	dataLayer.push({"pagePostType":"page","pagePostType2":"single-page","pageCategory":["layout"],"pagePostAuthor":"Michal Szymanski"});
+</script>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W7MBMN');</script>
+<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager for WordPress by DuracellTomi --><meta name="referrer" content="always"/>	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+			<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<link rel="icon" href="https://mdbootstrap.com/wp-content/uploads/2016/11/cropped-ms-icon-310x310-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://mdbootstrap.com/wp-content/uploads/2016/11/cropped-ms-icon-310x310-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://mdbootstrap.com/wp-content/uploads/2016/11/cropped-ms-icon-310x310-180x180.png" />
+<meta name="msapplication-TileImage" content="https://mdbootstrap.com/wp-content/uploads/2016/11/cropped-ms-icon-310x310-270x270.png" />
+        <script type="text/javascript">
+            var woocs_is_mobile = 0;
+            var woocs_drop_down_view = "ddslick";
+            var woocs_current_currency = {"name":"EUR","rate":1,"symbol":"&euro;","position":"left_space","is_etalon":0,"hide_cents":1,"decimals":0,"description":"European Euro","flag":"https:\/\/mdbootstrap.com\/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png"};
+            var woocs_default_currency = {"name":"USD","rate":1,"symbol":"&#36;","position":"left","is_etalon":1,"hide_cents":1,"decimals":0,"description":"USA dollar","flag":"https:\/\/mdbootstrap.com\/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png"};
+            var woocs_array_of_get = '{}';
+        
+            woocs_array_no_cents = '["JPY","TWD"]';
+
+            var woocs_ajaxurl = "https://mdbootstrap.com/wp-admin/admin-ajax.php";
+            var woocs_lang_loading = "loading";
+            var woocs_shop_is_cached =0;
+        </script>
+            <script> var currency = '€'; </script>
+    <meta name="p:domain_verify" content="ba4bb1f26dcf05eadc4ea92722eca381"/>
+
+
+</head>
+
+<body class="fixed-sn mdb-skin-custom" data-spy="scroll" data-target="#scrollspy" data-offset="15">
+    
+<!-- Push Notification Modal -->
+    <div class="modal fade left modal-scrolling show" id="pushNotificationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-side modal-top-left" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+             <!--Header-->
+                <div class="modal-header white-text" style="background-color: #154771 ">
+                    <button type="button" class="close waves-effect white-text" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="heading lead white-text">Hey!</p>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+                    <div class="modal-body">
+                        <p class="card-text black-text">Would you like to receive notifications about most important updates from MDB?</p>
+                    </div>
+                    
+                 <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <button id="pushNotificationModal-click" class="btn" style="background-color: #154771 ">Allow</button>
+                        <button id="pushNotificationModal-cancel" class="btn btn-outline btn" style="border:2px solid #154771 ; background-color: transparent; color: #154771 !important" data-dismiss="modal">Block</button>
+                    </div>
+                    <!--/Footer-->
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+<!-- Push Notification Modal -->
+
+ <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav sn-bg-4 fixed mdb-sidenav">
+        <ul class="custom-scrollbar list-unstyled" style="max-height:100vh;">
+            <!-- Logo -->
+            <li class="logo-sn waves-light ">
+            <div class="text-center">
+                <a class="pl-0" href="https://mdbootstrap.com/"> <img id="MDB-logo" src="https://mdbootstrap.com/wp-content/uploads/2017/10/mdb-shadow-38px.png" alt="MDB Logo"></a>
+            </div>
+            </li>
+            <!--/. Logo -->
+            <!--Search Form-->
+            <li>
+                <form class="search-form" onkeypress="return event.keyCode != 13;" role="search" method="GET" autocomplete="off">
+                    <div class="form-group md-form mt-0 waves-light">
+
+                        <input type="text" class="form-control pb-1 mb-0" name="mdw_serach" placeholder="Search" id="mdw_main_search" style="height: 1.8rem;">
+                    </div>
+                    <div class="dropdown-wrapper"></div>
+                </form>
+            </li>
+            <!--/.Search Form-->
+            <!-- Side navigation links -->
+            <li>
+            <ul id="side-menu" class="collapsible collapsible-accordion"><li id="menu-item-43620" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children  menu-item-43620"><a class="collapsible-header waves-effect arrow-r active"><i class="fa  fa-th-large"></i>Layout<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-44240" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-22665 current_page_item  menu-item-44240"><a class="collapsible-header waves-effect" id="link-menu-item-44240"  href="https://mdbootstrap.com/layout/bootstrap-layout/">Layout overview</a></li>
+	<li id="menu-item-44241" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44241"><a class="collapsible-header waves-effect" id="link-menu-item-44241"  href="https://mdbootstrap.com/layout/layout-grid/">Grid usage</a></li>
+	<li id="menu-item-44242" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44242"><a class="collapsible-header waves-effect" id="link-menu-item-44242"  href="https://mdbootstrap.com/layout/bootstrap-grid-examples/">Grid examples</a></li>
+	<li id="menu-item-44243" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44243"><a class="collapsible-header waves-effect" id="link-menu-item-44243"  href="https://mdbootstrap.com/layout/media/">Media object</a></li>
+	<li id="menu-item-44244" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44244"><a class="collapsible-header waves-effect" id="link-menu-item-44244"  href="https://mdbootstrap.com/layout/bootstrap-navigation/">Navigation</a></li>
+	<li id="menu-item-44245" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44245"><a class="collapsible-header waves-effect" id="link-menu-item-44245"  href="https://mdbootstrap.com/layout/utilities-for-layout/">Utilities for layout</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43621"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-object-ungroup"></i>Utilities<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-44246" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44246"><a class="collapsible-header waves-effect" id="link-menu-item-44246"  href="https://mdbootstrap.com/utilities/bootstrap-borders/">Borders</a></li>
+	<li id="menu-item-44247" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44247"><a class="collapsible-header waves-effect" id="link-menu-item-44247"  href="https://mdbootstrap.com/utilities/bootstrap-clearfix/">Clearfix</a></li>
+	<li id="menu-item-44248" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44248"><a class="collapsible-header waves-effect" id="link-menu-item-44248"  href="https://mdbootstrap.com/utilities/bootstrap-close-icon/">Close icon</a></li>
+	<li id="menu-item-44249" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44249"><a class="collapsible-header waves-effect" id="link-menu-item-44249"  href="https://mdbootstrap.com/utilities/bootstrap-display-property/">Display</a></li>
+	<li id="menu-item-44250" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44250"><a class="collapsible-header waves-effect" id="link-menu-item-44250"  href="https://mdbootstrap.com/utilities/bootstrap-embeds/">Embeds</a></li>
+	<li id="menu-item-44251" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44251"><a class="collapsible-header waves-effect" id="link-menu-item-44251"  href="https://mdbootstrap.com/bootstrap-float/">Float</a></li>
+	<li id="menu-item-44252" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44252"><a class="collapsible-header waves-effect" id="link-menu-item-44252"  href="https://mdbootstrap.com/utilities/flexbox/">Flexbox</a></li>
+	<li id="menu-item-44253" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44253"><a class="collapsible-header waves-effect" id="link-menu-item-44253"  href="https://mdbootstrap.com/bootstrap-image-replacement/">Image replacement</a></li>
+	<li id="menu-item-44254" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44254"><a class="collapsible-header waves-effect" id="link-menu-item-44254"  href="https://mdbootstrap.com/utilities/bootstrap-position/">Position</a></li>
+	<li id="menu-item-44255" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44255"><a class="collapsible-header waves-effect" id="link-menu-item-44255"  href="https://mdbootstrap.com/utilities/bootstrap-screenreaders/">Screenreaders</a></li>
+	<li id="menu-item-44256" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44256"><a class="collapsible-header waves-effect" id="link-menu-item-44256"  href="https://mdbootstrap.com/utilities/bootstrap-sizing/">Sizing</a></li>
+	<li id="menu-item-44257" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44257"><a class="collapsible-header waves-effect" id="link-menu-item-44257"  href="https://mdbootstrap.com/utilities/bootstrap-spacing/">Spacing</a></li>
+	<li id="menu-item-44258" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44258"><a class="collapsible-header waves-effect" id="link-menu-item-44258"  href="https://mdbootstrap.com/utilities/bootstrap-text/">Text</a></li>
+	<li id="menu-item-44259" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44259"><a class="collapsible-header waves-effect" id="link-menu-item-44259"  href="https://mdbootstrap.com/utilities/bootstrap-vertical-align/">Vertical align</a></li>
+	<li id="menu-item-44260" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44260"><a class="collapsible-header waves-effect" id="link-menu-item-44260"  href="https://mdbootstrap.com/utilities/bootstrap-visibility/">Visibility</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43622" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43622"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-indent"></i>Content<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-44262" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44262"><a class="collapsible-header waves-effect" id="link-menu-item-44262"  href="https://mdbootstrap.com/content/bootstrap-code/">Code</a></li>
+	<li id="menu-item-44265" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44265"><a class="collapsible-header waves-effect" id="link-menu-item-44265"  href="https://mdbootstrap.com/content/bootstrap-figures/">Figures</a></li>
+	<li id="menu-item-44266" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44266"><a class="collapsible-header waves-effect" id="link-menu-item-44266"  href="https://mdbootstrap.com/content/icons/">Icons usage</a></li>
+	<li id="menu-item-44267" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44267"><a class="collapsible-header waves-effect" id="link-menu-item-44267"  href="https://mdbootstrap.com/content/icons-list/">Icons list</a></li>
+	<li id="menu-item-44263" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44263"><a class="collapsible-header waves-effect" id="link-menu-item-44263"  href="https://mdbootstrap.com/content/bootstrap-images/">Images</a></li>
+	<li id="menu-item-44268" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44268"><a class="collapsible-header waves-effect" id="link-menu-item-44268"  href="https://mdbootstrap.com/content/tables/">Tables</a></li>
+	<li id="menu-item-44261" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44261"><a class="collapsible-header waves-effect" id="link-menu-item-44261"  href="https://mdbootstrap.com/content/typography/">Typography</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43623"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-css3"></i>CSS<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-51837" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51837"><a class="collapsible-header waves-effect" id="link-menu-item-51837"  href="https://mdbootstrap.com/css/">Demonstration</a></li>
+	<li id="menu-item-44277" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44277"><a class="collapsible-header waves-effect" id="link-menu-item-44277"  href="https://mdbootstrap.com/css/animations/">Animations</a></li>
+	<li id="menu-item-44271" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44271"><a class="collapsible-header waves-effect" id="link-menu-item-44271"  href="https://mdbootstrap.com/css/colors/">Colors</a></li>
+	<li id="menu-item-44273" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44273"><a class="collapsible-header waves-effect" id="link-menu-item-44273"  href="https://mdbootstrap.com/css/hover-effects/">Hover effects</a></li>
+	<li id="menu-item-44272" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44272"><a class="collapsible-header waves-effect" id="link-menu-item-44272"  href="https://mdbootstrap.com/css/masks/">Masks</a></li>
+	<li id="menu-item-44274" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44274"><a class="collapsible-header waves-effect" id="link-menu-item-44274"  href="https://mdbootstrap.com/css/bootstrap-parallax/">Parallax</a></li>
+	<li id="menu-item-44275" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44275"><a class="collapsible-header waves-effect" id="link-menu-item-44275"  href="https://mdbootstrap.com/css/shadows/">Shadows</a></li>
+	<li id="menu-item-44276" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44276"><a class="collapsible-header waves-effect" id="link-menu-item-44276"  href="https://mdbootstrap.com/css/skins/">Skins</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43624"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-cubes"></i>Components<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-51836" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51836"><a class="collapsible-header waves-effect" id="link-menu-item-51836"  href="https://mdbootstrap.com/components/">Demonstration</a></li>
+	<li id="menu-item-44023" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44023"><a class="collapsible-header waves-effect" id="link-menu-item-44023"  href="https://mdbootstrap.com/components/buttons/">Buttons</a></li>
+	<li id="menu-item-44067" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44067"><a class="collapsible-header waves-effect" id="link-menu-item-44067"  href="https://mdbootstrap.com/components/cards/">Cards</a></li>
+	<li id="menu-item-44073" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44073"><a class="collapsible-header waves-effect" id="link-menu-item-44073"  href="https://mdbootstrap.com/components/dropdowns/">Dropdowns</a></li>
+	<li id="menu-item-44026" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44026"><a class="collapsible-header waves-effect" id="link-menu-item-44026"  href="https://mdbootstrap.com/components/inputs/">Inputs</a></li>
+	<li id="menu-item-44070" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44070"><a class="collapsible-header waves-effect" id="link-menu-item-44070"  href="https://mdbootstrap.com/components/forms/">Forms</a></li>
+	<li id="menu-item-44049" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44049"><a class="collapsible-header waves-effect" id="link-menu-item-44049"  href="https://mdbootstrap.com/components/bootstrap-footer/">Footer</a></li>
+	<li id="menu-item-44071" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44071"><a class="collapsible-header waves-effect" id="link-menu-item-44071"  href="https://mdbootstrap.com/components/navbar/">Navbar</a></li>
+	<li id="menu-item-44040" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44040"><a class="collapsible-header waves-effect" id="link-menu-item-44040"  href="https://mdbootstrap.com/components/list-group/">List group</a></li>
+	<li id="menu-item-44052" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44052"><a class="collapsible-header waves-effect" id="link-menu-item-44052"  href="https://mdbootstrap.com/components/panels/">Panels</a></li>
+	<li id="menu-item-44043" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44043"><a class="collapsible-header waves-effect" id="link-menu-item-44043"  href="https://mdbootstrap.com/components/pagination/">Pagination</a></li>
+	<li id="menu-item-44042" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44042"><a class="collapsible-header waves-effect" id="link-menu-item-44042"  href="https://mdbootstrap.com/components/progress-bars/">Progress bars</a></li>
+	<li id="menu-item-44044" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44044"><a class="collapsible-header waves-effect" id="link-menu-item-44044"  href="https://mdbootstrap.com/components/tabs/">Tabs &#038; Pills</a></li>
+	<li id="menu-item-44054" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44054"><a class="collapsible-header waves-effect" id="link-menu-item-44054"  href="https://mdbootstrap.com/components/badges/">Tags, Labels &#038; Badges</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43625"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-code"></i>JavaScript<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-51838" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838"><a class="collapsible-header waves-effect" id="link-menu-item-51838"  href="https://mdbootstrap.com/javascript/">Demonstration</a></li>
+	<li id="menu-item-43990" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43990"><a class="collapsible-header waves-effect" id="link-menu-item-43990"  href="https://mdbootstrap.com/javascript/alerts/">Alerts</a></li>
+	<li id="menu-item-43991" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43991"><a class="collapsible-header waves-effect" id="link-menu-item-43991"  href="https://mdbootstrap.com/javascript/carousel/">Carousel</a></li>
+	<li id="menu-item-44000" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44000"><a class="collapsible-header waves-effect" id="link-menu-item-44000"  href="https://mdbootstrap.com/javascript/collapse/">Collapse</a></li>
+	<li id="menu-item-43997" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43997"><a class="collapsible-header waves-effect" id="link-menu-item-43997"  href="https://mdbootstrap.com/javascript/charts/">Charts</a></li>
+	<li id="menu-item-43995" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43995"><a class="collapsible-header waves-effect" id="link-menu-item-43995"  href="https://mdbootstrap.com/javascript/lightbox/">LightBox</a></li>
+	<li id="menu-item-43992" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43992"><a class="collapsible-header waves-effect" id="link-menu-item-43992"  href="https://mdbootstrap.com/javascript/material-select/">Select</a></li>
+	<li id="menu-item-44393" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44393"><a class="collapsible-header waves-effect" id="link-menu-item-44393"  href="https://mdbootstrap.com/javascript/modals/">Modals</a></li>
+	<li id="menu-item-43996" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43996"><a class="collapsible-header waves-effect" id="link-menu-item-43996"  href="https://mdbootstrap.com/javascript/sidenav/">SideNav</a></li>
+	<li id="menu-item-44001" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44001"><a class="collapsible-header waves-effect" id="link-menu-item-44001"  href="https://mdbootstrap.com/javascript/scrollspy/">ScrollSpy</a></li>
+	<li id="menu-item-44002" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44002"><a class="collapsible-header waves-effect" id="link-menu-item-44002"  href="https://mdbootstrap.com/javascript/stickycontent/">StickyContent</a></li>
+	<li id="menu-item-44003" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44003"><a class="collapsible-header waves-effect" id="link-menu-item-44003"  href="https://mdbootstrap.com/javascript/smooth-scroll/">Scrollbar &#038; smooth scroll</a></li>
+	<li id="menu-item-43993" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43993"><a class="collapsible-header waves-effect" id="link-menu-item-43993"  href="https://mdbootstrap.com/javascript/date-picker/">Date Picker</a></li>
+	<li id="menu-item-43994" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43994"><a class="collapsible-header waves-effect" id="link-menu-item-43994"  href="https://mdbootstrap.com/javascript/time-picker/">Time Picker</a></li>
+	<li id="menu-item-43999" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-43999"><a class="collapsible-header waves-effect" id="link-menu-item-43999"  href="https://mdbootstrap.com/javascript/tooltips/">Tooltips</a></li>
+</ul></div>
+</li>
+<li id="menu-item-43626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43626"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-th"></i>Sections<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-51840" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51840"><a class="collapsible-header waves-effect" id="link-menu-item-51840"  href="https://mdbootstrap.com/sections/">Demonstration</a></li>
+	<li id="menu-item-44004" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44004"><a class="collapsible-header waves-effect" id="link-menu-item-44004"  href="https://mdbootstrap.com/sections/intros/">Intros</a></li>
+	<li id="menu-item-44005" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44005"><a class="collapsible-header waves-effect" id="link-menu-item-44005"  href="https://mdbootstrap.com/sections/blog/">Blog</a></li>
+	<li id="menu-item-44012" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44012"><a class="collapsible-header waves-effect" id="link-menu-item-44012"  href="https://mdbootstrap.com/sections/contact-sections/">Contact</a></li>
+	<li id="menu-item-44007" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44007"><a class="collapsible-header waves-effect" id="link-menu-item-44007"  href="https://mdbootstrap.com/sections/e-commerce-sections/">E-commerce</a></li>
+	<li id="menu-item-44006" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44006"><a class="collapsible-header waves-effect" id="link-menu-item-44006"  href="https://mdbootstrap.com/sections/magazine-sections/">Magazine</a></li>
+	<li id="menu-item-44008" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44008"><a class="collapsible-header waves-effect" id="link-menu-item-44008"  href="https://mdbootstrap.com/sections/features-sections/">Features</a></li>
+	<li id="menu-item-44013" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44013"><a class="collapsible-header waves-effect" id="link-menu-item-44013"  href="https://mdbootstrap.com/sections/social/">Social</a></li>
+	<li id="menu-item-44009" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44009"><a class="collapsible-header waves-effect" id="link-menu-item-44009"  href="https://mdbootstrap.com/sections/projects-sections/">Projects</a></li>
+	<li id="menu-item-44011" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44011"><a class="collapsible-header waves-effect" id="link-menu-item-44011"  href="https://mdbootstrap.com/sections/team-sections/">Team</a></li>
+	<li id="menu-item-44010" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44010"><a class="collapsible-header waves-effect" id="link-menu-item-44010"  href="https://mdbootstrap.com/sections/testimonials-sections/">Testimonials</a></li>
+</ul></div>
+</li>
+<li id="menu-item-53368" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-53368"><a class="collapsible-header waves-effect" id="link-menu-item-53368"  href="https://mdbootstrap.com/material-design-for-bootstrap/"><i class="fa fa-heart"></i>About MDB</a></li>
+<li id="menu-item-44015" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44015"><a class="collapsible-header waves-effect" id="link-menu-item-44015"  href="https://mdbootstrap.com/getting-started/"><i class="fa fa-download"></i>Getting started</a></li>
+<li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product  menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502"  href="https://mdbootstrap.com/product/material-design-for-bootstrap-pro/"><i class="fa fa-diamond"></i>MDB Pro</a></li>
+<li id="menu-item-43629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43629"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-book"></i>Tutorials<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-43608" class="menu-item menu-item-type-post_type menu-item-object-post  menu-item-43608"><a class="collapsible-header waves-effect" id="link-menu-item-43608"  href="https://mdbootstrap.com/bootstrap-tutorial/">Bootstrap</a></li>
+	<li id="menu-item-43609" class="menu-item menu-item-type-post_type menu-item-object-post  menu-item-43609"><a class="collapsible-header waves-effect" id="link-menu-item-43609"  href="https://mdbootstrap.com/wordpress-tutorial/">WordPress</a></li>
+	<li id="menu-item-49468" class="menu-item menu-item-type-post_type menu-item-object-post  menu-item-49468"><a class="collapsible-header waves-effect" id="link-menu-item-49468"  href="https://mdbootstrap.com/automated-app-start/">Automation</a></li>
+	<li id="menu-item-50800" class="menu-item menu-item-type-post_type menu-item-object-post  menu-item-50800"><a class="collapsible-header waves-effect" id="link-menu-item-50800"  href="https://mdbootstrap.com/web-push-start/">Web Push</a></li>
+	<li id="menu-item-51394" class="menu-item menu-item-type-post_type menu-item-object-post  menu-item-51394"><a class="collapsible-header waves-effect" id="link-menu-item-51394"  href="https://mdbootstrap.com/bootstrap-gulp-tutorial/">Gulp &#038; Customization</a></li>
+	<li id="menu-item-52581" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-52581"><a class="collapsible-header waves-effect" id="link-menu-item-52581"  href="https://mdbootstrap.com/angular/angular-tutorial/">Angular</a></li>
+</ul></div>
+</li>
+<li id="menu-item-44016" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44016"><a class="collapsible-header waves-effect" id="link-menu-item-44016"  href="https://mdbootstrap.com/freebies/"><i class="fa fa-magic"></i> Freebies</a></li>
+<li id="menu-item-44235" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44235"><a class="collapsible-header waves-effect" id="link-menu-item-44235"  href="https://mdbootstrap.com/templates/"><i class="fa fa-photo"></i>Templates</a></li>
+<li id="menu-item-43632" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  menu-item-43632"><a class="collapsible-header waves-effect arrow-r "><i class="fa fa-gear"></i>Tools<i class="fa fa-angle-down rotate-icon"></i></a>
+ <div class="collapsible-body"> <ul class="sub-menu">
+	<li id="menu-item-44018" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44018"><a class="collapsible-header waves-effect" id="link-menu-item-44018"  href="https://mdbootstrap.com/material-design-logo-generator/">Logo Generator</a></li>
+	<li id="menu-item-44501" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-44501"><a class="collapsible-header waves-effect" id="link-menu-item-44501"  href="https://mdbootstrap.com/marketing-automation/">Automation for Bootstrap</a></li>
+</ul></div>
+</li>
+<li id="menu-item-54644" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-54644"><a class="collapsible-header waves-effect" id="link-menu-item-54644"  href="https://mdbootstrap.com/mdb-news/"><i class="fa fa-fire"></i> News</a></li>
+<li id="menu-item-46278" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-46278"><a class="collapsible-header waves-effect" id="link-menu-item-46278"  href="https://mdbootstrap.com/md-bootstrap-sitemap/"><i class="fa fa-map"></i>Sitemap</a></li>
+</ul>            </li>
+            <!-- /. Side navigation links -->
+        </ul>
+        <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+    <!--/.SideNav-->
+    <!-- Navbar -->
+    <form id="login" class="ajax-auth card p-0" action="login" method="post">
+    <div class="card-body mx-4">
+
+        <div class="text-center">
+            <h3 class="dark-grey-text mb-5"><strong>请登录</strong></h3>
+        </div>
+
+        <p class="status"></p>
+        <input type="hidden" id="security" name="security" value="35566f6363" /><input type="hidden" name="_wp_http_referer" value="/layout/bootstrap-layout/" />
+        <div class="md-form">
+            <input type="text" id="username" class="form-control" name="username">
+            <label for="username">用户名</label>
+        </div>
+
+        <div class="md-form mb-1">
+            <input type="password" id="password" class="form-control" name="password">
+            <label for="password">密码</label>
+        </div>
+        
+        <p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p>
+
+        <div class="text-center mt-3 mb-3">
+            <button class="submit_button btn blue-gradient btn-block btn-rounded" type="submit" value="LOGIN">登录</button>
+        </div>
+
+        <div class="text-center mb-3 pt-2">
+            
+            
+<!--
+	wsl_render_auth_widget
+	WordPress Social Login 2.3.3.
+	http://wordpress.org/plugins/wordpress-social-login/
+-->
+
+<style type="text/css">
+.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+
+<div class="wp-social-login-widget">
+
+	<div class="wp-social-login-connect-with">Connect with:</div>
+
+	<div class="wp-social-login-provider-list">
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Facebook&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Facebook" class="wp-social-login-provider wp-social-login-provider-facebook" data-provider="Facebook">
+			Facebook
+		</a>
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Google&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Google" class="wp-social-login-provider wp-social-login-provider-google" data-provider="Google">
+			Google
+		</a>
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Twitter&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Twitter" class="wp-social-login-provider wp-social-login-provider-twitter" data-provider="Twitter">
+			Twitter
+		</a>
+
+	</div>
+
+	<div class="wp-social-login-widget-clearing"></div>
+
+</div>
+
+<!-- wsl_render_auth_widget -->
+
+    
+        </div>
+
+        <hr>
+        <div class="text-right">
+            <p class="login-font-small grey-text">Not a member? <a href="#" class="blue-text ml-1" id="pop_signup"> Sign Up</a></p>
+        </div>
+    </div>
+</form>
+
+
+<form id="register" class="ajax-auth card p-0" action="register" method="post">
+    <div class="card-body mx-4">
+        <div class="text-center">
+            <h3 class="dark-grey-text mb-3"><strong>Sign up</strong></h3>
+        </div>
+        
+        <p class="status"></p>
+        <input type="hidden" id="signonsecurity" name="signonsecurity" value="ee79b7d209" /><input type="hidden" name="_wp_http_referer" value="/layout/bootstrap-layout/" />    
+        <div class="md-form">
+            <input type="text" id="signonname" class="form-control" name="signonname">
+            <label for="signonname">Your name</label>
+        </div>
+      
+        <div class="md-form">
+            <input type="text" id="signonusername" class="form-control" name="signonusername">
+            <label for="signonusername">Your username</label>
+        </div>
+    
+        <div class="md-form">
+            <input type="text" id="email" class="form-control" name="email">
+            <label for="email">Your email</label>
+        </div>
+    
+        <div class="md-form">
+            <input type="password" id="signonpassword" class="form-control" name="signonpassword">
+            <label for="signonpassword">Your password</label>
+        </div>
+    
+        <div class="md-form">
+            <input type="password" id="password2" class="form-control" name="password2">
+            <label for="password2">Repeat password</label>
+        </div>
+    
+        <div class="text-center mt-3 mb-3">
+            <button class="submit_button btn blue-gradient btn-block btn-rounded" type="submit" value="SIGNUP">Sign Up</button>
+        </div>
+
+        <div class="text-center mb-3 pt-2">
+            
+            
+<!--
+	wsl_render_auth_widget
+	WordPress Social Login 2.3.3.
+	http://wordpress.org/plugins/wordpress-social-login/
+-->
+
+<style type="text/css">
+.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+
+<div class="wp-social-login-widget">
+
+	<div class="wp-social-login-connect-with">Connect with:</div>
+
+	<div class="wp-social-login-provider-list">
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Facebook&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Facebook" class="wp-social-login-provider wp-social-login-provider-facebook" data-provider="Facebook">
+			Facebook
+		</a>
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Google&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Google" class="wp-social-login-provider wp-social-login-provider-google" data-provider="Google">
+			Google
+		</a>
+
+		<a rel="nofollow" href="https://mdbootstrap.com/wp-login.php?action=wordpress_social_authenticate&#038;mode=login&#038;provider=Twitter&#038;redirect_to=https%3A%2F%2Fmdbootstrap.com%2Flayout%2Fbootstrap-layout%2F" title="Connect with Twitter" class="wp-social-login-provider wp-social-login-provider-twitter" data-provider="Twitter">
+			Twitter
+		</a>
+
+	</div>
+
+	<div class="wp-social-login-widget-clearing"></div>
+
+</div>
+
+<!-- wsl_render_auth_widget -->
+
+    
+        </div>
+
+        <hr>
+        <div class="text-right">
+            <p class="login-font-small grey-text">Already have an account? <a href="#" id="pop_login" class="blue-text">登录</a></p>
+        </div>
+        <!--
+        
+            <div class="g-recaptcha" data-sitekey="6LflIQ4TAAAAAEx83MeF_efgHI7acclgM_UYe1Ov"></div>
+        -->
+    </div>
+</form>
+
+<!-- Navbar-->
+<nav class="navbar fixed-top navbar-expand-md navbar-dark double-nav scrolling-navbar">
+    <!-- SideNav slide-out button -->
+    <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+    </div>
+    <!-- Breadcrumb-->
+    <div class="mr-auto">
+                <ol class="header-breadcrumb breadcrumb fp-header-breadcrumb clearfix d-none d-md-inline-flex">
+                        <li class="breadcrumb-item"><a href="https://mdbootstrap.com/layout/">Layout</a></li>
+                        <li class="breadcrumb-item active">Bootstrap layout</li>
+        </ol>
+            </div>
+
+    <!--Navigation icons-->
+    <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                
+        <!-- Dynamic content wrapper -->
+        <li id="dynamicContentWrapper-mainNavbar" class="nav-item">
+        </li>
+        
+                        <!--bigb-->
+                    <li id="navbar-static-bigb" class="nav-item ml-2">
+                        <a href="https://mdbootstrap.com/product/mdb-big-bundle/" class="nav-link"><span class="badge red z-depth-1 mr-1 clearfix d-none d-sm-inline-block">NEW</span><i class="fa fa-gift mr-1"></i><span class="clearfix d-none d-sm-inline-block">Big Bundle</span></a>
+                    </li>
+                <!--bigb-->
+                
+        <!-- Contact -->
+        <li class="nav-item ">
+            <a id="navbar-static-contact" href="#" class="nav-link" data-toggle="modal" data-target="#contactForm"> <i class="fa fa-envelope-o mr-1"></i> <span class="clearfix d-none d-sm-inline-block">Contact</span></a>
+        </li>
+
+        <!-- Support -->
+        <li id="navbar-static-support" class="nav-item ">
+            <a href="https://mdbootstrap.com/support/" class="nav-link"><i class="fa fa-comments-o mr-1"></i><span class="clearfix d-none d-sm-inline-block">Support</span></a>
+        </li>
+
+        <!-- Login / register -->
+                <li class="nav-item "><a href="#" id="navbar-static-login" class="nav-link"><i class="fa fa-sign-in mr-1"></i><span class="clearfix d-none d-sm-inline-block">登录</span></a></li>
+            </ul>
+</nav>
+<!-- /.Navbar-->    <!--/. Navbar -->
+
+    <!-- Angular or not Angular? -->
+    <div class="switch-version d-none d-md-block">
+            <a href="/material-design-for-bootstrap"><span class="switch-to active mdb-jquery"></span></a>
+        <a href="/angular"><span class="switch-to mdb-angular"></span></a>
+        <a href="/react"><span class="switch-to mdb-react"></span></a>
+       <a href="/vue"><span class="switch-to mdb-vue"></span></a>
+        </div>
+
+    <style>
+        .switch-version {
+            position:fixed;
+            width:40px;
+            background:#fff;
+            right:0;
+            top: 300px;
+            border-radius: 4px 0 0 4px;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+        }
+
+        .switch-to {
+            display: block;
+            width:40px;
+            height:40px;
+            background-image:url(https://mdbootstrap.com/img/logo/mdb-angular.png);
+            background-repeat: no-repeat;
+        }
+
+        .switch-to.active {
+            background-color:rgba(0,0,0,.15);
+        }
+
+        .switch-version a:first-child > .switch-to {
+            border-top-left-radius: 4px;
+        }
+
+        .switch-version a:last-child > .switch-to {
+            border-bottom-left-radius: 4px;
+        }
+
+        .switch-to.mdb-jquery {
+            background-position: 0 -40px;
+        }
+
+        .switch-to.mdb-angular {
+            background-position: 0 0;
+        }
+
+        .switch-to.mdb-vue {
+            background-position: 0 -80px;
+        }
+
+        .switch-to.mdb-react {
+            background-position: 0 -120px;
+        }
+    </style>
+<!-- Main layout-->
+
+<main>
+   
+    <div class="main-wrapper">
+        <div class="container-fluid">
+        	
+            <div class="row">
+                <!--Main column-->
+                                <div class="col-lg-10 col-md-12">
+                                            <div class="text-center">
+                        		                        		    <section class="mb-5">
+
+                        		        <nav class="navbar navbar-expand-lg navbar-dark mdb-color">
+                        		                <span class="related-content-heading">
+                        		                    <strong>Related topics: </strong>
+                        		                </span>
+                        		                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+                        		                    <span class="navbar-toggler-icon"></span>
+                        		                </button>
+                        		                <div class="collapse navbar-collapse text-center" id="navbarNav1">
+                        		                    <ul class="navbar-nav mr-auto text-center">
+                        		                        <li id="layout-related-1" class="nav-item"><a class="nav-link" href="https://mdbootstrap.com/layout/layout-grid/">Grid usage</a></li>
+<li id="layout-related-2" class="nav-item"><a class="nav-link" href="https://mdbootstrap.com/layout/bootstrap-navigation/">Navigation</a></li>
+<li id="layout-related-3" class="nav-item"><a class="nav-link" href="https://mdbootstrap.com/layout/bootstrap-grid-examples/">Grid examples</a></li>
+<li id="layout-related-4" class="nav-item"><a class="nav-link" href="https://mdbootstrap.com/components/cards/">Cards</a></li>                        		                    </ul>
+                        		                </div>
+                        		        </nav>
+
+                        		    </section>
+                        		                        		                                
+                                <!--Section: Dynamic content wrapper-->
+                                <section id="dynamicContentWrapper-docsPanel" class="mb-5">
+                                
+                                </section>
+                                <!--Section: Dynamic content wrapper-->
+								
+
+                            </div>
+                            
+<!--Section: Doc content-->
+<section class="documentation">
+
+    <!--Section: Intro-->
+    <section id="introduction">
+
+        <!--Title-->
+        <h1 class="main-title">Bootstrap layout</h1>
+
+        <!--Description-->
+        <p class="description">Bootstrap includes several components and options for laying out your project, including wrapping containers, a powerful flexbox grid system, a flexible media object, and responsive utility classes.</p>
+
+    </section>
+    <!--/Section: Intro-->
+
+    <hr class="my-5">
+
+    <!--Section: -->
+    <section id="">
+
+        <!--Title-->
+        <h2 class="title"><strong>Containers</strong></h2>
+
+        <!--Description-->
+        <p>Containers are the most basic layout element in Bootstrap and are <strong>required when using our default grid system</strong>. Choose from a responsive, fixed-width container (meaning its <code>max-width</code> changes at each breakpoint) or
+            fluid-width (meaning it’s <code>100%</code> wide all the time).</p>
+
+        <p class="description">While containers can be nested, most layouts do not require a nested container.</p>
+
+        <!--Section: Live preview-->
+        <section>
+
+            <img src="https://mdbootstrap.com/img/Others/regular-container.png" alt="A display of a regular container." class="img-fluid">
+
+        </section>
+        <!--Section: Live preview-->
+
+        <!--Section: Code-->
+        <section>
+            <pre class="code-toolbar">
+<code class="language-markup">&lt;div class=&quot;container&quot;&gt;
+  &lt;!-- Content here --&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+        <!--Section: Code-->
+
+        <p>Use <code>.container-fluid</code> for a full-width container, spanning the entire width of the viewport.</p>
+
+        <!--Section: Live preview-->
+        <section>
+
+            <img src="https://mdbootstrap.com/img/Others/fluid-container.png" alt="A display of a fluid container." class="img-fluid" style="width: 100%">
+
+        </section>
+        <!--Section: Live preview-->
+
+        <!--Section: Code-->
+        <section>
+            <pre class="code-toolbar"><code class="language-markup">&lt;div class=&quot;container-fluid&quot;&gt;
+  &lt;!-- Content here --&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+        <!--Section: Code-->
+
+    </section>
+    <!--/Section: -->
+
+    <hr class="my-5">
+
+    <!--Section: -->
+    <section id="responsive-breakpoints">
+
+        <!--Title-->
+        <h2 class="title"><strong>Responsive breakpoints</strong></h2>
+
+        <!--Description-->
+        <p>Since Bootstrap is developed to be mobile first, we use a handful of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" rel="nofollow" target="_blank">media queries</a> to create sensible breakpoints for our layouts and interfaces.
+            These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.</p>
+
+        <p class="description">Bootstrap primarily uses the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.</p>
+
+        <!--Section: Code-->
+        <section>
+            <pre class="code-toolbar"><code class="language-css">// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }</code></pre>
+
+            <p>Since we write our source CSS in Sass, all our media queries are available via Sass mixins:</p>
+
+            <pre class="code-toolbar"><code class="language-css">@include media-breakpoint-up(xs) { ... }
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
+
+// Example usage:
+@include media-breakpoint-up(sm) {
+  .some-class {
+    display: block;
+  }
+}</code></pre>
+
+            <p>We occasionally use media queries that go in the other direction (the given screen size or smaller):</p>
+
+            <pre class="code-toolbar"><code class="language-css">// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px.98) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) { ... }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width</code></pre>
+
+                                <blockquote class="blockquote bq-primary">
+                                    <p>
+                                        Note that since browsers do not currently support <a href="https://www.w3.org/TR/mediaqueries-4/#range-context" rel="nofollow" target="_blank">range context queries</a>, we work around the limitations of <a href="https://www.w3.org/TR/mediaqueries-4/#mq-min-max" rel="nofollow" target="_blank"><code>min-</code> and <code>max-</code> prefixes</a> and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision for these comparisons.  
+                                    </p>
+                                </blockquote>  
+
+            <p>Once again, these media queries are also available via Sass mixins:</p>
+
+            <pre class="code-toolbar"><code class="language-css">@include media-breakpoint-down(xs) { ... }
+@include media-breakpoint-down(sm) { ... }
+@include media-breakpoint-down(md) { ... }
+@include media-breakpoint-down(lg) { ... }</code></pre>
+
+            <p>There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.</p>
+
+            <pre class="code-toolbar"><code class="language-css">// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }</code></pre>
+
+            <p>These media queries are also available via Sass mixins:</p>
+
+            <pre class="code-toolbar"><code class="language-css">@include media-breakpoint-only(xs) { ... }
+@include media-breakpoint-only(sm) { ... }
+@include media-breakpoint-only(md) { ... }
+@include media-breakpoint-only(lg) { ... }
+@include media-breakpoint-only(xl) { ... }</code></pre>
+
+            <p>Similarly, media queries may span multiple breakpoint widths:</p>
+
+            <pre class="code-toolbar"><code class="language-css">// Example
+// Apply styles starting from medium devices and up to extra large devices
+@media (min-width: 768px) and (max-width: 1199.98px) { ... }</code></pre>
+
+            <p>The Sass mixin for targeting the same screen size range would be:</p>
+
+            <pre class="code-toolbar"><code class="language-css">@include media-breakpoint-between(md, xl) { ... }</code></pre>
+        </section>
+        <!--Section: Code-->
+
+    </section>
+    <!--/Section: -->
+
+    <hr class="my-5">
+
+    <!--Section: -->
+    <section id="z-index">
+
+        <!--Title-->
+        <h2 class="title"><strong>Z-index</strong></h2>
+
+        <!--Description-->
+        <div class="description">
+            <p>Several Bootstrap components utilize <code>z-index</code>, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in Bootstrap that’s been designed to properly layer navigation,
+                tooltips and popovers, modals, and more.</p>
+            <p>These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. We need a standard set of these across our layered components—tooltips, popovers, navbars, dropdowns, modals—so we can be reasonably consistent in the behaviors. There’s no reason we couldn’t have used <code>100</code>+ or <code>500</code>+.</p>
+            <p>We don’t encourage customization of these values; should you change one, you likely need to change them all.</p>
+        </div>
+
+        <!--Section: Code-->
+        <section>
+            <pre class="code-toolbar"><code class="language-css">$zindex-dropdown:          1000 !default;
+$zindex-sticky:            1020 !default;
+$zindex-fixed:             1030 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;</code></pre>
+        </section>
+        <!--Section: Code-->
+
+        <p>To handle overlapping borders within components (e.g., buttons and inputs in input groups), we use low single digit <code>z-index</code> values of <code>1</code>, <code>2</code>, and <code>3</code></code3></code> for default, hover, and active states. On hover/focus/active, we bring a particular element to the forefront with a higher <code>z-index</code> value to show their border over the sibling elements.</p>
+
+    </section>
+    <!--/Section: -->
+
+</section>
+<!--/Section: Doc content-->                        </div>
+                        <!--/.Main column-->
+                                                    <!-- Right Sidebar -->
+                            <div class="col-md-2">
+                                <div id="scrollspy" class="sticky">
+                                  <ul class="nav nav-pills default-pills smooth-scroll flex-column" data-allow-hashes="true">
+                                    <li class="nav-item"><a class="nav-link active" href="#introduction">Introduction</a></li>
+<li class="nav-item"><a class="nav-link" href="#responsive-breakpoints">Responsive breakpoints</a></li>
+<li class="nav-item"><a class="nav-link" href="#z-index">Z-index</a></li>                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                            <!--/. Right Sidebar -->
+                                                        
+                                                            </div>
+                        </div>
+                    </div>
+</main>
+<!-- /.Main layout-->
+
+<script>
+    var s = document.createElement('script');
+    // s.src = 'https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/mc_validate.js';
+    // s.async = false;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var body = document.body;
+        body.appendChild(s);
+        s.async = false;
+        s.src = 'https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/mc_validate.js';
+
+        // cusom script
+        (function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; }(jQuery)); var $mcj = jQuery;
+    });
+</script>
+
+<!--Footer-->
+<footer id="footer" class="page-footer pt-4 mt-4">
+
+    <!--Footer Links-->
+    <div class="container-fluid text-center text-md-left">
+        <div class="row wow fadeIn" data-wow-delay="0.2s">
+            <!--First column-->
+            <div class="col-md-3">
+                <p class="column-title white-text"><strong>USEFUL LINKS</strong></p>
+                <ul class="list-unstyled">
+                    <li><a id="footer-link-faq" href="https://mdbootstrap.com/faq/">Frequently Asked Questions</a></li>
+                    <li><a id="footer-link-browsers" href="https://mdbootstrap.com/browsers-and-devices/">Browsers and devices</a></li>
+                    <li><a id="footer-link-affiliate" href="https://mdbootstrap.com/mdb-affiliate-program/">MDB Affiliate Program</a></li>
+                    <li><a id="footer-link-students" href="https://mdbootstrap.com/mdb-academy/">Students and universities</a></li>
+                    <li><a id="footer-link-sponsorship" href="https://mdbootstrap.com/mdb-sponsorship/">Sponsorship</a></li>
+                    <li><a id="footer-link-team" href="https://mdbootstrap.com/our-team/">Our Team</a></li>
+                </ul>
+            </div>
+            <!--/.First column-->
+            <hr class="w-100 clearfix d-md-none">
+            <!--Second column-->
+            <div class="col-md-3">
+                <p class="column-title white-text"><strong>IMPORTANT PAGES</strong></p>
+                <ul class="list-unstyled">
+                    <li><a id="footer-link-license" href="https://mdbootstrap.com/license/">License</a></li>
+                    <li><a id="footer-link-changelog" href="https://mdbootstrap.com/changelog/">ChangeLog</a></li>
+                    <li><a id="footer-link-policy" href="https://mdbootstrap.com/privacy-policy/">Privacy Policy</a></li>
+                    <li><a id="footer-link-refund" href="https://mdbootstrap.com/return-refund-policy/">Return/Refund policy</a></li>
+                    <li><a id="footer-link-contact" href="https://mdbootstrap.com/contact/">Contact</a></li>
+                    <li><a id="footer-link-press" href="https://mdbootstrap.com/mdbootstrap-press-pack/">Press Pack</a></li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+            <hr class="w-100 clearfix d-md-none">
+            <!--Third column-->
+            <div class="col-md-3">
+                <p class="column-title white-text"><strong>DOCUMENTATION</strong></p>
+                <ul class="list-unstyled">
+                    <li><a id="footer-link-css" href="https://mdbootstrap.com/css/">CSS</a></li>
+                    <li><a id="footer-link-components" href="https://mdbootstrap.com/components/">Components</a></li>
+                    <li><a id="footer-link-javascript" href="https://mdbootstrap.com/javascript/">JavaScript</a></li>
+                    <li><a id="footer-link-sections" href="https://mdbootstrap.com/sections/">Sections</a></li>
+                    <li><a id="footer-link-freebies" href="https://mdbootstrap.com/freebies/">Freebies</a></li>
+                    <li><a id="footer-link-templates" href="https://mdbootstrap.com/templates/">Templates</a></li>
+                </ul>
+                
+            </div>
+            <!--/.Third column-->
+            <hr class="w-100 clearfix d-md-none">
+            <!--Fourth column-->
+            <div class="col-md-3 mb-1">
+                <p class="column-title white-text"><strong>TUTORIALS</strong></p>
+                <ul class="list-unstyled">
+                    <li><a id="footer-link-bootstrap" href="https://mdbootstrap.com/bootstrap-tutorial/">MDB with Bootstrap</a></li>
+                    <li><a id="footer-link-wordpress" href="https://mdbootstrap.com/wordpress-tutorial/">MDB with WordPress</a></li>
+                    <li><a id="footer-link-flexbox" href="https://mdbootstrap.com/automated-app-start/">Automation</a></li>
+                    <li><a id="footer-link-migration" href="https://mdbootstrap.com/web-push-start/">Web Push</a></li>
+                    <li><a id="footer-link-migration" href="https://mdbootstrap.com/bootstrap-gulp-tutorial/">Customization</a></li>
+                    <li><a id="footer-link-migration" href="https://mdbootstrap.com/angular/tutorial/angular-tutorial/">Angular</a></li>
+                </ul>
+            </div>
+            <!--/.Fourth column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+    <hr>
+    <!--Call to action-->
+    <div class="text-center py-3 wow fadeIn" data-wow-delay="0.2s">
+        <ul class="list-unstyled">
+            <li>
+                <li>
+                    <a id="footer-button-download" href="https://mdbootstrap.com/getting-started/" class="btn btn-info">
+                        <fa class="fa fa-download left"></fa> Download for free</a>
+                    <a id="footer-button-newsletter" href="https://mdbootstrap.com/newsletter/" class="btn blue-gradient">
+                        <fa class="fa fa-newspaper-o left"></fa> Subscribe to our newsletter</a>
+                    <a id="footer-button-support" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-indigo">
+                        <fa class="fa fa-comments-o left"></fa> Support</a>
+                </li>
+        </ul>
+    </div>
+    <!--/.Call to action-->
+    <hr>
+    <!--Social buttons-->
+    <div class="text-center mb-3 wow fadeIn" data-wow-delay="0.2s">
+    <a id="footer-social-facebook" target="_blank" href="https://www.facebook.com/mdbootstrap" class="btn-floating btn-social-all "><i class="fa fa-facebook left"></i></a>
+    <a id="footer-social-twitter" target="_blank" href="https://twitter.com/MDBootstrap" class="btn-floating btn-social-all "><i class="fa fa-twitter left"></i></a>
+    <a id="footer-social-youtube" target="_blank" href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" class="btn-floating btn-social-all "><i class="fa fa-youtube left"></i></a>
+    <a id="footer-social-gplus" target="_blank" href="https://plus.google.com/u/0/b/107863090883699620484/+Mdbootstrap/posts"
+        class="btn-floating btn-social-all "><i class="fa fa-google-plus left"></i></a>
+    <a id="footer-social-linkedin" target="_blank" href="https://www.linkedin.com/company/10912052" class="btn-floating btn-social-all "><i class="fa fa-linkedin left"></i></a>
+    <a id="footer-social-dribble" target="_blank" href="https://dribbble.com/mdbootstrap" class="btn-floating btn-social-all "><i class="fa fa-dribbble left"></i></a>
+    <a id="footer-social-pinterest" target="_blank" href="https://pinterest.com/mdbootstrap/" class="btn-floating btn-social-all "><i class="fa fa-pinterest left"></i></a>
+    <a id="footer-social-codepen" target="_blank" href="http://codepen.io/mdbootstrap/" class="btn-floating btn-social-all "><i class="fa fa-codepen left"></i></a>
+    <a id="footer-social-github" target="_blank" href="https://github.com/mdbootstrap/bootstrap-material-design" class="btn btn-floating btn-social-all "><i class="fa fa-github left"></i></a>
+    </div>
+    <!--/.Social buttons-->
+    <!--Copyright-->
+    <div class="footer-copyright wow fadeIn py-3 text-center" data-wow-delay="0.2s">
+        <div class="container-fluid">
+            &copy;
+            2018 Copyright: <a href="https://mdbootstrap.com"> MDBootstrap.com </a>
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+<!-- Contact Form -->
+<div class="modal fade" id="contactForm" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content px-3">
+            <div class="modal-header border border-dark p-2 my-3 d-flex justify-content-center">
+                <p class="font-weight-bold p-3 mb-0">For technical questions use our <a target="_blank" href="https://mdbootstrap.com/support/">Support Forum</a></p>
+            </div>
+            <div class="text-center">
+                <div role="form" class="wpcf7" id="wpcf7-f182-o1" lang="en-US" dir="ltr">
+<div class="screen-reader-response"></div>
+<form action="/layout/bootstrap-layout/#wpcf7-f182-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="182" />
+<input type="hidden" name="_wpcf7_version" value="5.0.1" />
+<input type="hidden" name="_wpcf7_locale" value="en_US" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f182-o1" />
+<input type="hidden" name="_wpcf7_container_post" value="0" />
+</div>
+<p><label> Your Name (required)<br />
+    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span> </label></p>
+<p><label> Your Email (required)<br />
+    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span> </label></p>
+<p><label> Subject<br />
+    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" /></span> </label></p>
+<p><label> Your Message<br />
+    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea md-textarea" aria-invalid="false"></textarea></span> </label></p>
+<div class="d-flex justify-content-center">
+<div class="wpcf7-form-control-wrap"><div data-sitekey="6LflIQ4TAAAAAEx83MeF_efgHI7acclgM_UYe1Ov" data-size="compact" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"></div>
+<noscript>
+	<div style="width: 302px; height: 422px;">
+		<div style="width: 302px; height: 422px; position: relative;">
+			<div style="width: 302px; height: 422px; position: absolute;">
+				<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LflIQ4TAAAAAEx83MeF_efgHI7acclgM_UYe1Ov" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;">
+				</iframe>
+			</div>
+			<div style="width: 300px; height: 60px; border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+				<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;">
+				</textarea>
+			</div>
+		</div>
+	</div>
+</noscript>
+</div>
+</div>
+<div class="d-flex justify-content-center py-4">
+   <input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-md py-2 px-3" /><br />
+   <button type="button" class="btn btn-primary btn-md px-3 py-2" data-dismiss="modal" style="margin-top:9px; margin-bottom: 9px;">Close</button>
+</div>
+<div class="wpcf7-response-output wpcf7-display-none"></div></form></div>            </div>
+        </div>
+    </div>
+</div>
+<!--/. Contact Form -->
+
+
+
+<div id="dom-target-fb" style="display: none;">
+</div>
+<div id="dom-target-tw" style="display: none;">
+</div>
+<div id="dom-target-gp" style="display: none;">
+</div>
+
+<!-- Compiled JS -->
+
+    <!--BrandFlow for WordPress loading script-->
+
+    <script>
+
+        (function(){
+
+            
+
+
+            var scripts = ["/static/general/bf-core.min.js", "/static/containers/NLX453.js", "/static/general/push-init-code.js"];
+
+
+
+            
+
+
+            for(var i = 0; i < scripts.length; i++) {
+
+                var script   = document.createElement("script");
+
+                script.src   = "//brandflow.net" + scripts[i] + "?ts=" + Date.now() + "#";
+
+                script.async = false;
+
+                document.head.appendChild(script);
+
+            }
+
+
+
+        })();
+
+    </script>
+
+    <!--/.BrandFlow for WordPress loading script-->
+
+    
+        <style type="text/css">
+
+            .dwqa-questions-list .dwqa-question-item {
+
+                padding-left: 70px;
+
+            }
+
+
+
+            .dwqa-questions-list .dwqa-question-item .avatar {
+
+                position: static;
+
+                width: 12px;
+
+                height: 12px;
+
+                margin-right: 5px;
+
+                margin-top: 0;
+
+                display: inline-block;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status {
+
+                position: absolute;
+
+                left: 15px;
+
+                top: 50%;
+
+                width: 36px;
+
+                height: 36px;
+
+                margin-top: -18px;
+
+                border-radius: 36px;
+
+                text-indent: -9999px;
+
+                padding: 0;
+
+                background: none;
+
+                box-shadow: 0 0 0 1px #e67e22 inset;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status:after {
+
+                content: "\f128";
+
+                display: block;
+
+                font: normal normal normal 14px/1 FontAwesome;
+
+                font-size: inherit;
+
+                text-rendering: auto;
+
+                -webkit-font-smoothing: antialiased;
+
+                -moz-osx-font-smoothing: grayscale;
+
+
+
+                color: #e67e22;
+
+                text-indent: 0;
+
+                font-size: 18px;
+
+                width: 36px;
+
+                height: 36px;
+
+                line-height: 36px;
+
+                text-align: center;
+
+                top: 0;
+
+                position: absolute;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-closed {
+
+                box-shadow: 0 0 0 1px #666 inset;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-closed:after {
+
+                color: #666;
+
+                content: "\f023";
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-resolved {
+
+                box-shadow: 0 0 0 1px #578824 inset;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-resolved:after {
+
+                color: #578824;
+
+                content: "\f00c";
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-answered {
+
+                box-shadow: 0 0 0 1px #1ba1e2 inset;
+
+            }
+
+
+
+            .dwqa-question-item .dwqa-status-answered:after {
+
+                color: #1ba1e2;
+
+                content: "\f112";
+
+                font-size: 14px;
+
+            }
+
+        </style>
+
+        <script type="text/javascript">
+var recaptchaWidgets = [];
+var recaptchaCallback = function() {
+	var forms = document.getElementsByTagName( 'form' );
+	var pattern = /(^|\s)g-recaptcha(\s|$)/;
+
+	for ( var i = 0; i < forms.length; i++ ) {
+		var divs = forms[ i ].getElementsByTagName( 'div' );
+
+		for ( var j = 0; j < divs.length; j++ ) {
+			var sitekey = divs[ j ].getAttribute( 'data-sitekey' );
+
+			if ( divs[ j ].className && divs[ j ].className.match( pattern ) && sitekey ) {
+				var params = {
+					'sitekey': sitekey,
+					'type': divs[ j ].getAttribute( 'data-type' ),
+					'size': divs[ j ].getAttribute( 'data-size' ),
+					'theme': divs[ j ].getAttribute( 'data-theme' ),
+					'badge': divs[ j ].getAttribute( 'data-badge' ),
+					'tabindex': divs[ j ].getAttribute( 'data-tabindex' )
+				};
+
+				var callback = divs[ j ].getAttribute( 'data-callback' );
+
+				if ( callback && 'function' == typeof window[ callback ] ) {
+					params[ 'callback' ] = window[ callback ];
+				}
+
+				var expired_callback = divs[ j ].getAttribute( 'data-expired-callback' );
+
+				if ( expired_callback && 'function' == typeof window[ expired_callback ] ) {
+					params[ 'expired-callback' ] = window[ expired_callback ];
+				}
+
+				var widget_id = grecaptcha.render( divs[ j ], params );
+				recaptchaWidgets.push( widget_id );
+				break;
+			}
+		}
+	}
+};
+
+document.addEventListener( 'wpcf7submit', function( event ) {
+	switch ( event.detail.status ) {
+		case 'spam':
+		case 'mail_sent':
+		case 'mail_failed':
+			for ( var i = 0; i < recaptchaWidgets.length; i++ ) {
+				grecaptcha.reset( recaptchaWidgets[ i ] );
+			}
+	}
+}, false );
+</script>
+
+<script data-cfasync='false' type='text/javascript'>
+	(function($) {
+		if ( $( '.gtm4wp_productdata,.widget-product-item' ).length > 0 ) {
+			for( var i=0; i<dataLayer.length; i++ ) {
+				if ( dataLayer[ i ][ 'ecommerce' ] ) {
+
+					if ( ! dataLayer[ i ][ 'ecommerce' ][ 'impressions' ] ) {
+						dataLayer[ i ][ 'ecommerce' ][ 'impressions' ] = [];
+					}
+
+					break;
+				}
+			}
+
+			if ( i == dataLayer.length ) {
+				// no existing ecommerce data found in the datalayer
+				i = 0;
+				dataLayer[ i ][ 'ecommerce' ] = {};
+				dataLayer[ i ][ 'ecommerce' ][ 'impressions' ] = [];
+			}
+
+			dataLayer[ i ][ 'ecommerce' ][ 'currencyCode' ] = 'EUR';
+
+			var productdata;
+			$( '.gtm4wp_productdata,.widget-product-item' ).each( function() {
+				productdata = jQuery( this );
+
+				dataLayer[ i ][ 'ecommerce' ][ 'impressions' ].push({
+					'name':     productdata.data( 'gtm4wp_product_name' ),
+					'id':       productdata.data( 'gtm4wp_product_id' ),
+					'price':    productdata.data( 'gtm4wp_product_price' ),
+					'category': productdata.data( 'gtm4wp_product_cat' ),
+					'position': productdata.data( 'gtm4wp_product_listposition' ),
+					'list':     productdata.data( 'gtm4wp_productlist_name' )
+				});
+			});
+		}
+	})(jQuery);
+</script><link rel='stylesheet' id='woocommerce-currency-switcher-css'  href='https://mdbootstrap.com/wp-content/plugins/woocommerce-currency-switcher/css/front.css?ver=4.9.4' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/mdbootstrap.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var user_info_chat = {"gravatar":"https:\/\/secure.gravatar.com\/avatar\/?s=96&d=mm&r=g","id":"0","unread":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/mdbootstrap.com\/checkout\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_f197109cd38b3980f6a232ffc8bea5cd","fragment_name":"wc_fragments_f197109cd38b3980f6a232ffc8bea5cd"};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sv_wc_payment_gateway_payment_form_params = {"card_number_missing":"Card number is missing","card_number_invalid":"Card number is invalid","card_number_digits_invalid":"Card number is invalid (only digits allowed)","card_number_length_invalid":"Card number is invalid (wrong length)","cvv_missing":"Card security code is missing","cvv_digits_invalid":"Card security code is invalid (only digits are allowed)","cvv_length_invalid":"Card security code is invalid (must be 3 or 4 digits)","card_exp_date_invalid":"Card expiration date is invalid","check_number_digits_invalid":"Check Number is invalid (only digits are allowed)","check_number_missing":"Check Number is missing","drivers_license_state_missing":"Drivers license state is missing","drivers_license_number_missing":"Drivers license number is missing","drivers_license_number_invalid":"Drivers license number is invalid","account_number_missing":"Account Number is missing","account_number_invalid":"Account Number is invalid (only digits are allowed)","account_number_length_invalid":"Account number is invalid (must be between 5 and 17 digits)","routing_number_missing":"Routing Number is missing","routing_number_digits_invalid":"Routing Number is invalid (only digits are allowed)","routing_number_length_invalid":"Routing number is invalid (must be 9 digits)"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-admin/load-scripts.php?c=gzip&amp;load%5B%5D=wp-embed,jquery-ui-core,jquery-ui-widget,jquery-ui-mouse,jquery-ui-slider&amp;ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.0.1'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js?ver=4.5.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/mdb-panel/public/js/mdb-panel-public-chat.js?ver=1.0.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=3.3.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=3.3.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=3.3.4'></script>
+<script type='text/javascript' src='https://chimpstatic.com/mcjs-connected/js/users/461480655ccce528d909d3f42/05e1abaa17c4f479182ad3147.js?ver=2.1.5'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/jquery-payment/jquery.payment.min.js?ver=3.0.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-paypal-powered-by-braintree/lib/skyverge/woocommerce/payment-gateway/assets/js/frontend/sv-wc-payment-gateway-payment-form.min.js?ver=4.6.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/js/jquery-ui-touch-punch/jquery-ui-touch-punch.min.js?ver=3.3.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce-currency-switcher/js/price-slider_33.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce-currency-switcher/js/jquery.ddslick.min.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/plugins/woocommerce-currency-switcher/js/front.js?ver=4.9.4'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&#038;render=explicit&#038;ver=2.0'></script>
+<script type='text/javascript' src='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/footer-functions.js?ver=4.5.0'></script>
+<!-- WooCommerce JavaScript -->
+<script type="text/javascript">
+jQuery(function($) { 
+
+	$( document ).on( 'click', '.mini_cart_item a.remove,.product-remove a.remove', function() {
+		var productdata = $( this );
+
+		var qty = 0;
+		var qty_element = $( this ).closest( '.cart_item' ).find( '.product-quantity input.qty' );
+		if ( 0 == qty_element.length ) {
+			qty_element = $( this ).closest( '.mini_cart_item' ).find( '.quantity' );
+			if ( qty_element.length > 0 ) {
+				qty = parseInt( qty_element.text() );
+
+				if ( isNaN( qty ) ) {
+					qty = 0;
+				}
+			}
+		} else {
+			qty = qty_element.val();
+		}
+
+		if ( 0 == qty ) {
+			return true;
+		}
+
+		dataLayer.push({
+			'event': 'gtm4wp.removeFromCartEEC',
+			'ecommerce': {
+				'remove': {
+					'products': [{
+						'name':     productdata.data( 'gtm4wp_product_name' ),
+						'id':       productdata.data( 'gtm4wp_product_id' ),
+						'price':    productdata.data( 'gtm4wp_product_price' ),
+						'category': productdata.data( 'gtm4wp_product_cat' ),
+						'variant':  productdata.data( 'gtm4wp_product_variant' ),
+						'quantity': qty
+					}]
+				}
+			}
+		});
+	});
+		
+
+
+		$( '.add_to_cart_button:not(.product_type_variable, .product_type_grouped)' ).click(function() {
+			var productdata = $( this ).closest( '.product' ).find( '.gtm4wp_productdata' );
+
+			dataLayer.push({
+				'event': 'gtm4wp.addProductToCart',
+				'productName': productdata.data( 'gtm4wp_product_name' ),
+				'productSKU': $( this ).data( 'product_sku' ),
+				'productID': $( this ).data( 'product_id' ),
+			});
+		});
+		
+
+
+		$( '.add_to_cart_button:not(.product_type_variable, .product_type_grouped)' ).click(function() {
+			var productdata = $( this ).closest( '.product' ).find( '.gtm4wp_productdata' );
+
+			dataLayer.push({
+				'event': 'gtm4wp.addProductToCartEEC',
+				'ecommerce': {
+					'currencyCode': 'EUR',
+					'add': {
+						'products': [{
+							'name':     productdata.data( 'gtm4wp_product_name' ),
+							'id':       productdata.data( 'gtm4wp_product_id' ),
+							'price':    productdata.data( 'gtm4wp_product_price' ),
+							'category': productdata.data( 'gtm4wp_product_cat' ),
+							'quantity': 1
+						}]
+					}
+				}
+			});
+		});
+		
+
+
+		$( '.products li:not(.product-category) a:not(.add_to_cart_button),.widget-product-item' ).click(function( event ) {
+			if ( 'undefined' == typeof google_tag_manager ) {
+				return true;
+			}
+		
+			var _productdata = $( this ).closest( '.product' );
+
+			if ( _productdata.length > 0 ) {
+				var productdata = _productdata.find( '.gtm4wp_productdata' );
+
+			} else {
+				var _productdata = $( this ).closest( 'ul.products li' );
+
+				if ( _productdata.length > 0 ) {
+					var productdata = _productdata.find( '.gtm4wp_productdata' );
+
+				} else {
+					var productdata = jQuery( this );
+
+				}
+			}
+
+			if ( ( 'undefined' == typeof productdata.data( 'gtm4wp_product_id' ) ) || ( '' == productdata.data( 'gtm4wp_product_id' ) ) ) {
+				return true;
+			}
+
+			// only act on links pointing to the product detail page
+			if ( productdata.data( 'gtm4wp_product_url' ) != $( this ).attr( 'href' ) ) {
+				return true;
+			}
+
+			var ctrl_key_pressed = event.ctrlKey;
+
+			event.preventDefault();
+			if ( ctrl_key_pressed ) {
+				// we need to open the new tab/page here so that popup blocker of the browser doesn't block our code
+				var _productpage = window.open( 'about:blank', '_blank' );
+			}
+
+			dataLayer.push({
+				'event': 'gtm4wp.productClickEEC',
+				'ecommerce': {
+					'currencyCode': 'EUR',
+					'click': {
+					  'actionField': {'list': productdata.data( 'gtm4wp_productlist_name' )},
+						'products': [{
+							'id':       productdata.data( 'gtm4wp_product_id' ),
+							'name':     productdata.data( 'gtm4wp_product_name' ),
+							'price':    productdata.data( 'gtm4wp_product_price' ),
+							'category': productdata.data( 'gtm4wp_product_cat' ),
+							'position': productdata.data( 'gtm4wp_product_listposition' )
+						}]
+					}
+				},
+				'eventCallback': function() {
+					if ( ctrl_key_pressed && _productpage ) {
+						_productpage.location.href= productdata.data( 'gtm4wp_product_url' );
+					} else {
+						document.location.href = productdata.data( 'gtm4wp_product_url' )
+					}
+				},
+				'eventTimeout': 2000
+			});
+		});
+	
+ });
+</script>
+
+<script>
+
+    
+    
+    
+</script>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</body>
+
+</html>
