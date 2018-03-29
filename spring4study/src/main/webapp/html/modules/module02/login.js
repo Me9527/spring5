@@ -10,7 +10,7 @@ $(document).ready(function() {
 	  //modal.find('.modal-body input').val(recipient)
   })
 
-  $("#loginbtn").click(function(event){
+  $("#doLoginBtn").click(function(event){
     // event.preventDefault();
     //openModel();
     //modal.find('.modal-body input').val("登录中。。。");
@@ -40,6 +40,7 @@ $(document).ready(function() {
   	queryParam['password'] = $("#inputPassword").val();	
   	var url = '/spring4study/modules/user/login';
   	$.ajax({
+ 		contentType: 'application/json;charset=utf-8',
   		headers : {
   	              'X-CSRF-TOKEN': data
   	    },
