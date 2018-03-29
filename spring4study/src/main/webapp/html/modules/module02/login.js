@@ -51,6 +51,9 @@ $(document).ready(function() {
           success: function(data){
           	// fill data to Modal Body
             //fillData(data);
+        	$("#showLoginBtn").text("注销");
+        	$("#logedUser").text("孙悟空");
+        	
         	alert(data);
           },
           error : function(e) {
