@@ -15,48 +15,43 @@
   </head>
 
   <body>
-	<!-- Bootstrap Modal -->
-	<div class="modal fade" id="loginModal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Bootstrap Modal content-->
+    <!-- Bootstrap Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">return data</h4>
+					<h5 class="modal-title" id="exampleModalLabel">欢迎登录</h5>
+					<button type="button" class="close" data-dismiss="modal"aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
 				<div class="modal-body">
-					<form class="form-signin">
-						<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-						<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-						<label for="inputEmail" class="sr-only">用户名</label> 
-						<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> 
-						<label for="inputPassword" class="sr-only">密码</label> 
-						<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-						<div class="checkbox mb-3">
-							<label> <input type="checkbox" value="remember-me">
-								自动登录
-							</label>
+					<form>
+						<div class="form-group">
+						  <label for="inputUsername" class="col-form-label">用户名</label> 
+						  <input type="text" id="inputUsername" class="form-control" placeholder="请输入用户名" required> 
+						  <label for="inputPassword" class="col-form-label">密码</label> 
+						  <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+						  <label for="rememberMe" class="col-form-label"><input type="checkbox" value="remember-me">自动登录</label>
 						</div>
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-						<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-close-login" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-do-login" id="loginbtn">登录</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	  
-  
-  
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+
+
+	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <button type="button" class="btn btn-success openBtn">登录</button>
+          <button type="button" class="btn btn-login" data-toggle="modal" data-target="#loginModal" >请登录</button>
+          
         </li>
       </ul>
     </nav>
@@ -196,7 +191,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="/spring4study/resources/jquery-3.3.1/jquery-3.3.1.min.js"></script>
   <script src="/spring4study/resources/bootstrap-4.0.0/js/bootstrap.min.js"></script>
-  <script src="/spring4study/modules/user/login.js"></script>
+  <script src="/spring4study/html/modules/module02/login.js"></script>
         
 
   <!-- Icons -->
@@ -208,11 +203,7 @@
   <!-- Graphs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
   <script>
-    $('.openBtn').on('click',function(){
-      $('.modal-body').load('content.html',function(){
-        $('#myModal').modal({show:true});
-      });
-    });
+
   </script>
 
   </body>
