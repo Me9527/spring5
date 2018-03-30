@@ -18,7 +18,7 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 
 	protected static final Log logger = LogFactory.getLog(AccessDeniedHandlerImpl.class);
-	private static final String DEFAULT_CSRF_HEADER_NAME = "X-CSRF-TOKEN";
+//	private static final String DEFAULT_CSRF_HEADER_NAME = "X-CSRF-TOKEN";
 	// ~ Instance fields
 	// ================================================================================================
 
@@ -30,11 +30,11 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException,
 			ServletException {
-		String contentType = request.getHeader("content-type");
-		if(null != contentType && contentType.indexOf("application/json") >= 0) {
-			response.addHeader(DEFAULT_CSRF_HEADER_NAME, "a92251a2-b171-43d4-95bf-3a9c87f7ce91");
-			logger.debug("Request contentType" + contentType);
-		}
+//		String contentType = request.getHeader("content-type");
+//		if(null != contentType && contentType.indexOf("application/json") >= 0) {
+//			response.addHeader(DEFAULT_CSRF_HEADER_NAME, "a92251a2-b171-43d4-95bf-3a9c87f7ce91");
+//			logger.debug("Request contentType" + contentType);
+//		}
 		if (!response.isCommitted()) {
 			if (errorPage != null) {
 				// Put exception into request scope (perhaps of use to a view)
