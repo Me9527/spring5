@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.example.framework.json.JsonResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
@@ -46,7 +47,8 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 
 				// Set the 403 status code.
 				response.setStatus(HttpStatus.FORBIDDEN.value());
-				response.getWriter().write(JSON.toJSONString("AccessDenied"));
+				JsonResult json = new JsonResult(false, "AccessDenied");
+				response.getWriter().write(JSON.toJSONString(json));
 				return;
 			}
 			

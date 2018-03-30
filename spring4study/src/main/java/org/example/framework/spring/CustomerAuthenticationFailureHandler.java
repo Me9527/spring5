@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.example.framework.json.JsonResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -57,7 +58,8 @@ public class CustomerAuthenticationFailureHandler implements AuthenticationFailu
 			saveException(request, exception);
 			String accepts = request.getHeader("accept");
 			if(accepts != null && accepts.indexOf("application/json") >= 0){
-				response.getWriter().write(JSON.toJSONString("failed"));
+				JsonResult json = new JsonResult(false, "AuthenticationFailure ");
+				response.getWriter().write(JSON.toJSONString(json));
 				return;
 			}
 			
