@@ -182,7 +182,7 @@
 
 	
 	
-	<bean id="usernamePasswordAuthenticationFilter" class="org.example.framework.spring.CustomerAuthenticationFilter">
+	<bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 			<property name="authenticationManager" ref="authenticationManager"/>		
 			<property name="requiresAuthenticationRequestMatcher" ref="loginUrl"/>
 			<property name="authenticationSuccessHandler" ref="successHandler"/>
@@ -198,8 +198,8 @@
 			<value>POST</value>
 		</constructor-arg>		
 	</bean>
-	<bean id="successHandler" class="org.example.framework.spring.CustomerAuthenticationSuccessHandler">
-
+	<bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="targetUrlParameter" value="targetUrl"/>
 	</bean>	
 	<bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/modules/user/login.jsp"/>	

@@ -1,7 +1,6 @@
 package org.example.framework.spring;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +24,16 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws ServletException, IOException {
-		String accepts = request.getHeader("accept");
-		if(accepts != null && accepts.indexOf("application/json") >= 0){
-			response.getWriter().write("success");
-			return;
-		}
-			
-		//Enumeration<String> aa = request.getHeaderNames();
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
 		if (savedRequest == null) {
 			super.onAuthenticationSuccess(request, response, authentication);
-
+//			String accepts = request.getHeader("accept");
+//			if(accepts != null && accepts.indexOf("application/json") >= 0){
+//				response.getWriter().write(JSON.toJSONString("success"));
+//				return;
+//			}
+//			//Enumeration<String> aa = request.getHeaderNames();
 			return;
 		}
 		String targetUrlParameter = getTargetUrlParameter();

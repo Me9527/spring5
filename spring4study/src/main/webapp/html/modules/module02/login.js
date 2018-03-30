@@ -39,16 +39,13 @@ $(document).ready(function() {
   	//alert($("#username").val());
   	queryParam['username'] = $("#inputUsername").val();
   	queryParam['password'] = $("#inputPassword").val();	
+  	queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
+  	
   	var url = '/spring4study/modules/user/login';
   	$.ajax({
  		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
- 		accepts    : 'application/json',
- 	    accepts: {
- 	    	accept: "application/xxx"
- 	    },
   		headers    : {
   	              	'X-CSRF-TOKEN': data,
-  	              	'accept' :'application/json'
   	    },
   	    dataType   : 'json',
   	    type       : "POST",
