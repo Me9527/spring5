@@ -28,7 +28,7 @@ AnnotationDrivenBeanDefinitionParser
 mail, message, dubble, global session, log mgr, cache, security, web service, time task
 Remote Fetch URL	https://github.com/Me9527/spring5
 
-
+ 
 SELECT ID, LOGINNAME, PASSWORD, ENABLED, LAST_UPDATE_DATE, LAST_UPDATED_BY, CREATION_DATE, CREATED_BY
 FROM p_users;
 
