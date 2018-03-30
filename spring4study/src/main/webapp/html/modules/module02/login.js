@@ -66,10 +66,14 @@ function ajaxPost(data){
     success    : function(data){
         // fill data to Modal Body
         //fillData(data);
-    	$("#showLoginBtn").text("注销");
-        $("#logedUser").text("孙悟空");
-        	
-        alert(data);
+        //alert(data);
+    	if(data.success == false){
+    		alert(data.message);
+    	}else if (data.success == true){
+        	$("#showLoginBtn").text("注销");
+            $("#logedUser").text("孙悟空");
+    	}
+
      },
      error     : function(e) {
           	//fillData(null);
@@ -121,10 +125,13 @@ function doTest(data){
   	    data       : queryParam,
         url        : url,
         success    : function(data){
-        	alert(data);
+        	if(data.success == false)
+        		alert(data.message);
         },
         error     : function(err) {
         	alert(err);
+        	if(err.success == false)
+        		alert(err.message);
         }
     }); 
   }
