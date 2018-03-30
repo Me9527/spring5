@@ -15,6 +15,8 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
+import com.alibaba.fastjson.JSON;
+
 public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 
 	protected static final Log logger = LogFactory.getLog(AccessDeniedHandlerImpl.class);
@@ -36,6 +38,18 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 //			logger.debug("Request contentType" + contentType);
 //		}
 		if (!response.isCommitted()) {
+			String accepts = request.getHeader("accept");
+			if(accepts != null && accepts.indexOf("application/json") >= 0){
+				// Put exception into request scope (perhaps of use to a view)
+				request.setAttribute(WebAttributes.ACCESS_DENIED_403,
+						accessDeniedException);
+
+				// Set the 403 status code.
+				response.setStatus(HttpStatus.FORBIDDEN.value());
+				response.getWriter().write(JSON.toJSONString("AccessDenied"));
+				return;
+			}
+			
 			if (errorPage != null) {
 				// Put exception into request scope (perhaps of use to a view)
 				request.setAttribute(WebAttributes.ACCESS_DENIED_403,

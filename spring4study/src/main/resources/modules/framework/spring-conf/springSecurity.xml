@@ -201,7 +201,7 @@
 	<bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
 		<property name="targetUrlParameter" value="targetUrl"/>
 	</bean>	
-	<bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+	<bean id="failureHandler" class="org.example.framework.spring.CustomerAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/modules/user/login.jsp"/>	
 	</bean>	
 	

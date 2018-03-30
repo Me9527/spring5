@@ -16,8 +16,80 @@ $(document).ready(function() {
     //modal.find('.modal-body input').val("登录中。。。");
     ajaxGet();
   })
-  // DO GET X-CSRF-TOKEN
-  function ajaxGet(){
+  
+  $("#testAccessBtn").click(function(event){
+	  testAccessRefuse();
+  })
+  
+
+  
+
+  
+})
+
+// DO GET X-CSRF-TOKEN
+function ajaxGet(){
+  var url = '/spring4study/modules/user/getCsrf.jsp';
+  $.ajax({
+  	   type: "GET",
+  	   timeout : 20000,
+       url : url,
+       success: function(data){
+         //alert(data);
+         ajaxPost(data);
+        },
+        error : function(e) {
+          alert(e);
+        }
+    }); 
+}
+  
+//  'application/json;charset=utf-8' application/json
+function ajaxPost(data){
+  var queryParam = {};
+  //alert($("#username").val());
+  queryParam['username'] = $("#inputUsername").val();
+  queryParam['password'] = $("#inputPassword").val();	
+  queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
+  	
+  var url = '/spring4study/modules/user/login';
+  $.ajax({
+ 	contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  	headers    : {
+  	             'X-CSRF-TOKEN': data,
+  	 },
+  	dataType   : 'json',
+  	type       : "POST",
+  	timeout    : 20000,
+  	data       : queryParam,
+    url        : url,
+    success    : function(data){
+        // fill data to Modal Body
+        //fillData(data);
+    	$("#showLoginBtn").text("注销");
+        $("#logedUser").text("孙悟空");
+        	
+        alert(data);
+     },
+     error     : function(e) {
+          	//fillData(null);
+       }
+   }); 
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+////////////////////////////////////////////////////////////////////////////
+function testAccessRefuse(){
   	var url = '/spring4study/modules/user/getCsrf.jsp';
   	$.ajax({
   	    type: "GET",
@@ -25,23 +97,19 @@ $(document).ready(function() {
           url : url,
           success: function(data){
           	//alert(data);
-          	ajaxPost(data);
+        	  doTest(data);
           },
           error : function(e) {
           	alert(e);
           }
       }); 
   }
-  
-  //  'application/json;charset=utf-8' application/json
-  function ajaxPost(data){
+
+function doTest(data){
   	var queryParam = {};
   	//alert($("#username").val());
-  	queryParam['username'] = $("#inputUsername").val();
-  	queryParam['password'] = $("#inputPassword").val();	
-  	queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
-  	
-  	var url = '/spring4study/modules/user/login';
+    //"/modules/module02/ActionTwo/aabbcc.do?${_csrf.parameterName}=${_csrf.token}";
+  	var url = '/spring4study/modules/module02/ActionTwo/aabbcc.do';
   	$.ajax({
  		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
   		headers    : {
@@ -53,17 +121,10 @@ $(document).ready(function() {
   	    data       : queryParam,
         url        : url,
         success    : function(data){
-          	// fill data to Modal Body
-            //fillData(data);
-        	$("#showLoginBtn").text("注销");
-        	$("#logedUser").text("孙悟空");
-        	
         	alert(data);
         },
-        error     : function(e) {
-          	//fillData(null);
+        error     : function(err) {
+        	alert(err);
         }
     }); 
   }
-  
-})
