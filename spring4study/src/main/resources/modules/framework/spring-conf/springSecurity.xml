@@ -182,10 +182,11 @@
 
 	
 	
-	<bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+	<bean id="usernamePasswordAuthenticationFilter" class="org.example.framework.spring.CustomerAuthenticationFilter">
 			<property name="authenticationManager" ref="authenticationManager"/>		
 			<property name="requiresAuthenticationRequestMatcher" ref="loginUrl"/>
-			<property name="authenticationFailureHandler" ref="failureHandler"/>
+			<property name="authenticationSuccessHandler" ref="successHandler"/>
+			<property name="authenticationFailureHandler" ref="failureHandler"/>			
 			<property name="sessionAuthenticationStrategy" ref="sessionStrategy"/>
 	</bean>
 
@@ -197,10 +198,13 @@
 			<value>POST</value>
 		</constructor-arg>		
 	</bean>
+	<bean id="successHandler" class="org.example.framework.spring.CustomerAuthenticationSuccessHandler">
+
+	</bean>	
 	<bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/modules/user/login.jsp"/>	
 	</bean>	
-
+	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
 	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<property name="userDetailsService" ref="custUserDetailService"/>		

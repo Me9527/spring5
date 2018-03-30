@@ -33,6 +33,7 @@ $(document).ready(function() {
       }); 
   }
   
+  //  'application/json;charset=utf-8' application/json
   function ajaxPost(data){
   	var queryParam = {};
   	//alert($("#username").val());
@@ -40,26 +41,32 @@ $(document).ready(function() {
   	queryParam['password'] = $("#inputPassword").val();	
   	var url = '/spring4study/modules/user/login';
   	$.ajax({
- 		contentType: 'application/json;charset=utf-8',
-  		headers : {
-  	              'X-CSRF-TOKEN': data
+ 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+ 		accepts    : 'application/json',
+ 	    accepts: {
+ 	    	accept: "application/xxx"
+ 	    },
+  		headers    : {
+  	              	'X-CSRF-TOKEN': data,
+  	              	'accept' :'application/json'
   	    },
-  	    type: "POST",
-  	    timeout : 20000,
-  	    data:queryParam,
-          url : url,
-          success: function(data){
+  	    dataType   : 'json',
+  	    type       : "POST",
+  	    timeout    : 20000,
+  	    data       : queryParam,
+        url        : url,
+        success    : function(data){
           	// fill data to Modal Body
             //fillData(data);
         	$("#showLoginBtn").text("注销");
         	$("#logedUser").text("孙悟空");
         	
         	alert(data);
-          },
-          error : function(e) {
+        },
+        error     : function(e) {
           	//fillData(null);
-          }
-      }); 
+        }
+    }); 
   }
   
 })
