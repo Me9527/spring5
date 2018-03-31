@@ -9,13 +9,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.users.dao.IUserDetailDAO;
 import org.example.users.model.MUser;
+import org.example.users.vo.UserDetailsVO;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityMessageSource;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,7 +39,7 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 			throw new UsernameNotFoundException(messages.getMessage("UserDetailDAOImpl.notFound",new Object[] { username }, "Username {0} not found"));
 		}
 		MUser tmpUer = users.get(0);
-		UserDetails user = new User(tmpUer.getLoginName(), tmpUer.getPassword(), tmpUer.isEnabled(), true, true, true, AuthorityUtils.NO_AUTHORITIES);
+//		UserDetails user = new User(tmpUer.getLoginName(), tmpUer.getPassword(), tmpUer.isEnabled(), true, true, true, AuthorityUtils.NO_AUTHORITIES);
 		
 		Set<GrantedAuthority> dbAuthsSet = new HashSet<GrantedAuthority>();
 		if (enableAuthorities) 
@@ -55,18 +54,19 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 			logger.debug("User '" + username + "' has no authorities and will be treated as 'not found'");
 		}
 
-		return createUserDetails(username, user, dbAuths);
+		UserDetails user = new UserDetailsVO(tmpUer.getId(), tmpUer.getLoginName(), tmpUer.getPassword(), dbAuths);
+		return user;
 	}
 
-	protected UserDetails createUserDetails(String username, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities) {
-		String returnUsername = userFromUserQuery.getUsername();
-		if (!usernameBasedPrimaryKey) {
-			returnUsername = username;
-		}
-
-		return new User(returnUsername, userFromUserQuery.getPassword(),
-				userFromUserQuery.isEnabled(), true, true, true, combinedAuthorities);
-	}
+//	protected UserDetails createUserDetails(String username, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities) {
+//		String returnUsername = userFromUserQuery.getUsername();
+//		if (!usernameBasedPrimaryKey) {
+//			returnUsername = username;
+//		}
+//
+//		return new User(returnUsername, userFromUserQuery.getPassword(),
+//				userFromUserQuery.isEnabled(), true, true, true, combinedAuthorities);
+//	}
 
 	@Override
 	public void setMessageSource(MessageSource messageSource) {

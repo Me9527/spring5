@@ -25,6 +25,10 @@ INSERT INTO `p_user_permission` (`ID`,`USER_ID`,`RES_ATTRIBUTE_ID`) VALUES (1,1,
 INSERT INTO `p_user_permission` (`ID`,`USER_ID`,`RES_ATTRIBUTE_ID`) VALUES (2,1,2);
 INSERT INTO `p_user_permission` (`ID`,`USER_ID`,`RES_ATTRIBUTE_ID`) VALUES (3,2,1);
 
+INSERT INTO `spring`.`p_users_detail` (`ID`, `UID`, `NICKNAME`, `EMAIL`, `MOBILE_NUMBER`, `ADDRESS`) VALUES ('1', '1', '孙悟空', '', '13800001111', '花果山');
+INSERT INTO `spring`.`p_users_detail` (`ID`, `UID`, `NICKNAME`, `MOBILE_NUMBER`, `ADDRESS`) VALUES ('2', '2', '猪八戒', '13800002222', '高老庄');
+INSERT INTO `spring`.`p_users_detail` (`ID`, `UID`, `NICKNAME`, `MOBILE_NUMBER`, `ADDRESS`) VALUES ('3', '3', '上帝', '13800003333', '天堂');
+
 
 commit;
 

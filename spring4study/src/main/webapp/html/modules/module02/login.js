@@ -63,7 +63,7 @@ function ajaxLogin(){
   // alert($("#username").val());
   queryParam['username'] = $("#inputUsername").val();
   queryParam['password'] = $("#inputPassword").val();	
-  queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
+  //queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
   	
   var url = '/spring4study/modules/user/login';
   $.ajax({
@@ -84,7 +84,7 @@ function ajaxLogin(){
     		alert(data.message);
     	}else if (data.success == true){
         	//$("#showLoginBtn").text("注销");
-            $("#logedUser").text("孙悟空");
+            $("#logedUser").text(queryParam['username']);
             $('#loginModal').modal('hide')
             //$("#showLoginBtn").click(function(event){
             //	ajaxLogout();

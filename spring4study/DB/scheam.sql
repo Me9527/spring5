@@ -74,7 +74,17 @@ create table P_USER_PERMISSION
   PRIMARY KEY (ID)
 );
 
-
+create table P_USERS_DETAIL
+(
+  ID                INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  UID               INT UNSIGNED NOT NULL,
+  NICKNAME          VARCHAR(128) ,
+  EMAIL             VARCHAR(128) ,
+  QQ				VARCHAR(128) ,
+  MOBILE_NUMBER		VARCHAR(128) ,
+  ADDRESS			VARCHAR(128) ,
+  PRIMARY KEY (ID)
+);
 
 
 

@@ -198,7 +198,7 @@
 			<value>POST</value>
 		</constructor-arg>		
 	</bean>
-	<bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+	<bean id="successHandler" class="org.example.framework.spring.CustomerAuthenticationSuccessHandler">
 		<property name="targetUrlParameter" value="targetUrl"/>
 	</bean>	
 	<bean id="failureHandler" class="org.example.framework.spring.CustomerAuthenticationFailureHandler">
