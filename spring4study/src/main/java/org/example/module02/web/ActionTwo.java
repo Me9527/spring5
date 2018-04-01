@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.example.module02.services.IBizTwo;
+import org.example.users.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/modules/module02/")
@@ -45,12 +47,14 @@ public class ActionTwo {
 	}
 
 	@RequestMapping
-	public String aabbcc(@RequestParam(value = "username", required = false, defaultValue = "钟馗") String username,
+	@ResponseBody
+	public UserVO aabbcc(@RequestParam(value = "username", required = false, defaultValue = "钟馗") String username,
 			Model model) {
 		
 		bizTwo.addBiz01(username);
+		UserVO user = new UserVO(123L, "山胖子", "象牙山");
 		System.out.println("aabbcc");
-		return "page01";
+		return user;
 	}
 	
 }
