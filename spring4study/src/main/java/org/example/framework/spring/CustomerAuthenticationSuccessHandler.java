@@ -14,7 +14,6 @@ import org.example.users.services.IUserService;
 import org.example.users.util.UserConstants;
 import org.example.users.vo.UserDetailsVO;
 import org.example.users.vo.UserVO;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServletServerHttpResponse;
@@ -24,7 +23,6 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
@@ -45,11 +43,16 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 		if(accepts != null && accepts.indexOf("application/json") >= 0){
 			clearAuthenticationAttributes(request);
 			JsonResult json = new JsonResult(true, "AuthenticationSuccess ", userInfo);
-			
-			BeanFactory factory = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
-////			FastJsonHttpMessageConverter fastJsonHttpMessageConverter = (FastJsonHttpMessageConverter)factory.getBean("fastJsonHttpMessageConverter");
 			HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
 			fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
+			
+//			WebApplicationContext webApplicationContext = (WebApplicationContext)request.getAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+//			ActionTwo actionTwo = (ActionTwo)webApplicationContext.getBean("actionTwo");
+//			BeanFactory factory = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
+//			WebApplicationContext webApplicationContext = (WebApplicationContext)request.getSession().getServletContext().getAttribute("org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring_Web_MVC_Controller");
+//			FastJsonHttpMessageConverter fastJsonHttpMessageConverter = (FastJsonHttpMessageConverter)factory.getBean("fastJsonHttpMessageConverter");
+//			ActionTwo actionTwo = (ActionTwo)webApplicationContext.getBean("actionTwo");
+			
 			return;
 		}
 		
