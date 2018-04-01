@@ -13,7 +13,7 @@ public class UserVORowMapper implements RowMapper<UserVO> {
 		UserVO u = new UserVO();
 		u.setId(rs.getLong(2));
 		u.setNickName(rs.getString(3));
-		u.setNickName(rs.getString(4));
+		u.setAddress(rs.getString(4));
 		
 		return u;
 	}

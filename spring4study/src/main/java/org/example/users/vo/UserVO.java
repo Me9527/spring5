@@ -18,6 +18,13 @@ public class UserVO implements Serializable {
 
 	}
 
+	public UserVO(Long id, String nickName, String address) {
+		super();
+		this.id = id;
+		this.nickName = nickName;
+		this.address = address;
+	}
+
 	public Long getId() {
 		return id;
 	}
