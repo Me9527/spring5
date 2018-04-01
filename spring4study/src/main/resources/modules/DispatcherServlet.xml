@@ -23,9 +23,14 @@
 		<mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/*" /> <bean class="com.mvc.rest.interceptor.CommonInterceptor"></bean> 
 		</mvc:interceptor> </mvc:interceptors> -->
 		
-		
-	<mvc:annotation-driven />
-	
+    	
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 配置Fastjson支持 -->
+            <ref bean="fastJsonHttpMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
 	<!-- controller包(自动注入) base-package="**.web; **.services; org.example.framework.log.*" 
 		在不同的父子容器中加载service时，事务控制情况 -->
 	<context:component-scan base-package="org.example.**.web; org.example.framework.log.**" >
