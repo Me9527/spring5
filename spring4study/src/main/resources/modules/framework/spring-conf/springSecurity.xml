@@ -358,7 +358,7 @@
 		</constructor-arg>
 		<property name="accessDeniedHandler" ref="accessDeniedHandler"/>
 	</bean>
-	<bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+	<bean id="loginUrlAuthenticationEntryPoint" class="org.example.framework.spring.CustomerAuthenticationEntryPoint">
 		<constructor-arg index="0">
 			<value>/modules/user/login.jsp</value>
 		</constructor-arg>	

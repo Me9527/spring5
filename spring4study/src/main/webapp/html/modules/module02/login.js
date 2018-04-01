@@ -63,28 +63,30 @@ function ajaxLogin(){
   // alert($("#username").val());
   queryParam['username'] = $("#inputUsername").val();
   queryParam['password'] = $("#inputPassword").val();	
-  //queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";	
-  	
+  //queryParam['targetUrl'] = "/html/modules/module02/loginSuccess.json";
+  //'Accept-Language': 'utf-8, iso-8859-1;q=0.5, *;q=0.1'
+  // 'Accept-Charset': 'utf-8, iso-8859-1;q=0.5'
   var url = '/spring4study/modules/user/login';
   $.ajax({
  	contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
   	headers    : {
-  	             'X-CSRF-TOKEN': data,
+  	             'X-CSRF-TOKEN': data
   	 },
   	dataType   : 'json',
   	type       : "POST",
   	timeout    : 20000,
   	data       : queryParam,
     url        : url,
-    success    : function(data){
+    success    : function(result){
         // fill data to Modal Body
         // fillData(data);
         // alert(data);
-    	if(data.success == false){
-    		alert(data.message);
-    	}else if (data.success == true){
+    	if(result.success == false){
+    		alert(result.message);
+    	}else if (result.success == true){
         	//$("#showLoginBtn").text("注销");
             $("#logedUser").text(queryParam['username']);
+            $("#logedUser").text(result.data.nickName);
             $('#loginModal').modal('hide')
             //$("#showLoginBtn").click(function(event){
             //	ajaxLogout();

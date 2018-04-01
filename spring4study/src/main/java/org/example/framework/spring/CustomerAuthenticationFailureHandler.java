@@ -10,7 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.framework.json.JsonResult;
+import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -19,7 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 public class CustomerAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
@@ -29,7 +32,8 @@ public class CustomerAuthenticationFailureHandler implements AuthenticationFailu
 	private boolean forwardToDestination = false;
 	private boolean allowSessionCreation = true;
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-
+	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+	
 	public CustomerAuthenticationFailureHandler() {
 	}
 
@@ -59,7 +63,8 @@ public class CustomerAuthenticationFailureHandler implements AuthenticationFailu
 			String accepts = request.getHeader("accept");
 			if(accepts != null && accepts.indexOf("application/json") >= 0){
 				JsonResult json = new JsonResult(false, "AuthenticationFailure ");
-				response.getWriter().write(JSON.toJSONString(json));
+				HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
+				fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 				return;
 			}
 			
@@ -139,5 +144,14 @@ public class CustomerAuthenticationFailureHandler implements AuthenticationFailu
 
 	public void setAllowSessionCreation(boolean allowSessionCreation) {
 		this.allowSessionCreation = allowSessionCreation;
+	}
+	
+	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
+		return fastJsonHttpMessageConverter;
+	}
+
+	public void setFastJsonHttpMessageConverter(
+			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
+		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
 	}
 }

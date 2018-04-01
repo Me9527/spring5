@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.framework.json.JsonResult;
+import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 
@@ -26,6 +29,7 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 	// ================================================================================================
 
 	private String errorPage;
+	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
 
 	// ~ Methods
 	// ========================================================================================================
@@ -48,7 +52,8 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 				// Set the 403 status code.
 				response.setStatus(HttpStatus.FORBIDDEN.value());
 				JsonResult json = new JsonResult(false, "AccessDenied");
-				response.getWriter().write(JSON.toJSONString(json));
+				HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
+				fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 				return;
 			}
 			
@@ -88,4 +93,12 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 		this.errorPage = errorPage;
 	}
 
+	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
+		return fastJsonHttpMessageConverter;
+	}
+
+	public void setFastJsonHttpMessageConverter(
+			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
+		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
+	}
 }

@@ -14,14 +14,19 @@ import org.example.users.services.IUserService;
 import org.example.users.util.UserConstants;
 import org.example.users.vo.UserDetailsVO;
 import org.example.users.vo.UserVO;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.http.HttpOutputMessage;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
@@ -29,6 +34,7 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private IUserService userService;
+	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
@@ -39,7 +45,11 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 		if(accepts != null && accepts.indexOf("application/json") >= 0){
 			clearAuthenticationAttributes(request);
 			JsonResult json = new JsonResult(true, "AuthenticationSuccess ", userInfo);
-			response.getWriter().write(JSON.toJSONString(json));
+			
+			BeanFactory factory = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
+////			FastJsonHttpMessageConverter fastJsonHttpMessageConverter = (FastJsonHttpMessageConverter)factory.getBean("fastJsonHttpMessageConverter");
+			HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
+			fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 			return;
 		}
 		
@@ -88,6 +98,15 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
+	}
+
+	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
+		return fastJsonHttpMessageConverter;
+	}
+
+	public void setFastJsonHttpMessageConverter(
+			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
+		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
 	}
 	
 	
