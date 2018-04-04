@@ -8,7 +8,7 @@
 <html lang="en">
   <head>
     <title>Hello Security</title>
-    <c:url var="faviconUrl" value="/resources/img/favicon.ico"/>
+    <c:url var="faviconUrl" value="/resources/img/kangxin.png"/>
     <link rel="icon" type="image/x-icon" href="${faviconUrl}"/>
     <c:url var="bootstrapUrl" value="/resources/css/bootstrap.css"/>
     <link href="${bootstrapUrl}" rel="stylesheet"></link>
