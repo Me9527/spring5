@@ -73,9 +73,9 @@ function ajaxLogin(){
     		alert(result.message);
     	}else if (result.success == true){
         	//$("#showLoginBtn").text("注销");
-            $("#showLoginBtn").text("欢迎" + result.data.nickName);
+            $("#showUserName").text("欢迎" + result.data.nickName);
             //$("#showLoginBtn").css("nav-link disabled");
-            $('#loginModal').modal('hide')
+            $('#loginModal').modal('hide');
             //$("#showLoginBtn").click(function(event){
             //	ajaxLogout();
             //})
