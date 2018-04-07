@@ -80,4 +80,19 @@ git clone https://github.com/webismymind/editablegrid.git
 org.springframework.web.servlet.DispatcherServlet.CONTEXT
 org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring_Web_MVC_Controller
 
+
+https://mdbootstrap.com/previews/docs/latest/fonts/fontawesome-webfont.eot
+https://mdbootstrap.com/previews/docs/latest/html/navigation/side-nav-fixed-navbar-fixed.html#
+../../css/mdb.min.css
+
+../fonts/fontawesome-webfont
+
+../../js/popper.min.js
+
+http://localhost:8000/aa/production/index.html
+
+cd K:\dir08\apache-tomcat-8.5.16
+http://localhost:8080/spring4study/html/modules/module03/main.html
+
+
 	
