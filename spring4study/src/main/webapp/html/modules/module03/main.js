@@ -116,10 +116,17 @@ function rescureMakeMenu(node, parentNode){
 				child_child_menu.append("<a>" +  children[k].name+ "<span class='fa fa-chevron-down'></span></a>");
 				rescureMakeMenu(children[k], child_child_menu);
 			}else{
-				child_menu.append("<li><a href='javascript:void(0)' onclick='clickOnNode(\"" + children[k].name + "\")'>" + children[k].name + "</a></li>");
+				child_menu.append("<li><a href='javascript:void(0)' id='func_" + children[k].id + "'>" + children[k].name + "</a></li>");
+				$('#' + 'func_' + children[k].id ).on("click", children[k], function(event){
+					funcNodeClick(event);
+				});
 			}
 		}
 	}
+}
+
+function funcNodeClick(funcNode){
+	alert(funcNode.data.name);
 }
 
 function ajaxGetSidebarMenuData(){
@@ -139,10 +146,6 @@ function ajaxGetSidebarMenuData(){
        }
     });
 	return sidebarMenuData;
-}
-
-function clickOnNode( value){
-	alert(value);
 }
 
 
