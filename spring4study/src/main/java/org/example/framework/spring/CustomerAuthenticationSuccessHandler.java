@@ -90,7 +90,7 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 		UserVO userInfo = userService.getUserInfoByUid(user.getUid());
 		HttpSession session = request.getSession(false);
 		if(null != session){
-			session.setAttribute(UserConstants.UserInfoInHtml, userInfo);
+			session.setAttribute(UserConstants.UserInfoInHttpSession, userInfo);
 		}
 		return userInfo;
 	}
