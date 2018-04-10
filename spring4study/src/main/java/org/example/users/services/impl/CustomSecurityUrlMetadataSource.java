@@ -42,10 +42,15 @@ public class CustomSecurityUrlMetadataSource extends DefaultFilterInvocationSecu
     		}
     	}
     	for(SecurityMetadata ss: secUrls){
-			Collection<ConfigAttribute> c = new HashSet<ConfigAttribute>();
-			c.add(attrs.get(ss.getAttribute()));
 			AntPathRequestMatcher requestMatcher = new AntPathRequestMatcher(ss.getResource());
-			requestMap.put(requestMatcher, c);
+			if(requestMap.containsKey(requestMatcher)){
+				Collection<ConfigAttribute> attr = requestMap.get(requestMatcher);
+				attr.add(attrs.get(ss.getAttribute()));
+			}else{
+				Collection<ConfigAttribute> attr = new HashSet<ConfigAttribute>();
+				attr.add(attrs.get(ss.getAttribute()));
+				requestMap.put(requestMatcher, attr);
+			}
     	}
     }
     
