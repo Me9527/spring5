@@ -15,6 +15,12 @@ public class JsonResult {
 		this.message = message;
 	}
 
+	public JsonResult(boolean success, Object data) {
+		super();
+		this.success = success;
+		this.data = data;
+	}
+	
 	public JsonResult(boolean success, String message, Object data) {
 		super();
 		this.success = success;
