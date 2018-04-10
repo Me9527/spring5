@@ -12,8 +12,8 @@ import org.apache.commons.logging.LogFactory;
 import org.example.framework.json.JsonResult;
 import org.example.users.services.IUserService;
 import org.example.users.util.UserConstants;
-import org.example.users.vo.UserDetailsVO;
-import org.example.users.vo.UserVO;
+import org.example.users.vo.SpringSecurityUserVO;
+import org.example.users.vo.UserInfoVO;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServletServerHttpResponse;
@@ -38,7 +38,7 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws ServletException, IOException {
 		
-		UserVO userInfo = loadUserInfo(authentication, request);
+		UserInfoVO userInfo = loadUserInfo(authentication, request);
 		String accepts = request.getHeader("accept");
 		if(accepts != null && accepts.indexOf("application/json") >= 0){
 			clearAuthenticationAttributes(request);
@@ -85,9 +85,9 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 	}
 	
 	//for AJAX login request, return user information to front page. for example HTML page.
-	private UserVO loadUserInfo(Authentication authentication, HttpServletRequest request){
-		UserDetailsVO user = (UserDetailsVO)authentication .getPrincipal(); 
-		UserVO userInfo = userService.getUserInfoByUid(user.getUid());
+	private UserInfoVO loadUserInfo(Authentication authentication, HttpServletRequest request){
+		SpringSecurityUserVO user = (SpringSecurityUserVO)authentication .getPrincipal(); 
+		UserInfoVO userInfo = userService.getUserInfoByUid(user.getUid());
 		HttpSession session = request.getSession(false);
 		if(null != session){
 			session.setAttribute(UserConstants.UserInfoInHttpSession, userInfo);

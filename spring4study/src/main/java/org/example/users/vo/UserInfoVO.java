@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
-public class UserVO implements Serializable {
+public class UserInfoVO implements Serializable {
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 	
 	private Long id;
@@ -14,11 +14,11 @@ public class UserVO implements Serializable {
 
 	private List<String> userRole;
 
-	public UserVO() {
+	public UserInfoVO() {
 
 	}
 
-	public UserVO(Long id, String nickName, String address) {
+	public UserInfoVO(Long id, String nickName, String address) {
 		super();
 		this.id = id;
 		this.nickName = nickName;

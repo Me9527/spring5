@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.example.users.dao.IUserDAO;
 import org.example.users.model.MUser;
 import org.example.users.services.IUserService;
-import org.example.users.vo.UserVO;
+import org.example.users.vo.UserInfoVO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -55,8 +55,8 @@ public class UserServiceImpl implements IUserService {
 		return Collections.EMPTY_LIST;
 	}
 
-	public UserVO getUserInfoByUid(Long uid){
-		List<UserVO> user = userDao.getUserInfoByUid(uid);
+	public UserInfoVO getUserInfoByUid(Long uid){
+		List<UserInfoVO> user = userDao.getUserInfoByUid(uid);
 		return user.get(0);
 	}
 }

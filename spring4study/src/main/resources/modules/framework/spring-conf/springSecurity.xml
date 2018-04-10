@@ -207,7 +207,7 @@
 	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
 	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
-		<property name="userDetailsService" ref="custUserDetailService"/>		
+		<property name="userDetailsService" ref="springSecurityUserService"/>		
 		<property name="passwordEncoder" ref="encoder"/>				
 	</bean>
 	<util:list id="daoAuthenticationProviderList"  list-class="java.util.ArrayList">
@@ -313,7 +313,7 @@
 			<value>springRemember</value>
 		</constructor-arg>
 		<constructor-arg index="1">
-			<ref bean="custUserDetailService" />
+			<ref bean="springSecurityUserService" />
 		</constructor-arg>	
 	</bean>		
 	

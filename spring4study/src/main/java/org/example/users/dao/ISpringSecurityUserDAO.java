@@ -5,7 +5,7 @@ import java.util.List;
 import org.example.users.model.MUser;
 import org.springframework.security.core.GrantedAuthority;
 
-public interface IUserDetailDAO {
+public interface ISpringSecurityUserDAO {
 	List<MUser> loadUsersByUsername(String username);
 //	List<GrantedAuthority> loadUserAuthorities(String username);
 	List<GrantedAuthority> loadUserAuthorities(Long userId);

@@ -7,9 +7,9 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.example.users.dao.IUserDetailDAO;
+import org.example.users.dao.ISpringSecurityUserDAO;
 import org.example.users.model.MUser;
-import org.example.users.vo.UserDetailsVO;
+import org.example.users.vo.SpringSecurityUserVO;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -21,8 +21,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-@Service("custUserDetailService")
-public class UserDetailServiceImpl implements UserDetailsService, MessageSourceAware{
+@Service("springSecurityUserService")
+public class SpringSecurityUserServiceImpl implements UserDetailsService, MessageSourceAware{
 	
 	private String rolePrefix = "ROLE_EXAMPLE";
 	private boolean usernameBasedPrimaryKey = true;
@@ -30,10 +30,10 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 	private boolean enableGroups;
 	private final Log logger = LogFactory.getLog(getClass());
 	private MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
-	private IUserDetailDAO userDetailDao;
+	private ISpringSecurityUserDAO springSecurityUserDao;
 	
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		List<MUser> users = userDetailDao.loadUsersByUsername(username);
+		List<MUser> users = springSecurityUserDao.loadUsersByUsername(username);
 		if (users.size() == 0) {
 			logger.debug("Query returned no results for user '" + username + "'");
 			throw new UsernameNotFoundException(messages.getMessage("UserDetailDAOImpl.notFound",new Object[] { username }, "Username {0} not found"));
@@ -43,7 +43,7 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 		
 		Set<GrantedAuthority> dbAuthsSet = new HashSet<GrantedAuthority>();
 		if (enableAuthorities) 
-			dbAuthsSet.addAll(userDetailDao.loadUserAuthorities(tmpUer.getId()));
+			dbAuthsSet.addAll(springSecurityUserDao.loadUserAuthorities(tmpUer.getId()));
 //		if (enableGroups) 
 //			dbAuthsSet.addAll(userDetailDao.loadGroupAuthorities(user.getUsername()));
 		
@@ -54,7 +54,7 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 			logger.debug("User '" + username + "' has no authorities and will be treated as 'not found'");
 		}
 
-		UserDetails user = new UserDetailsVO(tmpUer.getId(), tmpUer.getLoginName(), tmpUer.getPassword(), dbAuths);
+		UserDetails user = new SpringSecurityUserVO(tmpUer.getId(), tmpUer.getLoginName(), tmpUer.getPassword(), dbAuths);
 		return user;
 	}
 
@@ -110,13 +110,15 @@ public class UserDetailServiceImpl implements UserDetailsService, MessageSourceA
 		this.enableGroups = enableGroups;
 	}
 
-	public IUserDetailDAO getUserDetailDao() {
-		return userDetailDao;
+	public ISpringSecurityUserDAO getSpringSecurityUserDao() {
+		return springSecurityUserDao;
 	}
 
-	public void setUserDetailDao(IUserDetailDAO userDetailDao) {
-		this.userDetailDao = userDetailDao;
+	public void setSpringSecurityUserDao(
+			ISpringSecurityUserDAO springSecurityUserDao) {
+		this.springSecurityUserDao = springSecurityUserDao;
 	}
+
 	
 	
 }
