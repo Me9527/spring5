@@ -69,6 +69,27 @@ $(document).ready(function() {
   
 })
 
+function logout(){
+	var url = '/spring4study/modules/user/logout';
+	$.ajax({
+  	   type: "POST",
+  	   dataType   : 'json',
+  	   async :false,
+  	   timeout : 20000,
+       url : url,
+       success: function(data){
+    	   if(data.success){
+    		   $(location).attr('href', '/spring4study');
+    	   }else{
+    		   alert(data.messsage);
+    	   }
+       },
+       error : function(err) {
+    	   alert(err);
+       }
+    });
+}
+
 function checkLogin(){
 	var url = '/spring4study/getUserInfo.do';
 	$.ajax({

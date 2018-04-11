@@ -29,8 +29,8 @@
 				<ref bean="concurrentSessionFilter" />
 				
 				<ref bean="headerWriterFilter" />				
-				<ref bean="csrfFilter" />
 				<ref bean="logoutFilter" />
+				<ref bean="csrfFilter" />
 				<ref bean="usernamePasswordAuthenticationFilter" />
 				<ref bean="requestCacheAwareFilter" />
 				<ref bean="securityContextHolderAwareRequestFilter" />
