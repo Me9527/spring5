@@ -95,4 +95,11 @@ cd K:\dir08\apache-tomcat-8.5.16
 http://localhost:8080/spring4study/html/modules/module03/main.html
 
 
+RoleController.java
+
+主键序列生成方式修改，保存角色成功的提示功能修改，原系统用了非标准提示。
+
+
+
+
 	
