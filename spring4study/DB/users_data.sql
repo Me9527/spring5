@@ -15,8 +15,8 @@ INSERT INTO `p_res_attribute` (`ID`,`NAME`,`A_TYPE`,`ENABLE`,`MEMO`) VALUES (1,'
 INSERT INTO `p_res_attribute` (`ID`,`NAME`,`A_TYPE`,`ENABLE`,`MEMO`) VALUES (2,'模块module02下的注册功能','ROLE_','Y',NULL);
 
 
-INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (1,'/modules/module01/**','URL','Y','模块一下所有资源');
-INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (2,'/modules/module02/registration.jsp','URL','Y','模块二下用户注册页面');
+INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (1,'/jsp/modules/module01/**','URL','Y','模块一下所有资源');
+INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (2,'/jsp/modules/module02/registration.jsp','URL','Y','模块二下用户注册页面');
 INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (3,'org.example.module02.services.IBizTwo.addBiz01','Method','Y',NULL);
 INSERT INTO `p_resources` (`ID`,`IDENTIFICATION`,`R_TYPE`,`ENABLE`,`DESCRIPTION`) VALUES (4,'org.example.module01.services.IServiceOne.*','Method','Y',NULL);
 

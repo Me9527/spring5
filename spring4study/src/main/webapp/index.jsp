@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/modules/commons/common.jsp" %>
+<%@ include file="/jsp/modules/commons/common.jsp" %>
 <%@ page import="org.springframework.security.core.userdetails.UserDetails"%>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <html>

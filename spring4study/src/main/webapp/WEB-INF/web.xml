@@ -91,7 +91,12 @@
 	<filter-mapping>
 		<filter-name>delegatingFilterProxy</filter-name>
 		<url-pattern>/modules/*</url-pattern>
+	</filter-mapping>		
+	<filter-mapping>
+		<filter-name>delegatingFilterProxy</filter-name>
+		<url-pattern>/jsp/modules/*</url-pattern>
 	</filter-mapping>
+	
 	<filter-mapping>
 		<filter-name>delegatingFilterProxy</filter-name>
 		<url-pattern>/webservice/*</url-pattern>

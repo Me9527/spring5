@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/modules/commons/common.jsp" %>
+<%@ include file="/jsp/modules/commons/common.jsp" %>
 
 <html>
 <head>
@@ -8,7 +8,7 @@
     <!-- Shared -->
     <link rel="stylesheet" type="text/css" href="../shared/example.css" />
     <script type="text/javascript">
-    	var url = ctx + "/modules/module01/ActionOne/bbb.do?${_csrf.parameterName}=${_csrf.token}";
+    	var url = ctx + "/modules/module02/ActionTwo/aabbcc.do?${_csrf.parameterName}=${_csrf.token}";
     </script>
     <script type="text/javascript" src="registration.js"></script>
     
