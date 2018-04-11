@@ -44,6 +44,7 @@ function getTree() {
   return tree;
 }
 
+var sidebarMenuData;
 
 $(document).ready(function() {
 	checkLogin();
@@ -55,7 +56,6 @@ $(document).ready(function() {
 		  backColor: 'SteelBlue'
 	});
 	
-	makeMenu();
 	
 //  $("#doLoginBtn").click(function(event){
 //	  ajaxLogin();
@@ -69,20 +69,6 @@ $(document).ready(function() {
   
 })
 
-//            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-//              <div class="menu_section" id="myMenu">
-//                <h3>我的菜单</h3>
-//                <ul class="nav side-menu">
-//                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-//                    <ul class="nav child_menu">
-//                      <li><a href="tables.html">Tables</a></li>
-//                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-//                    </ul>
-//                  </li>
-//                </ul>                
-//              </div>
-//           </div>
-
 function checkLogin(){
 	var url = '/spring4study/getUserInfo.do';
 	$.ajax({
@@ -91,9 +77,10 @@ function checkLogin(){
   	   timeout : 20000,
        url : url,
        success: function(data){
-    	   if(data.success)
-    		   ;
-    	   else{
+    	   if(data.success){
+    		   sidebarMenuData = data.data.menus;
+    		   makeMenu();
+    	   }else{
     		  $(location).attr('href', '/spring4study/jsp/modules/user/login.jsp');
     	   }
        },
@@ -104,13 +91,14 @@ function checkLogin(){
 }
 
 function makeMenu(){
-	var sidebarMenuData = ajaxGetSidebarMenuData();
+//	var sidebarMenuData = ajaxGetSidebarMenuData();
 	//nodes 层次数必须>=2,与菜单展示形式有关。
-	var nodes = sidebarMenuData.nodes;
+	var sidebarMenuDataTitle = "功能菜单";
+	var nodes = sidebarMenuData;
 
 	$('#sidebar-menu').append("<div class='menu_section' id='menu_section_01" + "'/>");
 	var menuSection = $('#' + 'menu_section_01');
-	menuSection.append("<h3>" + sidebarMenuData.title + "</h3>");
+	menuSection.append("<h3>" + sidebarMenuDataTitle + "</h3>");
 	menuSection.append("<ul class='nav side-menu' id='side_menu_01" + "'/>");
 	var menuContain = $('#' + 'side_menu_01');	
 
