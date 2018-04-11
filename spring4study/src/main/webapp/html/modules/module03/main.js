@@ -46,6 +46,8 @@ function getTree() {
 
 
 $(document).ready(function() {
+	checkLogin();
+	
 	$('#myTree').treeview({
 		data: getTree(),
 		  levels: 10,
@@ -80,6 +82,26 @@ $(document).ready(function() {
 //                </ul>                
 //              </div>
 //           </div>
+
+function checkLogin(){
+	var url = '/spring4study/getUserInfo.do';
+	$.ajax({
+  	   type: "GET",
+  	   async :false,
+  	   timeout : 20000,
+       url : url,
+       success: function(data){
+    	   if(data.success)
+    		   ;
+    	   else{
+    		  $(location).attr('href', '/spring4study/jsp/modules/user/login.jsp');
+    	   }
+       },
+       error : function(err) {
+    	   alert(err);
+       }
+    });
+}
 
 function makeMenu(){
 	var sidebarMenuData = ajaxGetSidebarMenuData();

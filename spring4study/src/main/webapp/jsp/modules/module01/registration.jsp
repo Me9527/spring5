@@ -6,11 +6,11 @@
     <title>Registration Form</title>
 
     <!-- Shared -->
-    <link rel="stylesheet" type="text/css" href="../shared/example.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/jsp/modules/module01/example.css" />
     <script type="text/javascript">
     	var url = ctx + "/modules/module01/ActionOne/bbb.do?${_csrf.parameterName}=${_csrf.token}";
     </script>
-    <script type="text/javascript" src="registration.js"></script>
+    <script type="text/javascript" src="${ctx}/jsp/modules/module01/registration.js"></script>
     
     <!-- GC -->
     <!-- Example -->

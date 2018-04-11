@@ -108,23 +108,30 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-	<!-- 欢迎页面 -->
-	<welcome-file-list>
-		<welcome-file>/modules/module01/ActionOne/index.do</welcome-file>
-	</welcome-file-list>
-	<!-- 错误页面 -->
-	<error-page>
-		<error-code>404</error-code>
-		<location>/modules/common/404.jsp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>500</error-code>
-		<location>/modules/common/500.jsp</location>
-	</error-page>
 	<!-- session过期时间 -->
 	<session-config>
 		<session-timeout>600</session-timeout>
 	</session-config>
+	
+	<!-- 欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+	<!-- 错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/html/modules/commons/page_404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/html/modules/commons/page_403.html</location>
+	</error-page>	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/html/modules/commons/page_500.html</location>
+	</error-page>
+
 
 </web-app>

@@ -2,6 +2,7 @@ http://localhost:8000/spring4study/jsp/modules/module01/page01.jsp
 http://localhost:8080/spring4study/jsp/modules/module01/registration.jsp
 http://localhost:8080/spring4study/jsp/modules/module02/registration.jsp
 http://localhost:8000/spring4study/log4j.do
+http://localhost:8080/spring4study/html/modules/module03/main.html
 
 
 https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
@@ -92,7 +93,7 @@ https://mdbootstrap.com/previews/docs/latest/html/navigation/side-nav-fixed-navb
 http://localhost:8000/aa/production/index.html
 
 cd K:\dir08\apache-tomcat-8.5.16
-http://localhost:8080/spring4study/html/modules/module03/main.html
+
 
 
 RoleController.java
