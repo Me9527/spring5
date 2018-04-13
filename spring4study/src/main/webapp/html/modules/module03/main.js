@@ -56,7 +56,9 @@ $(document).ready(function() {
 		  backColor: 'SteelBlue'
 	});
 	
-	
+    $('#example').DataTable( {
+        "ajax": 'arrays.txt'
+    } );
 //  $("#doLoginBtn").click(function(event){
 //	  ajaxLogin();
 //  })
