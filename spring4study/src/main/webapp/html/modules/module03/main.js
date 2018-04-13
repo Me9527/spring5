@@ -56,10 +56,10 @@ $(document).ready(function() {
 		  backColor: 'SteelBlue'
 	});
 	
-    $('#datatable-buttons').DataTable( {
-        "ajax": 'arrays.txt'
-    } );
-    
+//    $('#datatable-buttons').DataTable( {
+//        "ajax": 'arrays.txt'
+//    } );
+//    
     init_DataTables();
     
 //  $("#doLoginBtn").click(function(event){
@@ -81,11 +81,11 @@ $(document).ready(function() {
 				
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
 				console.log('init_DataTables');
-				
 				var handleDataTableButtons = function() {
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
 					  dom: "Blfrtip",
+					  "ajax": 'arrays.txt',
 					  buttons: [
 						{
 						  extend: "copy",
