@@ -7,21 +7,10 @@ http://localhost:8000/spring4study/html/modules/module03/main.html
 
 https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
 
-select * from test_user;
-
-truncate table test_user;
-
-
 This information is kept in the file DispatcherServlet.properties in the package org.springframework.web.servlet
 
 BeanFactoryUtils.beanNamesForTypeIncludingAncestors(getApplicationContext(), Object.class) 
-
-
 RequestMappingHandlerMapping.initHandlerMethods()
-
-
-createRequestMappingInfo()
-ActionOne.java
 
 MvcNamespaceHandler
 AnnotationDrivenBeanDefinitionParser
@@ -29,48 +18,13 @@ AnnotationDrivenBeanDefinitionParser
 mail, message, dubble, global session, log mgr, cache, security, web service, time task
 Remote Fetch URL	https://github.com/Me9527/spring5
 
- 
-SELECT ID, LOGINNAME, PASSWORD, ENABLED, LAST_UPDATE_DATE, LAST_UPDATED_BY, CREATION_DATE, CREATED_BY
-FROM p_users;
-
-
-create table users(
-	username varchar_ignorecase(50) not null primary key,
-	password varchar_ignorecase(50) not null,
-	enabled boolean not null
-);
-
-create table authorities (
-	username varchar_ignorecase(50) not null,
-	authority varchar_ignorecase(50) not null,
-	constraint fk_authorities_users foreign key(username) references users(username)
-);
-create unique index ix_auth_username on authorities (username,authority);
-
-
-AuthenticationConfigBuilder.java
-	private String createKey() {
-		SecureRandom random = new SecureRandom();
-		return Long.toString(random.nextLong());
-	}
 
 org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource
 org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource
 
-
-SELECT * FROM spring.authorities;
-
-SELECT * FROM spring.authorities for update;
-insert into authorities values('zhubajie', 'teller')
-commit;
-
-update  spring.authorities set authority = 'supervisor' where LOGINNAME = 'shunwukong';
-delete from authorities a WHERE a.LOGINNAME = 'shunwukong';
 SET SQL_SAFE_UPDATES = 0;
 
-
 $2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.
-	
 	
 $ redis-cli keys '*' | xargs redis-cli del
 $ redis-cli del spring:session:sessions:7e8383a4-082c-4ffe-a4bc-c40fd3363c5e	
@@ -84,21 +38,21 @@ org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring_Web_MVC_Controll
 
 https://mdbootstrap.com/previews/docs/latest/fonts/fontawesome-webfont.eot
 https://mdbootstrap.com/previews/docs/latest/html/navigation/side-nav-fixed-navbar-fixed.html#
-../../css/mdb.min.css
-
-../fonts/fontawesome-webfont
-
-../../js/popper.min.js
 
 http://localhost:8000/aa/production/index.html
 
 cd K:\dir08\apache-tomcat-8.5.16
 
+一个用户可以配置多个角色；一个角色下可以有多个菜单项，菜单项可以是树型结构；末级菜单项必须与某个具体的URL类型资源关联。
+一个角色包含若干与之相关的受保护的资源（URL，Service）。
 
 
-RoleController.java
+普通用户->查看用户详细信息，修改用户详细信息，修改登录密码，修改送货地址。
+菜单配置->查看角色，角色信息维护，查看资源，资源信息维护，配置菜单项，角色资源配置。
+订单管理->...
 
-主键序列生成方式修改，保存角色成功的提示功能修改，原系统用了非标准提示。
+
+
 
 
 
