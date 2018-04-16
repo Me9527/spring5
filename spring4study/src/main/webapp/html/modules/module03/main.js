@@ -61,7 +61,7 @@ $(document).ready(function() {
 //    } );
 //    
     init_DataTables();
-    
+    editTable();
 //  $("#doLoginBtn").click(function(event){
 //	  ajaxLogin();
 //  })
@@ -156,7 +156,69 @@ function init_DataTables() {
 	TableManageButtons.init();
 
 };
-			
+
+function editTable(){
+
+   var editor = new $.fn.dataTable.Editor( {
+        ajax: "/spring4study/html/modules/module03/user.json",
+        table: "#example",
+        fields: [ {
+                label: "First name:",
+                name: "users.first_name"
+            }, {
+                label: "Last name:",
+                name: "users.last_name"
+            }, {
+                label: "Phone #:",
+                name: "users.phone"
+            }, {
+                label: "Site:",
+                name: "users.site",
+                type: "select"
+            }
+        ]
+    } );
+ 
+    // Activate an inline edit on click of a table cell
+    $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this, {
+            onBlur: 'submit'
+        } );
+    } );
+ 
+    $('#example').DataTable( {
+        dom: "Bfrtip",
+        ajax: {
+            url: "/spring4study/html/modules/module03/user.json",
+            type: 'POST'
+        },
+        columns: [
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
+            { data: "users.first_name" },
+            { data: "users.last_name" },
+            { data: "users.phone" },
+            { data: "sites.name", editField: "users.site" }
+        ],
+        order: [ 1, 'asc' ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        buttons: [
+            { extend: "create", editor: editor },
+            { extend: "edit",   editor: editor },
+            { extend: "remove", editor: editor }
+        ]
+    } );
+	
+}
+
+
 function logout(){
 	var url = '/spring4study/modules/user/logout';
 	$.ajax({
