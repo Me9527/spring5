@@ -187,7 +187,10 @@ function editTable(){
     } );
  
     $('#example').DataTable( {
-        dom: "Bfrtip",
+        dom: 'Bfrtip',
+        'paging':   true,
+        'ordering': false,
+        'info':     true,        
         ajax: {
             url: "/spring4study/html/modules/module03/user.json",
             type: 'POST'
@@ -199,7 +202,7 @@ function editTable(){
                 className: 'select-checkbox',
                 orderable: false
             },
-            { data: "users.first_name" },
+            { data: "users.first_name" ,  "visible": true},
             { data: "users.last_name" },
             { data: "users.phone" },
             { data: "sites.name", editField: "users.site" }
