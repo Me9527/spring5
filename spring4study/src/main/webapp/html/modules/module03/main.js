@@ -82,11 +82,11 @@ function init_DataTables() {
 		return;
 	}
 	console.log('init_DataTables');
-	
+
 	var handleDataTableButtons = function() {
 		if ($("#exampleDatatable").length) {
 			$("#exampleDatatable").DataTable({
-				dom : "Blfrtip",
+				dom : 'Blrtip',
 				"ajax" : 'arrays.txt',
 				buttons : [ {
 					extend : "copy",
