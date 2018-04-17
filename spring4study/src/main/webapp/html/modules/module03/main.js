@@ -86,7 +86,7 @@ function init_DataTables() {
 	var handleDataTableButtons = function() {
 		if ($("#exampleDatatable").length) {
 			$("#exampleDatatable").DataTable({
-				dom : 'Blrtip',
+				dom : 'Blprtip',
 				"ajax" : 'arrays.txt',
 				buttons : [ {
 					extend : "copy",
@@ -190,7 +190,12 @@ function editTable(){
         dom: 'Bfrtip',
         'paging':   true,
         'ordering': false,
-        'info':     true,        
+        'info':     true,
+        'pagingType': 'full_numbers',
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         true,        
+        stateSave:  true,
         ajax: {
             url: "/spring4study/html/modules/module03/user.json",
             type: 'POST'
