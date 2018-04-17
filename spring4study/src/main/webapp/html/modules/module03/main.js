@@ -187,7 +187,7 @@ function editTable(){
     } );
  
     $('#example').DataTable( {
-        dom: 'Bfrtip',
+        dom: 'Bfrptip',
         'paging':   true,
         'ordering': false,
         'info':     true,
@@ -220,7 +220,12 @@ function editTable(){
         buttons: [
             { extend: "create", editor: editor },
             { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor }
+            { extend: "remove", editor: editor },
+            
+            { extend: "csv",		className: "btn-default" },
+            { extend: "excel",		className: "btn-default" },
+            { extend: "pdfHtml5",	className: "btn-default" },
+            { extend: "print", 		className: "btn-default" }
         ]
     } );
 	
