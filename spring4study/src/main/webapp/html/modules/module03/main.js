@@ -187,7 +187,7 @@ function editTable(){
     } );
  
     $('#example').DataTable( {
-        dom: 'Bfrptip',
+        dom: 'lBrptip',
         'paging':   true,
         'ordering': false,
         'info':     true,
