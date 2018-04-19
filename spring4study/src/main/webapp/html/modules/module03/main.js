@@ -49,6 +49,11 @@ var sidebarMenuData;
 $(document).ready(function() {
 	checkLogin();
 	
+	$.extend( $.fn.dataTable.defaults, {
+	    searching: false,
+	    ordering:  false
+	} );
+	
 	$('#myTree').treeview({
 		data: getTree(),
 		  levels: 10,
@@ -208,7 +213,7 @@ function editTable(){
                 orderable: false
             },
             { data: "users.first_name" ,  "visible": true},
-            { data: "users.last_name" },
+            { data: "users.last_name",  render: $.fn.dataTable.render.text() },
             { data: "users.phone" },
             { data: "sites.name", editField: "users.site" }
         ],
