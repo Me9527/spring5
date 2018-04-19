@@ -184,37 +184,76 @@ function editTable2(){
 //	            onBlur: 'submit'
 //	        } );
 //	    } );
-	 
+	    var columsName = {
+	            'nickName': '姓名',
+	            'position': '位置',
+	            'company': '公司',
+	            'birthday': '生日',
+	            'extn': '其他'
+	        };
+	    
+	   	var checkbox =  {
+	   			'title': '选择框',
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            };
+	   	var c1 = {'title': columsName["nickName"], data: "nickName" ,  "visible": true};
+	   	var c2 = {'title': columsName["company"],  data: "company",  	render: $.fn.dataTable.render.text() };
+	   	var c3 = {'title': columsName["position"], data: "position",  	render: $.fn.dataTable.render.text() };
+	   	var c4 = {'title': columsName["birthday"], data: "birthday",  	render: $.fn.dataTable.render.text() };	   	
+	   	var columns = [];
+	   	columns.push(checkbox);	columns.push(c1);	columns.push(c2);	columns.push(c3);	columns.push(c4);
+	   	
 	    $('#example2').DataTable( {
-	        dom: 'lBrptip',
-	        'paging':   true,
-	        'ordering': false,
-	        'info':     true,
-	        'pagingType': 'full_numbers',
-	        scrollY:        '50vh',
-	        scrollCollapse: true,
-	        paging:         true,        
-	        stateSave:  true,
-	        ajax: {
-	            url: "/spring4study/getUserInfoDemoData.do",
+	         dom			: 'lBrptip',
+	        'paging'		: true,
+	        'ordering'		: false,
+	        'info'			: true,
+	        'pagingType'	: 'full_numbers',
+	        scrollY			: '50vh',
+	        scrollCollapse	: true,
+	        paging			: true,        
+	        stateSave		: true,
+	        'destroy'		: true,
+	        ajax		: {
+	            url: '/spring4study/getUserInfoDemoData.do',
 	            type: 'POST'
 	        },
-	        columns: [
-	            {
-	                data: null,
-	                defaultContent: '',
-	                className: 'select-checkbox',
-	                orderable: false
-	            },
-	            { data: "nickName" ,  "visible": true},
-	            { data: "company",  render: $.fn.dataTable.render.text() }
-	        ],
-	        order: [ 1, 'asc' ],
-	        select: {
-	            style:    'os',
+	        columns		: columns,
+            language	: {
+                'oAria': {
+                    'sSortAscending': ': 升序排列',
+                    'sSortDescending': ': 降序排列'
+                },
+                'oPaginate': {
+                    'sFirst': '首页',
+                    'sLast': '末页',
+                    'sNext': '下页',
+                    'sPrevious': '上页'
+                },
+                'sEmptyTable': '没有相关记录',
+                'sInfo': '第 _START_ 到 _END_ 条记录，共 _TOTAL_ 条',
+                'sInfoEmpty': '第 0 到 0 条记录，共 0 条',
+                'sInfoFiltered': '(从 _MAX_ 条记录中检索)',
+                'sInfoPostFix': '',
+                'sDecimal': '',
+                'sThousands': ',',
+                'sLengthMenu': '每页显示条数: _MENU_',
+                'sLoadingRecords': '正在载入...',
+                'sProcessing': '正在载入...',
+                'sSearch': '搜索:',
+                'sSearchPlaceholder': '',
+                'sUrl': '',
+                'sZeroRecords': '没有相关记录'                   	
+            },      
+	        order		: [ 1, 'asc' ],
+	        select		: {
+	            style	: 'os',
 	            selector: 'td:first-child'
 	        },
-	        buttons: [
+	        buttons		: [
 	            { extend: "create", editor: editor },
 	            { extend: "edit",   editor: editor },
 	            { extend: "remove", editor: editor },
