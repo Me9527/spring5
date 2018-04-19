@@ -1,6 +1,7 @@
 package org.example.users.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.SpringSecurityCoreVersion;
@@ -19,6 +20,7 @@ public class UserInfoVO implements Serializable {
 	private String department;
 	private String position;
 	private String address;
+	private Date birthday;
 	
 	private List<String> userRole;
 	private List<MenuNode> menus;
@@ -138,4 +140,13 @@ public class UserInfoVO implements Serializable {
 		this.menus = menus;
 	}
 
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	
 }

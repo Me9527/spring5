@@ -67,6 +67,7 @@ $(document).ready(function() {
 //    
     init_DataTables();
     editTable();
+    editTable2();
 //  $("#doLoginBtn").click(function(event){
 //	  ajaxLogin();
 //  })
@@ -161,6 +162,71 @@ function init_DataTables() {
 	TableManageButtons.init();
 
 };
+
+function editTable2(){
+
+	   var editor = new $.fn.dataTable.Editor( {
+	        ajax: "/spring4study/html/modules/module03/user.json",
+	        table: "#example2",
+	        fields: [ {
+	                label: "nickName:",
+	                name: "nickName"
+	            }, {
+	                label: "company:",
+	                name: "company"
+	            }
+	        ]
+	    } );
+	 
+	    // Activate an inline edit on click of a table cell
+//	    $('#example2').on( 'click', 'tbody td:not(:first-child)', function (e) {
+//	        editor.inline( this, {
+//	            onBlur: 'submit'
+//	        } );
+//	    } );
+	 
+	    $('#example2').DataTable( {
+	        dom: 'lBrptip',
+	        'paging':   true,
+	        'ordering': false,
+	        'info':     true,
+	        'pagingType': 'full_numbers',
+	        scrollY:        '50vh',
+	        scrollCollapse: true,
+	        paging:         true,        
+	        stateSave:  true,
+	        ajax: {
+	            url: "/spring4study/getUserInfoDemoData.do",
+	            type: 'POST'
+	        },
+	        columns: [
+	            {
+	                data: null,
+	                defaultContent: '',
+	                className: 'select-checkbox',
+	                orderable: false
+	            },
+	            { data: "nickName" ,  "visible": true},
+	            { data: "company",  render: $.fn.dataTable.render.text() }
+	        ],
+	        order: [ 1, 'asc' ],
+	        select: {
+	            style:    'os',
+	            selector: 'td:first-child'
+	        },
+	        buttons: [
+	            { extend: "create", editor: editor },
+	            { extend: "edit",   editor: editor },
+	            { extend: "remove", editor: editor },
+	            
+	            { extend: "csv",		className: "btn-default" },
+	            { extend: "excel",		className: "btn-default" },
+	            { extend: "pdfHtml5",	className: "btn-default" },
+	            { extend: "print", 		className: "btn-default" }
+	        ]
+	    } );
+		
+	}
 
 function editTable(){
 
