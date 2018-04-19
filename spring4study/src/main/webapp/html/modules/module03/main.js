@@ -165,25 +165,32 @@ function init_DataTables() {
 
 function editTable2(){
 
-	   var editor = new $.fn.dataTable.Editor( {
-	        ajax: "/spring4study/html/modules/module03/user.json",
-	        table: "#example2",
-	        fields: [ {
-	                label: "nickName:",
-	                name: "nickName"
-	            }, {
-	                label: "company:",
-	                name: "company"
-	            }
-	        ]
-	    } );
+	   	var editor = new $.fn.dataTable.Editor({
+	   		ajax : "/spring4study/getUserInfoDemoData.do",
+	   		table : "#example2",
+	   		idSrc : "id",
+	   		fields : [ {
+	   			label : "nickName:",
+				name  : "nickName",
+				type  : "select"
+	   		}, {
+	   			label : "company:",
+				name : "company"
+	   		}, {
+	   			label : "position:",
+				name : "position"
+	   		}, {
+	   			label : "birthday:",
+	   			name : "birthday"
+	   		} ]
+	   	});
 	 
-	    // Activate an inline edit on click of a table cell
-//	    $('#example2').on( 'click', 'tbody td:not(:first-child)', function (e) {
-//	        editor.inline( this, {
-//	            onBlur: 'submit'
-//	        } );
-//	    } );
+// Activate an inline edit on click of a table cell
+	    $('#example2').on( 'click', 'tbody td:not(:first-child)', function (e) {
+	        editor.inline( this, {
+	            onBlur: 'submit'
+	        } );
+	    } );
 	    var columsName = {
 	            'nickName': '姓名',
 	            'position': '位置',
@@ -202,9 +209,10 @@ function editTable2(){
 	   	var c1 = {'title': columsName["nickName"], data: "nickName" ,  "visible": true};
 	   	var c2 = {'title': columsName["company"],  data: "company",  	render: $.fn.dataTable.render.text() };
 	   	var c3 = {'title': columsName["position"], data: "position",  	render: $.fn.dataTable.render.text() };
-	   	var c4 = {'title': columsName["birthday"], data: "birthday",  	render: $.fn.dataTable.render.text() };	   	
+	   	var c4 = {'title': columsName["birthday"], data: "birthday",  	render: $.fn.dataTable.render.text() };	  
+	   	var c5 = { data: "id" ,  "visible": false};
 	   	var columns = [];
-	   	columns.push(checkbox);	columns.push(c1);	columns.push(c2);	columns.push(c3);	columns.push(c4);
+	   	columns.push(checkbox);	columns.push(c1);	columns.push(c2);	columns.push(c3);	columns.push(c4);	columns.push(c5);
 	   	
 	    $('#example2').DataTable( {
 	         dom			: 'lBrptip',
