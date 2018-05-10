@@ -79,12 +79,14 @@ public class UserServiceImpl implements IUserService {
 			menus.add(t1);
 			for(int k=0; k<3; k++) {
 				MenuNode t2 = new MenuNode(id++, 0, "菜单-" + i + "-" + k, url, new ArrayList<MenuNode>());
-				t2.setParent(t1); t2.setParentId(t1.getId());
+				//t2.setParent(t1); 
+				t2.setParentId(t1.getId());
 				t1.getChildren().add(t2);
 				if(3==i || 5==i || 6==i || 7==i) {
 					for(int m=0; m<5; m++) {
 						MenuNode t3 = new MenuNode(id++, 0, "菜单-" + i + "-" + k + "-" + m, url, new ArrayList<MenuNode>());
-						t3.setParent(t2); t3.setParentId(t2.getId());
+						//t3.setParent(t2); 
+						t3.setParentId(t2.getId());
 						t2.getChildren().add(t3);
 //						if(m>3) {
 //							for(int n=0; n<5; n++) {

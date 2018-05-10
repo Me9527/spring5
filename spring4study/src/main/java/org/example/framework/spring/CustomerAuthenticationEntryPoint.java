@@ -13,6 +13,7 @@ import org.example.framework.json.JsonResult;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -27,8 +28,6 @@ import org.springframework.security.web.util.RedirectUrlBuilder;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 public class CustomerAuthenticationEntryPoint implements AuthenticationEntryPoint, InitializingBean{
 	// ~ Static fields/initializers
@@ -52,7 +51,8 @@ public class CustomerAuthenticationEntryPoint implements AuthenticationEntryPoin
 
 	private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
-	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+//	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+	private MappingJackson2HttpMessageConverter	mappingJackson2HttpMessageConverter;
 	
 	public CustomerAuthenticationEntryPoint(String loginFormUrl) {
 		Assert.notNull(loginFormUrl, "loginFormUrl cannot be null");
@@ -100,7 +100,7 @@ public class CustomerAuthenticationEntryPoint implements AuthenticationEntryPoin
 		if (accepts != null && accepts.indexOf("application/json") >= 0) {
 			JsonResult json = new JsonResult(false, "Need Login");
 			HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
-			fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
+			mappingJackson2HttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 			return;
 		}
 		
@@ -260,12 +260,13 @@ public class CustomerAuthenticationEntryPoint implements AuthenticationEntryPoin
 		return useForward;
 	}
 	
-	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
-		return fastJsonHttpMessageConverter;
+	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
+		return mappingJackson2HttpMessageConverter;
 	}
 
-	public void setFastJsonHttpMessageConverter(
-			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
-		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
+	public void setMappingJackson2HttpMessageConverter(
+			MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
+		this.mappingJackson2HttpMessageConverter = mappingJackson2HttpMessageConverter;
 	}
+	
 }

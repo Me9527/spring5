@@ -30,7 +30,8 @@ public class UserAction {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/getUserInfo.do")
+//	@RequestMapping("/getUserInfo.do")	//为什么在  MappingJackson2HttpMessageConverter 中配置不起作用。
+	@RequestMapping(value="/getUserInfo.do",produces = "application/json; charset=utf-8")
 	public JsonResult getUserInfo(HttpSession session) {
 //		UserInfoVO user = (UserInfoVO)session.getAttribute(UserConstants.UserInfoInHttpSession);
 		

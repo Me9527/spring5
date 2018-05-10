@@ -17,8 +17,8 @@ public class MenuNode implements Serializable {
 	private String state;
 	private int showOrder;
 	private Map<String, Object> attr;
-
-	private MenuNode parent;
+//	@JsonIgnore
+//	private MenuNode parent;
 	private List<MenuNode> children;
 
 	public MenuNode() {
@@ -105,14 +105,14 @@ public class MenuNode implements Serializable {
 	public void setAttr(Map<String, Object> attr) {
 		this.attr = attr;
 	}
-
-	public MenuNode getParent() {
-		return parent;
-	}
-
-	public void setParent(MenuNode parent) {
-		this.parent = parent;
-	}
+//	@JsonBackReference
+//	public MenuNode getParent() {
+//		return parent;
+//	}
+//
+//	public void setParent(MenuNode parent) {
+//		this.parent = parent;
+//	}
 
 	public List<MenuNode> getChildren() {
 		return children;

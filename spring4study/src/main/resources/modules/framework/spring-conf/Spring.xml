@@ -122,8 +122,16 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
-
-
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>application/json;charset=UTF-8</value>  
+            </list>  
+        </property>
+	</bean>
+	
+<!--  
 	<bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
 		<property name="charset" value="UTF-8" />
 		<property name="serializerFeatures">
@@ -142,5 +150,6 @@
 		</property>
 		<property name="fastJsonConfig" ref="fastJsonConfig" />
 	</bean>
+-->
     	
 </beans>

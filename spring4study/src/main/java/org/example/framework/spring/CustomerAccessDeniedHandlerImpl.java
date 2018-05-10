@@ -13,13 +13,12 @@ import org.example.framework.json.JsonResult;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
-
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 
@@ -29,8 +28,8 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 	// ================================================================================================
 
 	private String errorPage;
-	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
-
+//	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+	private MappingJackson2HttpMessageConverter	mappingJackson2HttpMessageConverter;
 	// ~ Methods
 	// ========================================================================================================
 
@@ -53,7 +52,7 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 				response.setStatus(HttpStatus.FORBIDDEN.value());
 				JsonResult json = new JsonResult(false, "AccessDenied");
 				HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
-				fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
+				mappingJackson2HttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 				return;
 			}
 			
@@ -93,12 +92,13 @@ public class CustomerAccessDeniedHandlerImpl implements AccessDeniedHandler {
 		this.errorPage = errorPage;
 	}
 
-	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
-		return fastJsonHttpMessageConverter;
+	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
+		return mappingJackson2HttpMessageConverter;
 	}
 
-	public void setFastJsonHttpMessageConverter(
-			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
-		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
+	public void setMappingJackson2HttpMessageConverter(
+			MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
+		this.mappingJackson2HttpMessageConverter = mappingJackson2HttpMessageConverter;
 	}
+
 }

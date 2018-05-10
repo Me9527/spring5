@@ -16,6 +16,7 @@ import org.example.users.vo.SpringSecurityUserVO;
 import org.example.users.vo.UserInfoVO;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -24,15 +25,14 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-
 public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
 	protected final Log logger = LogFactory.getLog(this.getClass());
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private IUserService userService;
-	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+//	private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+	private MappingJackson2HttpMessageConverter	mappingJackson2HttpMessageConverter;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
@@ -44,7 +44,7 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 			clearAuthenticationAttributes(request);
 			JsonResult json = new JsonResult(true, "AuthenticationSuccess ", userInfo);
 			HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
-			fastJsonHttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
+			mappingJackson2HttpMessageConverter.write(json, MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE), outputMessage);
 			
 //			WebApplicationContext webApplicationContext = (WebApplicationContext)request.getAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 //			ActionTwo actionTwo = (ActionTwo)webApplicationContext.getBean("actionTwo");
@@ -103,13 +103,13 @@ public class CustomerAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
 		this.userService = userService;
 	}
 
-	public FastJsonHttpMessageConverter getFastJsonHttpMessageConverter() {
-		return fastJsonHttpMessageConverter;
+	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
+		return mappingJackson2HttpMessageConverter;
 	}
 
-	public void setFastJsonHttpMessageConverter(
-			FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
-		this.fastJsonHttpMessageConverter = fastJsonHttpMessageConverter;
+	public void setMappingJackson2HttpMessageConverter(
+			MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
+		this.mappingJackson2HttpMessageConverter = mappingJackson2HttpMessageConverter;
 	}
 	
 	
