@@ -4,6 +4,7 @@ http://localhost:8080/spring4study/jsp/modules/module02/registration.jsp
 http://localhost:8000/spring4study/log4j.do
 http://localhost:8080/spring4study/html/modules/module03/main.html
 http://localhost:8000/spring4study/html/modules/module03/main.html
+http://localhost:8000/spring4study/modules/module02/actionTwo.do
 
 https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
 
