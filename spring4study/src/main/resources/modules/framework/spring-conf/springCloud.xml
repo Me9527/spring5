@@ -10,17 +10,15 @@
             http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
 	default-autowire="byName" default-lazy-init="true">
 
+
+	<bean id="clientFactory" class="org.example.framework.spring.CustomerSpringClientFactory">
 	
+	</bean>
 		
 	<bean id="loadBalancerClient" class="org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient">
 		<constructor-arg index="0">
 			<ref bean="clientFactory" />
 		</constructor-arg>
-	</bean>
-
-
-	<bean id="clientFactory" class="org.springframework.cloud.netflix.ribbon.SpringClientFactory"/>
-		
-	
+	</bean>	
 		
 </beans>

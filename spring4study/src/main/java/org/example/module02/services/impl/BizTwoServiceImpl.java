@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.example.module02.services.IBizTwo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,6 +20,9 @@ public class BizTwoServiceImpl implements IBizTwo {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 
+//    @Autowired
+//    RestTemplate restTemplate;
+    
     private LoadBalancerClient loadBalancerClient;
     
 	public LoadBalancerClient getLoadBalancerClient() {
