@@ -11,6 +11,10 @@
 	default-autowire="byName" default-lazy-init="true">
 
 
+	<bean id="propertiesFactory" class="org.springframework.cloud.netflix.ribbon.PropertiesFactory">
+	
+	</bean>
+	
 	<bean id="clientFactory" class="org.example.framework.spring.CustomerSpringClientFactory">
 	
 	</bean>
@@ -19,6 +23,15 @@
 		<constructor-arg index="0">
 			<ref bean="clientFactory" />
 		</constructor-arg>
-	</bean>	
-		
+	</bean>
+	
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.*" />
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.config.EurekaClientConfigServerAutoConfiguration" />
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.config.EurekaDiscoveryClientConfigServiceAutoConfiguration" />
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration" />
+
+	<context:component-scan base-package="org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration" />
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration" />
+	<context:component-scan base-package="org.springframework.cloud.netflix.eureka.config.EurekaDiscoveryClientConfigServiceBootstrapConfiguration" />
+			
 </beans>
