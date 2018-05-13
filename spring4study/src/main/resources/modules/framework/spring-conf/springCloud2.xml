@@ -11,20 +11,15 @@
 	default-autowire="byName" default-lazy-init="true">
 
 
-	<bean id="propertiesFactory" class="org.springframework.cloud.netflix.ribbon.PropertiesFactory">
-	
-	</bean>
-	
-	<bean id="clientFactory" class="org.example.framework.spring.CustomerSpringClientFactory">
-	
-	</bean>
-		
-	<bean id="loadBalancerClient" class="org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient">
-		<constructor-arg index="0">
-			<ref bean="clientFactory" />
-		</constructor-arg>
-	</bean>
-	
-	 
+		<bean name="inetUtils" class="org.springframework.cloud.commons.util.InetUtils"/>		
+		<bean name="inetUtilsProperties" class="org.springframework.cloud.commons.util.InetUtilsProperties"/>			
+		<bean class="org.springframework.cloud.netflix.eureka.config.EurekaClientConfigServerAutoConfiguration"/>
+		<bean class="org.springframework.cloud.netflix.eureka.config.EurekaDiscoveryClientConfigServiceAutoConfiguration"/>
+
+		<bean class="org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration"/>
+		<bean class="org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration"/>
+		<bean class="org.springframework.cloud.netflix.eureka.config.EurekaDiscoveryClientConfigServiceBootstrapConfiguration"/>	
+		<context:component-scan base-package="org.example.framework.spring" />
+		<context:annotation-config/>	 
 			
 </beans>
