@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="consumer-of-helloworld-app"  />
+
+    <dubbo:registry protocol="zookeeper" address="132.10.10.117:2181,132.10.10.22:2181" />
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <!--<dubbo:reference id="demoService" interface="com.alibaba.dubbo.demo.DemoService" version = "2"/>     <dubbo:registry address="dubbo://132.10.10.22:9090" /> -->
+    
+    <dubbo:reference id="demoService" interface="com.alibaba.dubbo.demo.DemoService" />
+    <dubbo:reference id="studyDubboService" interface="com.alibaba.dubbo.demo.StudyDubboService" />
+    
+	<!-- 属性文件读入 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:properties/jdbc.properties</value>
+				<value>classpath*:properties/hibernate.properties</value>
+				<value>classpath*:properties/esti_aux2/esti.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<!-- 数据库基本信息配置 -->
+		<property name="driverClassName" value="${oracle.driver}" />
+		<property name="url" value="${oracle.url}" />
+		<property name="username" value="${oracle.username}" />
+		<property name="password" value="${oracle.password}" />
+		<!-- 初始化连接数量 -->
+		<property name="initialSize" value="${druid.initialSize}" />
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${druid.maxActive}" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="${druid.maxIdle}" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${druid.minIdle}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${druid.maxWait}" />
+		<!-- 超过时间限制是否回收 -->
+		<property name="removeAbandoned" value="${druid.removeAbandoned}" />
+		<!-- 超过时间限制多长； -->
+		<property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+		<!-- 用来检测连接是否有效的sql，要求是一个查询语句 -->
+		<property name="validationQuery" value="${druid.validationQuery}" />
+		<!-- 申请连接的时候检测 -->
+		<property name="testWhileIdle" value="${druid.testWhileIdle}" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+		<property name="testOnBorrow" value="${druid.testOnBorrow}" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+		<property name="testOnReturn" value="${druid.testOnReturn}" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />
+		<property name="maxOpenPreparedStatements" value="${druid.maxOpenPreparedStatements}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+		<!--属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 防御SQL注入的filter:wall -->
+		<property name="filters" value="${druid.filters}" />
+	</bean>
+
+	<!-- 数据源定义,使用Apache DBCP 连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWait" value="1000" />
+		<property name="defaultAutoCommit" value="false" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="60" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="com.cpst.framework.spring.LocalSessionFactoryBeanUsePathPatternMatchingConfigFile">
+		<property name="dataSource">
+			<ref bean="druidDataSource" />
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
+				<prop key="hibernate.validator.autoregister_listeners">${hibernate.validator.autoregister_listeners}</prop>
+				<prop key="hibernate.validator.apply_to_ddl">${hibernate.validator.apply_to_ddl}</prop>
+				<prop key="javax.persistence.validation.mode">${javax.persistence.validation.mode}</prop>
+
+			</props>
+		</property>
+
+		<property name="moduleMappingResource">
+			<value>classpath*:modules/**/hibernate-conf/*.hbm.xml</value>
+		</property>
+	</bean>
+
+	<!-- Hibernate 事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- <tx:annotation-driven/> <aop:aspectj-autoproxy/> -->
+
+	<!-- 事务拦截方式 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- <tx:method name="list*" read-only="true" /> <tx:method name="search*" 
+				read-only="true" /> -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 事务配置 -->
+	<aop:config proxy-target-class="false">
+		<aop:pointcut id="projectServiceOperation"
+			expression="execution(* com.cpst.postal.settlement..*ServiceImpl.*(..))" />
+		<aop:advisor pointcut-ref="projectServiceOperation"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="druidDataSource" />
+		</property>
+	</bean>
+
+
+
+</beans>

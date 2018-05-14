@@ -5,11 +5,13 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.example.module02.services.IBizTwo;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import com.netflix.loadbalancer.ILoadBalancer;
+import com.netflix.loadbalancer.Server;
 
 // @Component、@Repository、@Service
 @Service("bizTwo")
@@ -23,15 +25,17 @@ public class BizTwoServiceImpl implements IBizTwo {
 //    @Autowired
 //    RestTemplate restTemplate;
     
-    private LoadBalancerClient loadBalancerClient;
+//    private LoadBalancerClient loadBalancerClient;
+    @Autowired
+    private ILoadBalancer ribbonLoadBalancer;
     
-	public LoadBalancerClient getLoadBalancerClient() {
-		return loadBalancerClient;
-	}
-
-	public void setLoadBalancerClient(LoadBalancerClient loadBalancerClient) {
-		this.loadBalancerClient = loadBalancerClient;
-	}
+//	public LoadBalancerClient getLoadBalancerClient() {
+//		return loadBalancerClient;
+//	}
+//
+//	public void setLoadBalancerClient(LoadBalancerClient loadBalancerClient) {
+//		this.loadBalancerClient = loadBalancerClient;
+//	}
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -49,6 +53,14 @@ public class BizTwoServiceImpl implements IBizTwo {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
+//	public ILoadBalancer getRibbonLoadBalancer() {
+//		return ribbonLoadBalancer;
+//	}
+//
+//	public void setRibbonLoadBalancer(ILoadBalancer ribbonLoadBalancer) {
+//		this.ribbonLoadBalancer = ribbonLoadBalancer;
+//	}
+
 	@Override
 	public String funcOne(String param) {
 		// TODO Auto-generated method stub
@@ -64,10 +76,11 @@ public class BizTwoServiceImpl implements IBizTwo {
 	@Override
 	//@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	public List<Map<String, Object>> getBiz01(String param) {
-        ServiceInstance serviceInstance = loadBalancerClient.choose("service-provide-01");
-        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/user/getUser/2";
-        System.out.println(url);
-        
+		Server server = ribbonLoadBalancer.chooseServer("service-provide-01");
+//        ServiceInstance serviceInstance = loadBalancerClient.choose("service-provide-01");
+//        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/user/getUser/2";
+//        System.out.println(url);
+		System.out.println(server);
 		String query = "select id, name from test_user";
 		List<Map<String, Object>> rs = jdbcTemplate.queryForList(query);
 		// System.out.println(rs);
