@@ -9,13 +9,17 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.commons.httpclient.HttpClientConfiguration;
 import org.springframework.cloud.netflix.ribbon.DefaultServerIntrospector;
 import org.springframework.cloud.netflix.ribbon.PropertiesFactory;
 import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerContext;
 import org.springframework.cloud.netflix.ribbon.ServerIntrospector;
 import org.springframework.cloud.netflix.ribbon.ZonePreferenceServerListFilter;
+import org.springframework.cloud.netflix.ribbon.apache.HttpClientRibbonConfiguration;
+import org.springframework.cloud.netflix.ribbon.okhttp.OkHttpRibbonConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import com.netflix.client.DefaultLoadBalancerRetryHandler;
 import com.netflix.client.RetryHandler;
@@ -37,6 +41,8 @@ import com.netflix.loadbalancer.ZoneAwareLoadBalancer;
 
 @Configuration
 @EnableConfigurationProperties
+//@Import({HttpClientConfiguration.class, OkHttpRibbonConfiguration.class, RestClientRibbonConfiguration.class, HttpClientRibbonConfiguration.class})
+@Import({HttpClientConfiguration.class, OkHttpRibbonConfiguration.class, HttpClientRibbonConfiguration.class})
 public class RibbonClientConfiguration {
 
 	public static final int DEFAULT_CONNECT_TIMEOUT = 1000;
