@@ -110,6 +110,10 @@ ZonePreferenceServerListFilter{zone='null'}
 com.netflix.loadbalancer.PollingServerListUpdater@464a3ebf
 	
 	
+http://localhost:2001/user/getUser/2
+http://localhost:2101/consumer
+http://localhost:1001/
+http://localhost:1001/health
 	
 	
 		
