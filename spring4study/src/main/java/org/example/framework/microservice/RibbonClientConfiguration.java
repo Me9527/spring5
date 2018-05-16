@@ -5,6 +5,7 @@ import static com.netflix.client.config.CommonClientConfigKey.DeploymentContextB
 import static org.springframework.cloud.netflix.ribbon.RibbonUtils.setRibbonProperty;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -16,6 +17,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerContext;
 import org.springframework.cloud.netflix.ribbon.ServerIntrospector;
 import org.springframework.cloud.netflix.ribbon.ZonePreferenceServerListFilter;
 import org.springframework.cloud.netflix.ribbon.apache.HttpClientRibbonConfiguration;
+import org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList;
 import org.springframework.cloud.netflix.ribbon.okhttp.OkHttpRibbonConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +28,8 @@ import com.netflix.client.RetryHandler;
 import com.netflix.client.config.CommonClientConfigKey;
 import com.netflix.client.config.DefaultClientConfigImpl;
 import com.netflix.client.config.IClientConfig;
+import com.netflix.discovery.EurekaClient;
 import com.netflix.loadbalancer.ConfigurationBasedServerList;
-import com.netflix.loadbalancer.DummyPing;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.IPing;
 import com.netflix.loadbalancer.IRule;
@@ -38,6 +40,8 @@ import com.netflix.loadbalancer.ServerListFilter;
 import com.netflix.loadbalancer.ServerListUpdater;
 import com.netflix.loadbalancer.ZoneAvoidanceRule;
 import com.netflix.loadbalancer.ZoneAwareLoadBalancer;
+import com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList;
+import com.netflix.niws.loadbalancer.NIWSDiscoveryPing;
 
 @Configuration
 @EnableConfigurationProperties
@@ -83,23 +87,27 @@ public class RibbonClientConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public IPing ribbonPing(IClientConfig config) {
-		if (this.propertiesFactory.isSet(IPing.class, name)) {
-			return this.propertiesFactory.get(IPing.class, config, name);
-		}
-		return new DummyPing();
+//		if (this.propertiesFactory.isSet(IPing.class, name)) {
+//			return this.propertiesFactory.get(IPing.class, config, name);
+//		}
+//		return new DummyPing();
+		
+		NIWSDiscoveryPing ping = new NIWSDiscoveryPing();
+		ping.initWithNiwsConfig(config);
+		return ping;
 	}
 
-	@Bean
-	@ConditionalOnMissingBean
-	@SuppressWarnings("unchecked")
-	public ServerList<Server> ribbonServerList(IClientConfig config) {
-		if (this.propertiesFactory.isSet(ServerList.class, name)) {
-			return this.propertiesFactory.get(ServerList.class, config, name);
-		}
-		ConfigurationBasedServerList serverList = new ConfigurationBasedServerList();
-		serverList.initWithNiwsConfig(config);
-		return serverList;
-	}
+//	@Bean
+//	@ConditionalOnMissingBean
+//	@SuppressWarnings("unchecked")
+//	public ServerList<Server> ribbonServerList(IClientConfig config) {
+//		if (this.propertiesFactory.isSet(ServerList.class, name)) {
+//			return this.propertiesFactory.get(ServerList.class, config, name);
+//		}
+//		ConfigurationBasedServerList serverList = new ConfigurationBasedServerList();
+//		serverList.initWithNiwsConfig(config);
+//		return serverList;
+//	}
 
 	@Bean
 	@ConditionalOnMissingBean
@@ -107,6 +115,17 @@ public class RibbonClientConfiguration {
 		return new PollingServerListUpdater(config);
 	}
 
+	@Bean
+	@ConditionalOnMissingBean
+	public ServerList<?> ribbonServerList(IClientConfig config, Provider<EurekaClient> eurekaClientProvider) {
+		DiscoveryEnabledNIWSServerList discoveryServerList = new DiscoveryEnabledNIWSServerList(
+				config, eurekaClientProvider);
+		discoveryServerList.setVipAddresses("service-provide-01");
+		DomainExtractingServerList serverList = new DomainExtractingServerList(
+				discoveryServerList, config, false);
+		return serverList;
+	}
+	
 	@Bean(name = "ribbonLoadBalancer")
 	@ConditionalOnMissingBean
 	public ILoadBalancer ribbonLoadBalancer(IClientConfig config,

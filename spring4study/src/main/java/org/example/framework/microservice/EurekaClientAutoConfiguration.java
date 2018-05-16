@@ -129,6 +129,7 @@ public class EurekaClientAutoConfiguration {
 			// chance later.
 			client.setRegisterWithEureka(false);
 		}
+		client.getServiceUrl().put("defaultZone", "http://localhost:1001/eureka/");	//TODO
 		return client;
 	}
 
@@ -199,7 +200,7 @@ public class EurekaClientAutoConfiguration {
 				metadataMap.put("management.port", String.valueOf(metadata.getManagementPort()));
 			}
 		}
-
+		instance.setInstanceId("DESKTOP-7T1PPNB:eureka-consumer:2101");
 		setupJmxPort(instance, jmxPort);
 		return instance;
 	}
@@ -252,6 +253,7 @@ public class EurekaClientAutoConfiguration {
 		@Bean(destroyMethod = "shutdown")
 		@ConditionalOnMissingBean(value = EurekaClient.class, search = SearchStrategy.CURRENT)
 		public EurekaClient eurekaClient(ApplicationInfoManager manager, EurekaClientConfig config) {
+			manager.getInfo(); // force initialization
 			return new CloudEurekaClient(manager, config, this.optionalArgs,
 					this.context);
 		}

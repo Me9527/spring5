@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
@@ -22,8 +23,8 @@ public class BizTwoServiceImpl implements IBizTwo {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 
-//    @Autowired
-//    RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
     
 //    private LoadBalancerClient loadBalancerClient;
     @Autowired
@@ -80,7 +81,10 @@ public class BizTwoServiceImpl implements IBizTwo {
 //        ServiceInstance serviceInstance = loadBalancerClient.choose("service-provide-01");
 //        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/user/getUser/2";
 //        System.out.println(url);
-		System.out.println(server);
+		String url = "http://" + server.getHost() + ":" + server.getPort() + "/user/getUser/2";
+		System.out.println(url);
+		Object obj = restTemplate.getForObject(url, String.class);
+		System.out.println(obj);
 		String query = "select id, name from test_user";
 		List<Map<String, Object>> rs = jdbcTemplate.queryForList(query);
 		// System.out.println(rs);
