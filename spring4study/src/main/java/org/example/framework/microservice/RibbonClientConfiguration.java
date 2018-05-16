@@ -29,7 +29,6 @@ import com.netflix.client.config.CommonClientConfigKey;
 import com.netflix.client.config.DefaultClientConfigImpl;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.discovery.EurekaClient;
-import com.netflix.loadbalancer.ConfigurationBasedServerList;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.IPing;
 import com.netflix.loadbalancer.IRule;
