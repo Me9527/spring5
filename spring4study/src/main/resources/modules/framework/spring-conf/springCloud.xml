@@ -14,6 +14,7 @@
 	<bean name="inetUtils" class="org.springframework.cloud.commons.util.InetUtils" />
 	<bean name="inetUtilsProperties" class="org.springframework.cloud.commons.util.InetUtilsProperties" />
 	<bean name="propertiesFactory" class="org.springframework.cloud.netflix.ribbon.PropertiesFactory" />
+	<bean name="restTemplate" class="org.springframework.web.client.RestTemplate" />
 	
 	<context:component-scan base-package="org.example.framework.microservice" />
 
