@@ -18,6 +18,7 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.loadbalancer.ILoadBalancer;
+import com.netflix.loadbalancer.Server;
 
 public class ServiceOneServiceImpl implements IServiceOne {
 
@@ -31,6 +32,7 @@ public class ServiceOneServiceImpl implements IServiceOne {
 	@Autowired
 	private DiscoveryClient eurekaClient;
 
+	@Autowired
     private ILoadBalancer ribbonLoadBalancer;
     
 	public String getNamePrefix() {
@@ -81,7 +83,13 @@ public class ServiceOneServiceImpl implements IServiceOne {
 
 	public Object testRibbonClient(String param) {
 
-		return "testRibbonClient";
+		Server server = ribbonLoadBalancer.chooseServer("service-provide-01");
+		String url = "http://" + server.getHost() + ":" + server.getPort() + "/user/getUser/2";
+		logger.info(url);
+		Object obj = restTemplate.getForObject(url, String.class);
+		logger.info(obj);
+		
+		return obj;
 	}
 
 	private void sendRequestToServiceUsingEureka(EurekaClient eurekaClient, String param) {
