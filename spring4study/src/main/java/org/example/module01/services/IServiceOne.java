@@ -6,4 +6,7 @@ public interface IServiceOne {
 	public void addUser(String param);
 //	public void loadUser(String param);
 	
+	public Object testEurekaClient(String param);
+	public Object testRibbonClient(String param);
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 //TODO mike module02.web 下不能存在同名的ActionOne类问题。
 @Controller
@@ -76,5 +77,24 @@ public class ActionOne {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+	
+	@RequestMapping("/testEurekaClient.do")
+	@ResponseBody
+	public Object testEurekaClient(String param) {
+		
+		Object rs = serviceOne.testEurekaClient(param);
+		
+		return rs;
+	}
+	
+	@RequestMapping("/testRibbonClient.do")
+	@ResponseBody
+	public Object testRibbonClient(String param) {
+		
+		Object rs = serviceOne.testRibbonClient(param);
+		
+		return rs;
+	}
+	
 	
 }
