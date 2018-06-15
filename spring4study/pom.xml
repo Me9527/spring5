@@ -12,13 +12,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-		<mysql.version>5.1.24</mysql.version>
+		<mysql.version>5.1.38</mysql.version>
 		<org.springframework.security.version>5.0.0.RELEASE</org.springframework.security.version>
 		<org.springframework.session.version>2.0.1.RELEASE</org.springframework.session.version>
 		<org.apache.logging.log4j.version>2.10.0</org.apache.logging.log4j.version>
 		<com.alibaba.druid.version>1.1.6</com.alibaba.druid.version>
 		<com.fasterxml.jackson.version>2.9.3</com.fasterxml.jackson.version>		
-					
+		<mybaitsplus.version>2.1.9</mybaitsplus.version>
+							
 	</properties>
 
 	<packaging>war</packaging>
@@ -95,7 +96,7 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.4</version>
+			<version>1.8.8</version>
 		</dependency>
 
 		<dependency>
@@ -163,7 +164,11 @@
 			<version>1.2</version>
 			<scope>provided</scope> 			
 		</dependency>
-		
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus</artifactId>
+			<version>${mybaitsplus.version}</version>
+		</dependency>		
 <!--  
 		
 		<dependency>
