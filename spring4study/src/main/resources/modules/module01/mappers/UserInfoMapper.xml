@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.module01.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="org.example.module01.model.UserInfo">
+    <result column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="UID" jdbcType="DECIMAL" property="uid" />
+    <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+
+  <select id="selectData" parameterType="map" resultMap="BaseResultMap">	
+ 	SELECT UD.ID, UD.UID, UD.NICKNAME, UD.ADDRESS FROM P_USERS_DETAIL UD 
+ 	where 1=1 and UID = #{uid,jdbcType=DECIMAL}
+    order by UID
+   </select>
+   
+  <insert id="insert" parameterType="org.example.module01.model.UserInfo">
+    insert into P_USERS_DETAIL (ID, UID, NICKNAME, ADDRESS)
+    values (#{id,jdbcType=DECIMAL}, #{uid,jdbcType=DECIMAL}, #{nickname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
+  </insert>     
+  
+</mapper>

@@ -7,8 +7,13 @@ import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.example.module01.dao.UserInfoMapper;
+import org.example.module01.model.UserInfo;
 import org.example.module01.services.IServiceOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -81,6 +86,8 @@ public class ServiceOneServiceImpl implements IServiceOne {
 		return "testEurekaClient";
 	}
 
+	@Autowired
+	private UserInfoMapper UserInfoMapper;
 	public Object testRibbonClient(String param) {
 
 		Server server = ribbonLoadBalancer.chooseServer("service-provide-01");
@@ -88,7 +95,17 @@ public class ServiceOneServiceImpl implements IServiceOne {
 		logger.info(url);
 		Object obj = restTemplate.getForObject(url, String.class);
 		logger.info(obj);
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("uid", 2);
+		List<UserInfo> tmp = UserInfoMapper.selectData(params);
+		logger.info(tmp);
 		
+		UserInfo nn = new UserInfo();
+		nn.setId(999L); nn.setAddress("牛家村"); nn.setNickname("郭靖");	nn.setUid(999L);
+		UserInfoMapper.insert(nn);
+		params.put("uid", 999);
+		tmp = UserInfoMapper.selectData(params);
+		logger.info(tmp);
 		return obj;
 	}
 
