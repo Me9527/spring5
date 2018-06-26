@@ -87,7 +87,7 @@
 	</bean>
 
     <!-- Spring整合Mybatis，更多查看文档：http://mp.baomidou.com -->
-    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+    <bean id="mybatisSqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="druidDataSource"/>
         <!-- 自动扫描Mapping.xml文件
         <property name="mapperLocations" value="classpath:mybatis/*/*.xml"/>
@@ -110,7 +110,7 @@
     <!-- MyBatis 动态扫描  -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="org.example.*.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>        
+        <property name="sqlSessionFactoryBeanName" value="mybatisSqlSessionFactory"></property>        
     </bean>
 
     
