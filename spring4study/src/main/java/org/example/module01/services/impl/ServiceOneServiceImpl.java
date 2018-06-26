@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.client.RestTemplate;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
@@ -104,7 +105,10 @@ public class ServiceOneServiceImpl implements IServiceOne {
 		nn.setId(999L); nn.setAddress("牛家村"); nn.setNickname("郭靖");	nn.setUid(999L);
 		UserInfoMapper.insert(nn);
 		params.put("uid", 999);
-		tmp = UserInfoMapper.selectData(params);
+		
+        Page<UserInfo> page = new Page<UserInfo>(1,10);
+        List<UserInfo> lstUser = UserInfoMapper.selectData(page, params);
+        
 		logger.info(tmp);
 		return obj;
 	}
