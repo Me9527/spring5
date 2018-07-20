@@ -14,6 +14,13 @@
             http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd  
             http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
 	default-autowire="byName" default-lazy-init="false">
+
+	<!--  
+	<bean id="yamlProperties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">
+    	<property name="resources" value="classpath:appConfig.yml"/>
+	</bean>
+	<context:property-placeholder properties-ref="yamlProperties"/>
+	-->		
 	<!-- 属性文件读入 -->	
 	<context:property-placeholder order="0" location="classpath*:modules/**/properties/*.properties"/> 
 	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
