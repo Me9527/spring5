@@ -7,6 +7,7 @@ http://localhost:8000/spring4study/html/modules/module03/main.html
 http://localhost:8000/spring4study/modules/module02/actionTwo.do
 
 http://localhost:8080/spring4study/modules/module02/actionTwo.do
+http://localhost:8000/spring4study/modules/module01/ActionOne/testRibbonClient.do
 
 https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
 
