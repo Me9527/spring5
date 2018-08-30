@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 
@@ -107,12 +108,27 @@ public class ServiceOneServiceImpl implements IServiceOne {
 		params.put("uid", 999);
 		
         Page<UserInfo> page = new Page<UserInfo>(1,10);
-        List<UserInfo> lstUser = UserInfoMapper.selectData(page, params);
+        @SuppressWarnings("unused")
+		List<UserInfo> lstUser = UserInfoMapper.selectData(page, params);
         
 		logger.info(tmp);
 		return obj;
 	}
 
+	@HystrixCommand(fallbackMethod = "fallback")
+	public Object testHystrix(String param, Integer uid){
+		Server server = ribbonLoadBalancer.chooseServer("service-provide-01");
+		String url = "http://" + server.getHost() + ":" + server.getPort() + "/user/getUser/" + uid;
+		logger.info(url);
+		Object obj = restTemplate.getForObject(url, String.class);
+		logger.info(obj);
+		return obj;
+	}
+	
+	public Object fallback(String param, Integer uid) {
+		return "fallbck123";
+	}
+	
 	private void sendRequestToServiceUsingEureka(EurekaClient eurekaClient, String param) {
 		// initialize the client
 		// this is the vip address for the example service to talk to as defined in

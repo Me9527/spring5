@@ -21,6 +21,8 @@ public class ActionOne {
 	private Integer abc;
 	private IServiceOne serviceOne;
 	private JdbcTemplate jdbcTemplate;
+/*	@Autowired
+	private ServiceTwoServiceImpl serviceTwoServiceImpl;*/
 	
 	public Integer getAbc() {
 		return abc;
@@ -96,5 +98,14 @@ public class ActionOne {
 		return rs;
 	}
 	
-	
+	@RequestMapping("/testHystrix.do")
+	@ResponseBody
+	public Object testHystrix(@RequestParam(value = "uid", required = true, defaultValue = "2") Integer uid, 
+			@RequestParam(value = "param", required = true) String param, Model model) {
+		
+//		Object rs = serviceTwoServiceImpl.testHystrix(param, uid);
+		Object rs = serviceOne.testHystrix(param, uid);
+		return rs;
+	}
+
 }

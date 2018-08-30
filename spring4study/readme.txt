@@ -8,6 +8,9 @@ http://localhost:8000/spring4study/modules/module02/actionTwo.do
 
 http://localhost:8080/spring4study/modules/module02/actionTwo.do
 http://localhost:8000/spring4study/modules/module01/ActionOne/testRibbonClient.do
+http://localhost:8000/spring4study/modules/module01/ActionOne/testHystrix.do?uid=2&param=abc
+http://localhost:2101/consumer2
+
 
 https://www.tutorialspoint.com/bootstrap/bootstrap_ajax_demo.htm
 

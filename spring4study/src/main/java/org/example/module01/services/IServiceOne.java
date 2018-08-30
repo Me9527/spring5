@@ -9,4 +9,5 @@ public interface IServiceOne {
 	public Object testEurekaClient(String param);
 	public Object testRibbonClient(String param);
 	
+	public Object testHystrix(String param, Integer uid);
 }

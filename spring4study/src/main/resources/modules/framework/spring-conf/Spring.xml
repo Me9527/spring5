@@ -142,6 +142,8 @@
 		</tx:attributes>
 	</tx:advice>
 
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
 	<!-- 事务配置 		expression="execution(public * org.example..*ServiceImpl.*(..))" /> ="projectServiceOperation" expression="execution(* com.cpst.postal.settlement..*ServiceImpl.*(..))"/>-->
 	<aop:config proxy-target-class="false">
 		<aop:pointcut id="projectServiceOperation" expression="execution(* org.example..*ServiceImpl.*(..))" />
