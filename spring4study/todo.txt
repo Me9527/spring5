@@ -1,0 +1,4 @@
+1 org.example.framework.microservice 包应该为 microservice cfg，或者annotation cfg
+
+2 resources/modules/biz/web/example-servlet2.xml 需要整理，如何使用 非注解方式 web action 配置 例子。
+

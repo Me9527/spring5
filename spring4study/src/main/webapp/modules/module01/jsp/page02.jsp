@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jsp/modules/commons/common.jsp" %>
+<%@ include file="/modules/commons/jsp/common.jsp" %>
 
 <html>
 <head>
     <title>Registration Form</title>
 
     <!-- Shared -->
-    <link rel="stylesheet" type="text/css" href="../shared/example.css" />
+    <link rel="stylesheet" type="text/css" href="../css/example.css" />
     <script type="text/javascript">
     	var url = ctx + "/modules/module02/ActionTwo/aabbcc.do?${_csrf.parameterName}=${_csrf.token}";
     </script>
-    <script type="text/javascript" src="registration2.js"></script>
+    <script type="text/javascript" src="../js/registration2.js"></script>
     
     <!-- GC -->
     <!-- Example -->

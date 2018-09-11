@@ -44,7 +44,6 @@
 	</bean>
 
 	<util:list id="antPathRequestMatcher"  list-class="java.util.ArrayList">
-		<value>/jsp/modules/**</value>
 		<value>/modules/**</value>	
 	</util:list>
 	
@@ -143,7 +142,7 @@
 		<property name="logoutRequestMatcher" ref="logoutUrl"/>			
 	</bean>	
 	<bean id="logoutSuccessHandler" class="org.example.framework.spring.CustomerLogoutSuccessHandler">
-	 		<property name="defaultTargetUrl" value="/jsp/modules/user/login.jsp"/>
+	 		<property name="defaultTargetUrl" value="/modules/user/jsp/login.jsp"/>
 	</bean>
 
 	<bean id="logoutUrl" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
@@ -201,7 +200,7 @@
 		<property name="targetUrlParameter" value="targetUrl"/>
 	</bean>	
 	<bean id="failureHandler" class="org.example.framework.spring.CustomerAuthenticationFailureHandler">
-		<property name="defaultFailureUrl" value="/jsp/modules/user/login.jsp"/>	
+		<property name="defaultFailureUrl" value="/modules/user/jsp/login.jsp"/>	
 	</bean>	
 	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
@@ -346,7 +345,7 @@
 		
 
 	<bean id="accessDeniedHandler" class="org.example.framework.spring.CustomerAccessDeniedHandlerImpl">
-		<property name="errorPage" value="/jsp/modules/user/accessDeniedHandler.jsp"/>
+		<property name="errorPage" value="/modules/user/jsp/accessDeniedHandler.jsp"/>
 	</bean>			
 	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<constructor-arg index="0">
@@ -359,7 +358,7 @@
 	</bean>
 	<bean id="loginUrlAuthenticationEntryPoint" class="org.example.framework.spring.CustomerAuthenticationEntryPoint">
 		<constructor-arg index="0">
-			<value>/jsp/modules/user/login.jsp</value>
+			<value>/modules/user/jsp/login.jsp</value>
 		</constructor-arg>	
 	</bean>
 	

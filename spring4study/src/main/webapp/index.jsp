@@ -12,7 +12,7 @@ request.setAttribute("basePath", basePath);
   <head>
     <title>欢迎浏览</title>
     <script LANGUAGE="JavaScript"> 
-   		window.location.href="${ctx}/jsp/modules/module01/registration.jsp"; 
+   		window.location.href="${ctx}/modules/module01/jsp/registration.jsp"; 
    	</script>   
 
   </head>
