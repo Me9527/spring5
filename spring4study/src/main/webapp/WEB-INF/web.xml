@@ -95,12 +95,8 @@
 	<filter-mapping>
 		<filter-name>delegatingFilterProxy</filter-name>
 		<url-pattern>/modules/*</url-pattern>
-	</filter-mapping>		
-	<filter-mapping>
-		<filter-name>delegatingFilterProxy</filter-name>
-		<url-pattern>/jsp/modules/*</url-pattern>
 	</filter-mapping>
-	
+
 	<filter-mapping>
 		<filter-name>delegatingFilterProxy</filter-name>
 		<url-pattern>/webservice/*</url-pattern>
@@ -126,15 +122,15 @@
 	<!-- 错误页面 -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/html/modules/commons/page_404.html</location>
+		<location>/modules/commons/html/page_404.html</location>
 	</error-page>
 	<error-page>
 		<error-code>403</error-code>
-		<location>/html/modules/commons/page_403.html</location>
+		<location>/modules/commons/html/page_403.html</location>
 	</error-page>	
 	<error-page>
 		<error-code>500</error-code>
-		<location>/html/modules/commons/page_500.html</location>
+		<location>/modules/commons/html/page_500.html</location>
 	</error-page>
 
 
