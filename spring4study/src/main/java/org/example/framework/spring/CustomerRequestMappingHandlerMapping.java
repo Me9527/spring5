@@ -25,6 +25,7 @@ import org.springframework.web.servlet.handler.MatchableHandlerMapping;
 import org.springframework.web.servlet.handler.RequestMatchResult;
 import org.springframework.web.servlet.mvc.condition.AbstractRequestCondition;
 import org.springframework.web.servlet.mvc.condition.CompositeRequestCondition;
+import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 
@@ -178,11 +179,10 @@ public class CustomerRequestMappingHandlerMapping extends CustomerRequestMapping
 				info = typeInfo.combine(info);
 			}
 		}else{
-			if(method.getName().indexOf("get") == 0 && method.getName().indexOf("set") == 0){
-				String tmp = method.getClass().getCanonicalName();
-				tmp = tmp.substring(0, tmp.lastIndexOf("web"));
-			}
-
+//			if(method.getName().indexOf("get") == 0 || method.getName().indexOf("set") == 0){
+//				String tmp = method.getClass().getCanonicalName();
+//				tmp = tmp.substring(0, tmp.lastIndexOf("web"));
+//			}
 		}
 		return info;
 	}
@@ -223,7 +223,7 @@ public class CustomerRequestMappingHandlerMapping extends CustomerRequestMapping
 			if(patterns.length < 1){
 				patterns = new String[1];  
 				patterns[0] =  "/" + handlerType.getSimpleName() + "/" + method.getName() + actonName;
-				this.logger.debug("Change RequestMappingInfo, " + patterns[0]);
+				this.logger.debug("根据类方法名自动创建模块化Controller:, " + patterns[0]);
 			}
 			String[] resolvedPatterns = new String[patterns.length];
 			for (int i = 0; i < patterns.length; i++) {
@@ -244,7 +244,26 @@ public class CustomerRequestMappingHandlerMapping extends CustomerRequestMapping
 		RequestMapping requestMapping = AnnotatedElementUtils.findMergedAnnotation(element, RequestMapping.class);
 		RequestCondition<?> condition = (element instanceof Class ?
 				getCustomTypeCondition((Class<?>) element) : getCustomMethodCondition((Method) element));
-		return (requestMapping != null ? createRequestMappingInfo(requestMapping, condition) : null);
+		RequestMappingInfo mapInfo = (requestMapping != null ? createRequestMappingInfo(requestMapping, condition) : null);
+		if(null == mapInfo) {
+			if(element instanceof Class ) {
+				@SuppressWarnings("rawtypes")
+				String name = ((Class) element).getName();
+				name = name.replace('.', ',');
+				String[] tmp = name.split(",");
+				String module = "";
+				for(int i=0; i<tmp.length; i++) {
+					if("web".equals(tmp[i])) {
+						module = tmp[i-1];
+						break;
+					}
+				}
+				PatternsRequestCondition pattern = new PatternsRequestCondition(module);
+				mapInfo = new RequestMappingInfo(pattern, null, null, null, null, null, null);
+				this.logger.debug("根据包名自动创建模块化Controller:, " + mapInfo);
+			}
+		}
+		return mapInfo;
 	}
 
 	/**
