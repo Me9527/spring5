@@ -198,7 +198,7 @@ public abstract class CustomerAbstractHandlerMethodMapping<T> extends AbstractHa
 						logger.debug("Could not resolve target class for bean with name '" + beanName + "'", ex);
 					}
 				}
-				if (beanType != null && isHandler(beanType)) {
+				if (beanType != null && isHandler(beanType)) {	//TODO  all classes in web package should be consider MVC controller, if you wish, modify this 'isHandler(beanType)' method
 					detectHandlerMethods(beanName);
 				}
 			}
