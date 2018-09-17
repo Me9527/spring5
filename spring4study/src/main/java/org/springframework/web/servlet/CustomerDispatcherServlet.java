@@ -1,6 +1,7 @@
 package org.springframework.web.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -34,6 +35,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.ui.context.ThemeSource;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.async.WebAsyncManager;
@@ -924,8 +926,21 @@ public class CustomerDispatcherServlet extends FrameworkServlet {
 	}
 
 	private void CustomerView(HandlerExecutionChain mappedHandler, ModelAndView mv ) {
-		HandlerMethod obj = (HandlerMethod)mappedHandler.getHandler();
-		mv.setViewName("/module02/" + mv.getViewName());
+		//返回类型是String, 且没有 @ResponseBody 注解
+		if(mappedHandler.getHandler() instanceof HandlerMethod) {
+			@SuppressWarnings("unused")
+			HandlerMethod method = (HandlerMethod)mappedHandler.getHandler();
+			Method m = method.getMethod();
+			ResponseBody responseBody = method.getMethodAnnotation(ResponseBody.class);
+			Class mt = m.getReturnType();
+			if(mt.getName().equals("java.lang.String") && (responseBody == null)) {
+//				Object returnType = method.getReturnType();
+				mv.setViewName("/module02/" + mv.getViewName());
+				logger.debug("根据类名自动创建JSP模块路径:" + mv.getViewName());
+			}
+
+		}
+		
 	}
 	
 	/**
