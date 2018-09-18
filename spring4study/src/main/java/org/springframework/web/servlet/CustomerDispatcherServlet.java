@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.example.framework.MyConstant;
+import org.example.framework.MyUtil;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -928,19 +930,17 @@ public class CustomerDispatcherServlet extends FrameworkServlet {
 	private void CustomerView(HandlerExecutionChain mappedHandler, ModelAndView mv ) {
 		//返回类型是String, 且没有 @ResponseBody 注解
 		if(mappedHandler.getHandler() instanceof HandlerMethod) {
-			@SuppressWarnings("unused")
 			HandlerMethod method = (HandlerMethod)mappedHandler.getHandler();
 			Method m = method.getMethod();
 			ResponseBody responseBody = method.getMethodAnnotation(ResponseBody.class);
-			Class mt = m.getReturnType();
+			Class<?> mt = m.getReturnType();
 			if(mt.getName().equals("java.lang.String") && (responseBody == null)) {
-//				Object returnType = method.getReturnType();
-				mv.setViewName("/module02/" + mv.getViewName());
-				logger.debug("根据类名自动创建JSP模块路径:" + mv.getViewName());
+				String moduleName = MyUtil.getWebModuleName(method.getBeanType().getName(), MyConstant.WEB_MODULE_PACKAGE_NAME);
+				mv.setViewName(moduleName + mv.getViewName());
+				logger.debug("根据类名自动创建JSP模块路径:" + moduleName + mv.getViewName());
 			}
-
 		}
-		
+//		Object returnType = method.getReturnType();
 	}
 	
 	/**

@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.example.framework.MyConstant;
+import org.example.framework.MyUtil;
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Controller;
@@ -248,17 +250,11 @@ public class CustomerRequestMappingHandlerMapping extends CustomerRequestMapping
 		if(null == mapInfo) {
 			if(element instanceof Class ) {
 				@SuppressWarnings("rawtypes")
-				String name = ((Class) element).getName();
-				name = name.replace('.', ',');
-				String[] tmp = name.split(",");
-				String module = "";
-				for(int i=0; i<tmp.length; i++) {
-					if("web".equals(tmp[i])) {
-						module = tmp[i-1];
-						break;
-					}
-				}
-				PatternsRequestCondition pattern = new PatternsRequestCondition(module);
+				String packageName = ((Class) element).getName();
+				String moduleName = MyUtil.getWebModuleName(packageName, MyConstant.WEB_MODULE_PACKAGE_NAME);
+				if(null == moduleName) 
+					return null;
+				PatternsRequestCondition pattern = new PatternsRequestCondition(moduleName);
 				mapInfo = new RequestMappingInfo(pattern, null, null, null, null, null, null);
 				this.logger.debug("根据包名自动创建模块化Controller:, " + mapInfo);
 			}

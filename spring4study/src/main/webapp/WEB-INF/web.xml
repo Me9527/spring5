@@ -63,7 +63,7 @@
 
 	<servlet>
 		<servlet-name>Spring_Web_MVC_Controller</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.CustomerDispatcherServlet</servlet-class>
 		<!-- 邮ContextLoaderListener加载配置，所以这里注释掉了 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
