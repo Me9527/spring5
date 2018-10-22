@@ -13,8 +13,7 @@ import java.net.MalformedURLException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.AnyNestedCondition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -23,14 +22,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClas
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.SearchStrategy;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration;
-import org.springframework.cloud.client.CommonsClientAutoConfiguration;
 import org.springframework.cloud.client.actuator.HasFeatures;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.noop.NoopDiscoveryClientAutoConfiguration;
 import org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationProperties;
-import org.springframework.cloud.client.serviceregistry.ServiceRegistryAutoConfiguration;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.context.scope.refresh.RefreshScope;
 import org.springframework.cloud.netflix.eureka.CloudEurekaClient;
@@ -64,31 +59,19 @@ import com.netflix.discovery.AbstractDiscoveryClientOptionalArgs;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.EurekaClientConfig;
 
-/**
- * @author Dave Syer
- * @author Spencer Gibb
- * @author Jon Schneider
- * @author Matt Jenkins
- * @author Ryan Baxter
- * @author Daniel Lavoie
- */
-//@EnableHystrixDashboard
-//@EnableCircuitBreaker
 @Configuration
-@EnableConfigurationProperties
-@ConditionalOnClass(EurekaClientConfig.class)
 @Import(DiscoveryClientOptionalArgsConfiguration.class)
-@ConditionalOnProperty(value = "eureka.client.enabled", matchIfMissing = true)
-@AutoConfigureBefore({ NoopDiscoveryClientAutoConfiguration.class,
-		CommonsClientAutoConfiguration.class, ServiceRegistryAutoConfiguration.class })
-@AutoConfigureAfter(name = {"org.springframework.cloud.autoconfigure.RefreshAutoConfiguration",
-		"org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration",
-		"org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationAutoConfiguration"})
 public class EurekaClientAutoConfiguration {
 
 	@Autowired(required = false)
 	private HealthCheckHandler healthCheckHandler;
 	
+	@Value("${Eureka.defaultZone}")
+	private String defaultZone; 
+	@Value("${Eureka.setInstanceId}")
+	private String setInstanceId; 
+	@Value("${Eureka.appname}")
+	private String appname;
 	@Bean
 	public HasFeatures eurekaFeature() {
 		return HasFeatures.namedFeature("Eureka Client", EurekaClient.class);
@@ -101,9 +84,9 @@ public class EurekaClientAutoConfiguration {
 		if ("bootstrap".equals(new RelaxedPropertyResolver(env).getProperty("spring.config.name"))) {
 			// We don't register during bootstrap by default, but there will be another
 			// chance later.
-			client.setRegisterWithEureka(false);
+			client.setRegisterWithEureka(true);	//TODO
 		}
-		client.getServiceUrl().put("defaultZone", "http://localhost:1001/eureka/");	//TODO
+		client.getServiceUrl().put("defaultZone", defaultZone);	
 		return client;
 	}
 
@@ -174,7 +157,8 @@ public class EurekaClientAutoConfiguration {
 				metadataMap.put("management.port", String.valueOf(metadata.getManagementPort()));
 			}
 		}
-		instance.setInstanceId("DESKTOP-7T1PPNB:eureka-consumer:2101");
+		instance.setInstanceId(setInstanceId);
+		instance.setAppname(appname);
 		setupJmxPort(instance, jmxPort);
 		return instance;
 	}
@@ -228,8 +212,7 @@ public class EurekaClientAutoConfiguration {
 		@ConditionalOnMissingBean(value = EurekaClient.class, search = SearchStrategy.CURRENT)
 		public EurekaClient eurekaClient(ApplicationInfoManager manager, EurekaClientConfig config) {
 			manager.getInfo(); // force initialization
-			return new CloudEurekaClient(manager, config, this.optionalArgs,
-					this.context);
+			return new CloudEurekaClient(manager, config, this.optionalArgs, this.context);
 		}
 
 		@Bean
@@ -257,8 +240,7 @@ public class EurekaClientAutoConfiguration {
 		@Lazy
 		public EurekaClient eurekaClient(ApplicationInfoManager manager, EurekaClientConfig config, EurekaInstanceConfig instance) {
 			manager.getInfo(); // force initialization
-			return new CloudEurekaClient(manager, config, this.optionalArgs,
-					this.context);
+			return new CloudEurekaClient(manager, config, this.optionalArgs, this.context);
 		}
 
 		@Bean
